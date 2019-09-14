@@ -19,7 +19,6 @@ public class UsuarioDaoImpl implements UsuarioDao {
 	@Inject
     private SessionFactory sessionFactory;
 
-	@Override
 	public Usuario consultarUsuario(Usuario usuario) {
 
 		// Se obtiene la sesion asociada a la transaccion iniciada en el servicio que invoca a este metodo y se crea un criterio
