@@ -1,5 +1,8 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
@@ -10,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import ar.edu.unlam.tallerweb1.modelo.Taller;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioLogin;
 
@@ -34,6 +38,40 @@ public class ControladorLogin {
 		// Se va a la vista login (el nombre completo de la lista se resuelve utilizando el view resolver definido en el archivo spring-servlet.xml)
 		// y se envian los datos a la misma  dentro del modelo
 		return new ModelAndView("login", modelo);
+	}
+	
+	@RequestMapping("/registrarse")
+	public ModelAndView registro() {
+		ModelMap modelo = new ModelMap();
+		Taller taller = new Taller();
+		modelo.put("taller", taller);
+		return new ModelAndView("registrarse", modelo);
+	
+	}
+	
+	@RequestMapping(method = RequestMethod.POST)
+	 public String initForm(ModelMap model){
+	   
+	  Taller list = new Taller();
+	  list.setLista("Hibernate");
+	  model.addAttribute("taller", list);
+	  return "TallerForm";
+	 }
+	
+	
+	@ModelAttribute("ListaEspecialidades")
+	public List<String> especialidades(){
+		List<String> lista = new ArrayList<String>();
+		lista.add("Mecanica General");
+		lista.add("Chapa y Pintura");
+		lista.add("Alineacion y Balanceo");
+		lista.add("Electricidad");
+		lista.add("Suspension");
+		lista.add("Lubricentro");
+		lista.add("Gomeria");
+		
+		return lista;
+	
 	}
 
 	// Este metodo escucha la URL validar-login siempre y cuando se invoque con metodo http POST

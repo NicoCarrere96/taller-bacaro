@@ -21,8 +21,7 @@ public class ServicioLoginImpl implements ServicioLogin {
 	@Inject
 	private UsuarioDao servicioLoginDao;
 
-	@Override
-	public Usuario consultarUsuario (Usuario usuario) {
+	public Usuario consultarUsuario(Usuario usuario) {
 		return servicioLoginDao.consultarUsuario(usuario);
 	}
 
