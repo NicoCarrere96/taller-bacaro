@@ -46,6 +46,10 @@ public class Reserva {
 	public void setProblema(String problema) {
 		this.problema = problema;
 	}
+	public Long getId() {
+		return id;
+	}
+
 	
 	
 }

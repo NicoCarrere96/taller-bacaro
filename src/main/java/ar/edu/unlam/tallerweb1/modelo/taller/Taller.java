@@ -15,17 +15,19 @@ public class Taller {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	String nombreDelTaller;
-	String nombreDelDuenio;
-	String calle;
-	String numero;
-	String lista;
-	String telefono;
-	String paginaWeb;
+	private String nombreDelTaller;
+	private String nombreDelDuenio;
+	private String calle;
+	private String numero;
+	private String lista;
+	private String telefono;
+	private String paginaWeb;
 	@ManyToOne
-	Localidad localidad;
+	private Localidad localidad;
 	@OneToOne
-	Usuario usuario;
+	private Usuario usuario;
+	private Double manoDeObra;
+	
 
 
 	public Long getId() {
@@ -100,5 +102,22 @@ public class Taller {
 		this.lista = lista;
 	}
 
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public Double getManoDeObra() {
+		return manoDeObra;
+	}
+
+	public void setManoDeObra(Double manoDeObra) {
+		this.manoDeObra = manoDeObra;
+	}
+
+	
 
 }

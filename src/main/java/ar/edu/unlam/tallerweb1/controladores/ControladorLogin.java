@@ -31,7 +31,7 @@ public class ControladorLogin {
 
 	// Este metodo escucha la URL localhost:8080/NOMBRE_APP/login si la misma es
 	// invocada por metodo http GET
-	@RequestMapping("/login")
+	@RequestMapping(path = "/login", method = RequestMethod.GET)
 	public ModelAndView irALogin() {
 
 		ModelMap modelo = new ModelMap();
