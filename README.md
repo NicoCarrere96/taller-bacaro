@@ -1,4 +1,4 @@
-https://trello.com/b/NxFSwdcG/bacaro-talleres# Taller Bacaro
+# Taller Bacaro
 
 ## Tecnologias utilizadas:
   - Spring
@@ -8,10 +8,10 @@ https://trello.com/b/NxFSwdcG/bacaro-talleres# Taller Bacaro
   - Tomcat 8.5/9.0
   - MySql
 
-## Integración Continua:
+## IntegraciÃ³n Continua:
   https://travis-ci.org/NicoCarrere96/taller-bacaro
   
 ## Tablero de Tareas:
   https://trello.com/b/NxFSwdcG/bacaro-talleres
 
-### Sistema pensado para conectar una gran red de talleres automotrices, permitiendo a los clientes reservar turnos de atención y a los talleres registrar ordenes de trabajo, facturaciones y control de stock de repuestos.
+### Sistema pensado para conectar una gran red de talleres automotrices, permitiendo a los clientes reservar turnos de atenciÃ³n y a los talleres registrar ordenes de trabajo, facturaciones y control de stock de repuestos.
