@@ -38,10 +38,6 @@
 <td><form:input path="localidad" /></td>
 </tr>
 <tr>
-<td>Provincia : </td>
-<td><form:input path="provincia" /></td>
-</tr>
-<tr>
 <td>Telefono : </td>
 <td><form:input path="telefono" /></td>
 </tr>
