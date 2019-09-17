@@ -62,5 +62,11 @@ public class Orden {
 		this.id = id;
 	}
 	
-	
+	public void calcularTotal() {
+		this.total = this.horasDeTrabajo * this.reserva.getTaller().getManoDeObra();
+		for (Repuesto repuesto : this.repuestos) {
+			this.total += repuesto.getPrecio();
+			repuesto.setStock(repuesto.getStock()-1);
+		}
+	}
 }

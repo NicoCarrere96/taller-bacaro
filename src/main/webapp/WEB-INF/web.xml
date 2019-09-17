@@ -20,9 +20,18 @@
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
-        <servlet-name>spring</servlet-name>
+    <servlet-name>spring</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>spring</servlet-name>
+        <url-pattern>*.css</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>spring</servlet-name>
+        <url-pattern>*.js</url-pattern>
+    </servlet-mapping>
+        
 
     <!--Se indica el context listener, el mismo hace referencia el archivo de configuracion principal de spring: applicationContext.xml-->
     <listener>

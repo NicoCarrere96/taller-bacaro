@@ -50,6 +50,7 @@
 <td><form:input path="password" id="password" type="password" class="form-control"/></td>
 </tr>
 
+<tr>
 <td>Pagina Web : </td>
 <td><form:input path="paginaWeb" /></td>
 </tr>
