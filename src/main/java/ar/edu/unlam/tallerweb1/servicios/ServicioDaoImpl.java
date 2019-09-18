@@ -16,8 +16,8 @@ public class ServicioDaoImpl implements ServicioRepuesto {
 	private RepuestoDao dao;
 	
 	@Override
-	public List<Repuesto> consultarRepuestos() {
-		return dao.consultarRepuestos();
+	public List<Repuesto> consultarRepuestosEnStock() {
+		return dao.consultarRepuestosEnStock();
 	}
 
 }

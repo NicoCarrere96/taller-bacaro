@@ -26,4 +26,9 @@ public class ServicioOrdenImpl implements ServicioOrden {
 		return ordenDao.consultarOrdenes();
 	}
 
+	@Override
+	public Orden consultarOrdenPorId(Long id) {
+		return ordenDao.consultarOrdenPorId(id);
+	}
+	
 }
