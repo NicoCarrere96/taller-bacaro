@@ -12,18 +12,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Orden;
-import ar.edu.unlam.tallerweb1.modelo.cliente.Reserva;
 import ar.edu.unlam.tallerweb1.servicios.ServicioOrden;
 import ar.edu.unlam.tallerweb1.servicios.ServicioReserva;
 
 @Controller
 public class ControladorOrden {
-	
+
 	@Inject
 	private ServicioOrden servicioOrden;
 	@Inject
 	private ServicioReserva servicioReserva;
-	
+//	@Inject
+//	private ServicioRepuesto servicioRepuesto;
+
 	@RequestMapping(path = "/orden/{idReserva}", method = RequestMethod.GET)
 	@Transactional
 	public ModelAndView formularioDeOrden(@PathVariable Long idReserva) {
@@ -31,20 +32,22 @@ public class ControladorOrden {
 
 		Orden orden = new Orden();
 		orden.setReserva(servicioReserva.buscarReservaPorId(idReserva));
-		
 		modelo.addAttribute("orden", orden);
-		
+
 		return new ModelAndView("formularios/orden", modelo);
-		
+
 	}
-	
+
 	@RequestMapping(path = "/orden/{idReserva}", method = RequestMethod.POST)
 	@Transactional
 	public ModelAndView guardarOrden(@PathVariable Long idReserva, @ModelAttribute Orden orden) {
-		
+
 		orden.setReserva(servicioReserva.buscarReservaPorId(idReserva));
+
+		orden.calcularTotal();
 		servicioOrden.guardarOrden(orden);
-		
+
 		return new ModelAndView("home");
 	}
+
 }

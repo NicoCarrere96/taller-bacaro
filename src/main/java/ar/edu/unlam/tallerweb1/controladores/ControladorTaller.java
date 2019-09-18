@@ -24,14 +24,14 @@ public class ControladorTaller {
 
 	}
 
-	@RequestMapping(method = RequestMethod.POST)
-	public String initForm(ModelMap model) {
-
-		Taller list = new Taller();
-		list.setLista("Hibernate");
-		model.addAttribute("taller", list);
-		return "TallerForm";
-	}
+//	@RequestMapping(method = RequestMethod.POST)
+//	public String initForm(ModelMap model) {
+//
+//		Taller list = new Taller();
+//		list.setLista("Hibernate");
+//		model.addAttribute("taller", list);
+//		return "TallerForm";
+//	}
 
 	@ModelAttribute("ListaEspecialidades")
 	public List<String> especialidades() {

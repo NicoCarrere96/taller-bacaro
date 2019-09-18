@@ -43,13 +43,14 @@
 </tr>
 <tr>
 <td>Mail : </td>
-<td><form:input path="mail" id="email" type="email" class="form-control"/></td>
+<td><form:input path="usuario.email" id="email" type="email" class="form-control"/></td>
 </tr>
 <tr>
 <td>Password : </td>
-<td><form:input path="password" id="password" type="password" class="form-control"/></td>
+<td><form:input path="usuario.password" id="password" type="password" class="form-control"/></td>
 </tr>
 
+<tr>
 <td>Pagina Web : </td>
 <td><form:input path="paginaWeb" /></td>
 </tr>
