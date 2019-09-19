@@ -8,16 +8,15 @@
 	    <link href="<c:url value="/css/bootstrap.min.css" />" rel="stylesheet" >
 	    <!-- Bootstrap theme -->
 	    <link href="<c:url value="/css/bootstrap-theme.min.css" />" rel="stylesheet">
-		<title>Orden de Trabajo</title>
+		<title>Reserva de Turnos</title>
 	</head>
 
 	<body>
-	<h2>Generar Orden de trabajo</h2>
+	<h2>Reserva de Turno</h2>
 	
 	<div class="container">
-		<form:form action="${ orden.reserva.id }" method="POST" id="ordenForm" modelAttribute="orden">
+		<form:form action="nuevaReserva" method="POST" id="ordenForm" modelAttribute="orden">
 
-			<%-- <form:hidden path="reserva" /> --%>
 			<br>
 			 <div class="form-group">
 		        <label class="control-label">Taller:</label>

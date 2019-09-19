@@ -20,4 +20,9 @@ public class ServicioDaoImpl implements ServicioRepuesto {
 		return dao.consultarRepuestosEnStock();
 	}
 
+	@Override
+	public Repuesto consultarRepuestoPorId(Long id) {
+		return dao.consultarRepuestoPorId(id);
+	}
+
 }

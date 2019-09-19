@@ -23,8 +23,8 @@ public class TallerDaoImpl implements TallerDao{
 	@Override
 	public Taller consultarTaller(Taller taller) {
 		return (Taller) sessionFactory.getCurrentSession().createCriteria(Taller.class)
-				.add(Restrictions.eq("email", taller.getMail()))
-				.add(Restrictions.eq("password", taller.getPassword()))
+				.add(Restrictions.eq("email", taller.getUsuario().getEmail()))
+				.add(Restrictions.eq("password", taller.getUsuario().getPassword()))
 				.uniqueResult();
 	}
 

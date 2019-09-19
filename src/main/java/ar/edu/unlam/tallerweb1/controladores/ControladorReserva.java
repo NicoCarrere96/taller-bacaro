@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import ar.edu.unlam.tallerweb1.modelo.cliente.Reserva;
 import ar.edu.unlam.tallerweb1.servicios.ServicioReserva;
 
 @Controller
@@ -26,6 +27,15 @@ public class ControladorReserva {
 		modelo.addAttribute("reservas", servicioReserva.consultarReservas());
 		
 		return new ModelAndView("listados/reservas", modelo);
+	}
+	
+	@RequestMapping(path = "/nueva", method = RequestMethod.GET)
+	public ModelAndView formularioDeReserva() {
+		ModelMap modelo = new ModelMap();
+		
+		modelo.addAttribute("reserva", new Reserva());
+		
+		return new ModelAndView("formularios/nuevaReserva", modelo);
 	}
 
 }

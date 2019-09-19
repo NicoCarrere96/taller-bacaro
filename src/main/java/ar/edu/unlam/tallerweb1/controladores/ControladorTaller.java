@@ -12,19 +12,19 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.taller.Taller;
 
+
 @Controller
 public class ControladorTaller {
 	
-	@Inject
-	private ServicioTaller servicioTaller;
+//	@Inject
+//	private ServicioTaller servicioTaller;
 
-	@RequestMapping("/registrarse")
+	@RequestMapping(path = "/registrarse", method = RequestMethod.GET)
 	public ModelAndView registro() {
 		ModelMap modelo = new ModelMap();
 		Taller taller = new Taller();
 		modelo.put("taller", taller);
 		return new ModelAndView("formularios/registrarse", modelo);
-
 	}
 
 

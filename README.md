@@ -1,4 +1,4 @@
-https://trello.com/b/NxFSwdcG/bacaro-talleres# Taller Bacaro
+# Taller Bacaro
 
 ## Tecnologias utilizadas:
   - Spring

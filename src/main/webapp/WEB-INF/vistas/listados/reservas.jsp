@@ -25,7 +25,7 @@
 			<td>${ reserva.fecha }</td>
 			<td>${ reserva.taller.nombreDelTaller }</td>
 			<td>${ reserva.cliente.nombre } ${ reserva.cliente.apellido }</td>
-			<td><a href="<c:url value="/orden/${ reserva.id }" />">Registrar orden de trabajo</a></td>
+			<td><a href="<c:url value="/orden/nueva/${ reserva.id }" />">Registrar orden de trabajo</a></td>
 		  </tr>
 		
 		</c:forEach>

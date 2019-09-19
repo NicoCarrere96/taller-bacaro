@@ -25,4 +25,12 @@ public class RepuestoDaoImpl implements RepuestoDao {
 				.list();
 	}
 
+	@Override
+	public Repuesto consultarRepuestoPorId(Long id) {
+		Session session = sessionFactory.getCurrentSession();
+		return (Repuesto) session.createCriteria(Repuesto.class)
+				.add(Restrictions.eq("id", id))
+				.uniqueResult();
+	}
+
 }
