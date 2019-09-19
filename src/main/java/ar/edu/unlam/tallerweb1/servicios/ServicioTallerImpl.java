@@ -23,5 +23,8 @@ public class ServicioTallerImpl implements ServicioTaller{
 		
 	}
 
+	public void update(Taller taller) {
+		servicioTallerDao.update(taller);
+	}
 
 }
