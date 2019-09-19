@@ -28,7 +28,13 @@ public class TallerDaoImpl implements TallerDao{
 				.uniqueResult();
 	}
 
-	
+	@Override
+	public void update(Taller taller) {
+		
+		
+		sessionFactory.getCurrentSession().update(taller);
+		
+	}
 	
 
 }
