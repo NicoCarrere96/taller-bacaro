@@ -14,6 +14,9 @@ import ar.edu.unlam.tallerweb1.modelo.taller.Taller;
 
 @Controller
 public class ControladorTaller {
+	
+	@Inject
+	private ServicioTaller servicioTaller;
 
 	@RequestMapping("/registrarse")
 	public ModelAndView registro() {
@@ -24,14 +27,6 @@ public class ControladorTaller {
 
 	}
 
-//	@RequestMapping(method = RequestMethod.POST)
-//	public String initForm(ModelMap model) {
-//
-//		Taller list = new Taller();
-//		list.setLista("Hibernate");
-//		model.addAttribute("taller", list);
-//		return "TallerForm";
-//	}
 
 	@ModelAttribute("ListaEspecialidades")
 	public List<String> especialidades() {
