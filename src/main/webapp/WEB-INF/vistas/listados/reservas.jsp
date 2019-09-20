@@ -5,34 +5,64 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<link href="../css/bootstrap.min.css" rel="stylesheet">
-		<link href="../css/bootstrap-theme.min.css" rel="stylesheet">
+		<!-- Bootstrap core CSS -->
+	    <link href="<c:url value="/css/bootstrap.min.css" />" rel="stylesheet" >
+	    <!-- Bootstrap theme -->
+	    <link href="<c:url value="/css/bootstrap-theme.min.css" />" rel="stylesheet">
 		<title>Reservas</title>
 	</head>
 	<body>
-		<table>
-  		<tr>
-    		<th>Nº</th>
-    		<th>Fecha</th>
-    		<th>Taller</th>
-    		<th>Cliente</th>
-    		<th></th>
-	 	 </tr>
 
+	 	 <table class="table">
+		  <thead class="thead-light">
+		    <tr>
+		      <th scope="col">Nº</th>
+		      <th scope="col">Fecha</th>
+		      <th scope="col">Taller</th>
+		      <th scope="col">Cliente</th>
+		      <th scope="col"></th>
+		    </tr>
+		  </thead>
+		<tbody>
 		<c:forEach items="${reservas}" var="reserva">
 		  <tr>
-		    <td>${ reserva.id }</td>
+		    <td class="row">${ reserva.id }</td>
 			<td>${ reserva.fecha }</td>
 			<td>${ reserva.taller.nombreDelTaller }</td>
 			<td>${ reserva.cliente.nombre } ${ reserva.cliente.apellido }</td>
-			<td><a href="<c:url value="/orden/nueva/${ reserva.id }" />">Registrar orden de trabajo</a></td>
+			<td>
+			<c:choose>
+				<c:when test="${ reserva.estado eq 'PENDIENTE' }">
+					<a href="<c:url value="/orden/nueva/${ reserva.id }" />">
+						<button type="button" class="btn btn-warning">
+							Registrar orden de trabajo
+						</button>
+					</a>
+				</c:when>
+				<c:when test="${ reserva.estado eq 'ORDEN_REGISTRADA' }">
+					<a href="<c:url value="/orden/editar/${ reserva.id }" />">
+						<button type="button" class="btn btn-info">
+							Ver Orden
+						</button>
+					</a>
+				</c:when>
+				<c:otherwise>
+					<a href="<c:url value="/orden/editar/${ reserva.id }" />">
+						<button type="button" class="btn btn-info">
+							Ver Factura
+						</button>
+					</a>
+				</c:otherwise>
+			</c:choose>
+			</td>
 		  </tr>
 		
 		</c:forEach>
+		</tbody>
 	</table>
 			<!-- Placed at the end of the document so the pages load faster -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" ></script>
 		<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-		<script src="js/bootstrap.min.js" type="text/javascript"></script>
+		<script src="<c:url value="/js/bootstrap.min.js" />" type="text/javascript"></script>
 	</body>
 </html>

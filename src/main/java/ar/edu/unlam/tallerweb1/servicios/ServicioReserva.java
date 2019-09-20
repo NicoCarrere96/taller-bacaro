@@ -7,4 +7,5 @@ import ar.edu.unlam.tallerweb1.modelo.cliente.Reserva;
 public interface ServicioReserva {
 	List<Reserva> consultarReservas();
 	Reserva buscarReservaPorId(Long id);
+	void guardarReserva(Reserva reserva);
 }

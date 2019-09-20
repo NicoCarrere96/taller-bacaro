@@ -10,6 +10,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import ar.edu.unlam.tallerweb1.modelo.taller.Repuesto;
+import ar.edu.unlam.tallerweb1.modelo.taller.Taller;
 
 @Repository("repuestoDao")
 public class RepuestoDaoImpl implements RepuestoDao {
@@ -31,6 +32,15 @@ public class RepuestoDaoImpl implements RepuestoDao {
 		return (Repuesto) session.createCriteria(Repuesto.class)
 				.add(Restrictions.eq("id", id))
 				.uniqueResult();
+	}
+
+	@Override
+	public List<Repuesto> consultarRepuestosEnStockPorTaller(Taller taller) {
+		Session session = sessionFactory.getCurrentSession();
+		return (List<Repuesto>) session.createCriteria(Repuesto.class)
+				.add(Restrictions.gt("stock", 0))
+				.add(Restrictions.eq("taller", taller))
+				.list();
 	}
 
 }

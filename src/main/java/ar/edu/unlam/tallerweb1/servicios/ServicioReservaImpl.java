@@ -25,4 +25,9 @@ public class ServicioReservaImpl implements ServicioReserva {
 		return reservaDao.buscarReservaPorId(id);
 	}
 
+	@Override
+	public void guardarReserva(Reserva reserva) {
+		reservaDao.guardarReserva(reserva);
+	}
+
 }

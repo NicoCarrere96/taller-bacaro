@@ -7,6 +7,11 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
+import ar.edu.unlam.tallerweb1.utils.Especialidad;
+
 
 @Entity
 public class Taller {
@@ -17,17 +22,17 @@ public class Taller {
 
 	private String nombreDelTaller;
 	private String nombreDelDuenio;
-	private String calle;
-	private String numero;
-	private String lista;
 	private String telefono;
 	private String paginaWeb;
+	private String calle;
+	private Integer numero;
 	@ManyToOne
 	private Localidad localidad;
 	@OneToOne
+	@Cascade(CascadeType.ALL)
 	private Usuario usuario;
 	private Double manoDeObra;
-	
+	private Especialidad especialidad;
 
 
 	public Long getId() {
@@ -62,11 +67,11 @@ public class Taller {
 		this.calle = calle;
 	}
 
-	public String getNumero() {
+	public Integer getNumero() {
 		return numero;
 	}
 
-	public void setNumero(String numero) {
+	public void setNumero(Integer numero) {
 		this.numero = numero;
 	}
 
@@ -94,14 +99,6 @@ public class Taller {
 		this.paginaWeb = paginaWeb;
 	}
 
-	public String getLista() {
-		return lista;
-	}
-
-	public void setLista(String lista) {
-		this.lista = lista;
-	}
-
 	public Usuario getUsuario() {
 		return usuario;
 	}
@@ -116,6 +113,14 @@ public class Taller {
 
 	public void setManoDeObra(Double manoDeObra) {
 		this.manoDeObra = manoDeObra;
+	}
+
+	public Especialidad getEspecialidad() {
+		return especialidad;
+	}
+
+	public void setEspecialidad(Especialidad especialidad) {
+		this.especialidad = especialidad;
 	}
 
 	

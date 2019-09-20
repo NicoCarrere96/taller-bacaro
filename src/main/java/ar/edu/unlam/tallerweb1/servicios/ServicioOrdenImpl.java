@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import ar.edu.unlam.tallerweb1.dao.OrdenDao;
 import ar.edu.unlam.tallerweb1.modelo.Orden;
+import ar.edu.unlam.tallerweb1.modelo.cliente.Reserva;
 
 @Service("servicioOrden")
 public class ServicioOrdenImpl implements ServicioOrden {
@@ -29,6 +30,17 @@ public class ServicioOrdenImpl implements ServicioOrden {
 	@Override
 	public Orden consultarOrdenPorId(Long id) {
 		return ordenDao.consultarOrdenPorId(id);
+	}
+
+	@Override
+	public Orden consultarOrdenPorReserva(Reserva reserva) {
+		return ordenDao.consultarOrdenPorReserva(reserva);
+	}
+
+	@Override
+	public void actualizarOrden(Orden orden) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

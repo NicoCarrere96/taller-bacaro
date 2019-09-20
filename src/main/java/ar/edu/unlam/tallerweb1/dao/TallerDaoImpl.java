@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.dao;
 
+import javax.inject.Inject;
+
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
@@ -10,7 +12,8 @@ import ar.edu.unlam.tallerweb1.modelo.taller.Taller;
 @Repository("TallerDao")
 public class TallerDaoImpl implements TallerDao{
 	
-	 private SessionFactory sessionFactory;
+	@Inject 
+	private SessionFactory sessionFactory;
 
 
 		@Override

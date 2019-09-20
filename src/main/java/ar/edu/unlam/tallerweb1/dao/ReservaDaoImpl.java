@@ -31,4 +31,10 @@ public class ReservaDaoImpl implements ReservaDao {
 				.uniqueResult();
 	}
 
+	@Override
+	public void guardarReserva(Reserva reserva) {
+		Session session = sessionFactory.getCurrentSession();
+		session.saveOrUpdate(reserva);
+	}
+
 }
