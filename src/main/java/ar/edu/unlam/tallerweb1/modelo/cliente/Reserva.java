@@ -57,6 +57,9 @@ public class Reserva {
 	public void setEstado(EstadoReserva estado) {
 		this.estado = estado;
 	}
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	
 	

@@ -33,21 +33,21 @@
 							<td>Numero : </td>
 							<td><form:input path="numero" /></td>
 						</tr>
-<%-- 						<tr>
+						<tr>
 							<td>Provincia : </td>
 							<td>
-								<form:select path="localidad.provincia">
-									 <form:option value="NONE" label="--- Select ---"/>
-									 <form:options items="${localidades}" itemValue="id" itemLabel="nombre" />
+								<form:select id="provinciaSelect" path="localidad.provincia.id">
+									 <form:option value="NONE" label="---Seleccionar---"/>
+									 <form:options items="${provincias}" itemValue="id" itemLabel="nombre" />
 								</form:select>
 							</td>
-						</tr> --%>
+						</tr>
 						<tr>
 							<td>Localidad : </td>
 							<td>
-								<form:select path="localidad.id">
-									 <form:option value="NONE" label="--- Select ---"/>
-									 <form:options items="${localidades}" itemValue="id" itemLabel="nombre" />
+								<form:select id="localidadSelect" path="localidad.id">
+									 <form:option value="NONE" label="---Seleccionar---"/>
+									 <%-- <form:options items="${localidades}" itemValue="id" itemLabel="nombre" /> --%>
 								</form:select>
 							</td>
 						</tr>
@@ -72,7 +72,7 @@
 						<td>Especialidad : </td>
 							<td>
 								<form:select path="especialidad">
-								 <form:option value="NONE" label="--- Select ---"/>
+								 <form:option value="NONE" label="---Seleccionar---"/>
 								 <form:options items="${especialidades}" />
 								</form:select>
 							</td>
@@ -91,7 +91,29 @@
 	 
 		<!-- Placed at the end of the document so the pages load faster -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" ></script>
-		<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+		<script>
+			window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')
+			
+			$('#provinciaSelect').change( function(){
+					$("#localidadSelect").empty()
+					let selectValue = $('#provinciaSelect').val();
+							
+						$.ajax({
+						  type: "GET",
+						  url: "<c:url value='buscarLocalidades' />",
+						  data: 'provinciaId=' + selectValue,
+						  success: function (data){
+									data.forEach( localidad => {
+									  	$("#localidadSelect").append('<option value="'+localidad.id+'">'+localidad.nombre+'</option>')
+								
+									}									
+							 	 )
+							  }
+							})	  
+						  
+						});
+		
+		</script>
 		<script src="<c:url value="/js/bootstrap.min.js" />" type="text/javascript"></script>
 	</body>
 </html>

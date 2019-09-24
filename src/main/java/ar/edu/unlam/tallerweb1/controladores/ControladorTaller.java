@@ -1,15 +1,23 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.inject.Inject;
 
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import ar.edu.unlam.tallerweb1.modelo.taller.Localidad;
+import ar.edu.unlam.tallerweb1.modelo.taller.Provincia;
 import ar.edu.unlam.tallerweb1.modelo.taller.Taller;
 import ar.edu.unlam.tallerweb1.modelo.taller.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioLocalidad;
@@ -37,7 +45,8 @@ public class ControladorTaller {
 		
 		modelo.addAttribute("taller", taller);
 		modelo.addAttribute("especialidades", Especialidad.values());
-		modelo.addAttribute("localidades", servicioLocalidad.consultarLocalidades());
+		modelo.addAttribute("provincias", servicioLocalidad.consultarProvincias());
+//		modelo.addAttribute("localidades", servicioLocalidad.consultarLocalidades());
 		
 		return new ModelAndView("formularios/registrarse", modelo);
 	}
@@ -52,6 +61,19 @@ public class ControladorTaller {
 		
 		
 		return new ModelAndView("redirect:/login");
+	}
+	
+	@RequestMapping(path = "/buscarLocalidades", /*produces = MediaType.APPLICATION_JSON_VALUE,*/ method = RequestMethod.GET)
+	@Transactional
+	public @ResponseBody List<Localidad> buscarLocalidades(@RequestParam Long provinciaId){
+		List<Localidad> localidades = new ArrayList<>();
+		Provincia provincia = new Provincia();
+		
+		provincia.setId(provinciaId);
+		
+		localidades.addAll(servicioLocalidad.buscarLocalidadesPorProvincia(provincia));
+		
+		return localidades;
 	}
 
 }

@@ -1,8 +1,5 @@
 package ar.edu.unlam.tallerweb1.utils;
 
-import javax.persistence.Entity;
-
-@Entity
 public enum Especialidad {
 	GOMERIA,
 	MECANICA_GENERAL,

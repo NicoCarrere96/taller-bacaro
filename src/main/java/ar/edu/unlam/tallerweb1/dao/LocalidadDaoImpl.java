@@ -32,4 +32,10 @@ public class LocalidadDaoImpl implements LocalidadDao {
 				.list();
 	}
 
+	@Override
+	public List<Provincia> consultarProvincias() {
+		Session session = sessionFactory.getCurrentSession();
+		return (List<Provincia>) session.createCriteria(Provincia.class).list();
+	}
+
 }
