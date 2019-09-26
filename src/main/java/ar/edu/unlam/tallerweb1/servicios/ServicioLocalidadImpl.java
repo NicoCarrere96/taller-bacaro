@@ -26,4 +26,9 @@ public class ServicioLocalidadImpl implements ServicioLocalidad {
 		return dao.buscarLocalidadesPorProvincia(provincia);
 	}
 
+	@Override
+	public List<Provincia> consultarProvincias() {
+		return dao.consultarProvincias();
+	}
+
 }

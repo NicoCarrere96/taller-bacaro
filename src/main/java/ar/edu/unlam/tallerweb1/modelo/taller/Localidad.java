@@ -13,6 +13,7 @@ public class Localidad {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nombre;
+	
 	@ManyToOne
 	private Provincia provincia;
 
@@ -39,6 +40,5 @@ public class Localidad {
 	public void setProvincia(Provincia provincia) {
 		this.provincia = provincia;
 	}
-
 	
 }

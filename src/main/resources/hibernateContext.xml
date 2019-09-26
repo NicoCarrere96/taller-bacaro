@@ -9,7 +9,7 @@
 	<bean id="dataSource"
 		  class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost:3306/taller-bacaro?autoReconnect=true" />
+		<property name="url" value="jdbc:mysql://localhost:3306/taller-bacaro" />
 		<property name="username" value="root" />
 		<property name="password" value="1234" />
 	</bean>
@@ -26,7 +26,7 @@
 				<prop key="hibernate.validator.autoregister_listeners">false</prop>
 				<!--Dialecto especifico del motor de base de datos utilizado-->
 				<!--Hay que cambiarlo si se cambia de motor de base de datos-->
-				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
 				<!--Cambiar a true si se quiere ver por consola el codigo sql generado por hibernate-->
 				<prop key="hibernate.show_sql">false</prop>
 				<prop key="hibernate.format_sql">false</prop>
@@ -34,7 +34,7 @@
 				<!--create: lo crea siempre-->
 				<!--update: aplica cambios realizados-->
 				<!--none: no modifica nunca el esquema de datos-->
-				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.hbm2ddl.auto">create-drop</prop>
 			</props>
 		</property>
 		<!--Se configura qué paquetes debe escanear hibernate en busca de clases persistible, es decir-->

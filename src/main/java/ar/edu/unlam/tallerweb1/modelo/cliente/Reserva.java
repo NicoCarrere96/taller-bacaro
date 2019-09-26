@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 import ar.edu.unlam.tallerweb1.modelo.taller.Taller;
+import ar.edu.unlam.tallerweb1.utils.EstadoReserva;
 
 @Entity
 public class Reserva {
@@ -21,6 +22,7 @@ public class Reserva {
 	private Cliente cliente;
 	private Date fecha;
 	private String problema;
+	private EstadoReserva estado;
 	
 	public Taller getTaller() {
 		return taller;
@@ -46,6 +48,19 @@ public class Reserva {
 	public void setProblema(String problema) {
 		this.problema = problema;
 	}
+	public Long getId() {
+		return id;
+	}
+	public EstadoReserva getEstado() {
+		return estado;
+	}
+	public void setEstado(EstadoReserva estado) {
+		this.estado = estado;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	
 	
 }

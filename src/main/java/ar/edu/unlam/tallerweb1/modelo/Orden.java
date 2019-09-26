@@ -10,10 +10,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
+import ar.edu.unlam.tallerweb1.modelo.cliente.Reserva;
 import ar.edu.unlam.tallerweb1.modelo.taller.Repuesto;
-import ar.edu.unlam.tallerweb1.modelo.taller.Taller;
 
 @Entity
 public class Orden {
@@ -21,7 +21,8 @@ public class Orden {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private Long idReserva;
+	@OneToOne
+	private Reserva reserva;
 	private Integer horasDeTrabajo;
 	@ManyToMany
 	@JoinTable(name = "orden_repuesto",     
@@ -32,12 +33,6 @@ public class Orden {
 	
 	public Long getId() {
 		return id;
-	}
-	public Long getIdReserva() {
-		return idReserva;
-	}
-	public void setIdReserva(Long idReserva) {
-		this.idReserva = idReserva;
 	}
 	public Integer getHorasDeTrabajo() {
 		return horasDeTrabajo;
@@ -51,6 +46,27 @@ public class Orden {
 	public void setRepuestos(List<Repuesto> repuestos) {
 		this.repuestos = repuestos;
 	}
-
+	public Reserva getReserva() {
+		return reserva;
+	}
+	public void setReserva(Reserva reserva) {
+		this.reserva = reserva;
+	}
+	public Double getTotal() {
+		return total;
+	}
+	public void setTotal(Double total) {
+		this.total = total;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
 	
+	public void calcularTotal() {
+		this.total = this.horasDeTrabajo * this.reserva.getTaller().getManoDeObra();
+		for (Repuesto repuesto : this.repuestos) {
+			this.total += repuesto.getPrecio();
+			repuesto.setStock(repuesto.getStock()-1);
+		}
+	}
 }

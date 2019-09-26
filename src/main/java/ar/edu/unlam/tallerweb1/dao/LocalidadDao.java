@@ -8,4 +8,5 @@ import ar.edu.unlam.tallerweb1.modelo.taller.Provincia;
 public interface LocalidadDao {
 	List<Localidad> consultarLocalidades();
 	List<Localidad> buscarLocalidadesPorProvincia(Provincia provincia);
+	List<Provincia> consultarProvincias();
 }

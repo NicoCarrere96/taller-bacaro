@@ -1,74 +1,99 @@
-
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
-<head>
-<!-- Bootstrap core CSS -->
-	    <link href="css/bootstrap.min.css" rel="stylesheet" >
+	<head>
+		<!-- Bootstrap core CSS -->
+	    <link href="<c:url value="/css/bootstrap.min.css" />" rel="stylesheet" >
 	    <!-- Bootstrap theme -->
-	    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
-</head>
-<body style="margin:50px">
- <div class="container">
-<div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-	<h1 class="form-signin-heading">Formulario de registro de Talleres</h1>
-					<hr class="colorgraph"><br>
- 
-<form:form method="POST" commandName="taller">
- 
-<table>
-<tr>
-<td>Nombre del Taller : </td>
-<td><form:input path="nombreDelTaller" /></td>
-</tr>
-<tr>
-<td>Nombre del Dueño : </td>
-<td><form:input path="nombreDelDuenio" /></td>
-</tr>
-<tr>
-<td>Calle : </td>
-<td><form:input path="calle" /></td>
-</tr>
-<tr>
-<td>Numero : </td>
-<td><form:input path="numero" /></td>
-</tr>
-<tr>
-<td>Localidad : </td>
-<td><form:input path="localidad" /></td>
-</tr>
-<tr>
-<td>Telefono : </td>
-<td><form:input path="telefono" /></td>
-</tr>
-<tr>
-<td>Mail : </td>
-<td><form:input path="mail" id="email" type="email" class="form-control"/></td>
-</tr>
-<tr>
-<td>Password : </td>
-<td><form:input path="password" id="password" type="password" class="form-control"/></td>
-</tr>
+	    <link href="<c:url value="/css/bootstrap-theme.min.css" />" rel="stylesheet"> 
+	    
+	    
+	    
+	    
+	    <title>Registro</title>
+	</head>
+	<body>
+	 <div class="jumbotron text-center" style="background-color:#0d80b3; color:white">
+  				<h1>BuscoTaller.com</h1>
+  				<p>La manera mas facil y comoda de conseguir taller</p> 
+				</div>
+		<div class="container">
+		
+		<form:form class="text-center border border-light p-5" action="registro" method="POST" commandName="taller">
 
-<td>Pagina Web : </td>
-<td><form:input path="paginaWeb" /></td>
-</tr>
-<tr>
-<td>Especialidad : </td>
-<td>
-<form:select path="lista">
- <form:option value="NONE" label="--- Select ---"/>
- <form:options items="${ListaEspecialidades}" />
-</form:select>
-</td>
-</tr>
-  
-<tr>
-<td><button class="btn btn-lg btn-primary btn-block" Type="Submit">Enviar</button></td>
-</tr>
-</table>
+    <p class="h2 mb-4">Formulario de Registro</p>
+
+    <div class="form-row mb-4">
+        <div class="col">
+            <form:input type="text" path="nombreDelTaller" class="form-control" placeholder="Nombre del Taller" />
+        </div>
+        <div class="col">
+            
+            <form:input type="text" path="nombreDelDuenio" class="form-control" placeholder="Nombre del Dueño" />
+        </div>
+    </div>
+    
+    <div class="form-row mb-4">
+        <div class="col">
+            <form:input type="text" path="calle" class="form-control" placeholder="Calle" />
+        </div>
+        <div class="col">
+            
+            <form:input type="text" path="numero" class="form-control" placeholder="Numero" />
+        </div>
+    </div>
+    
+            <form:select type="text" id="provinciaSelect" path="localidad.provincia.id" class="form-control mb-4" >
+        	 <form:option value="NONE" label="---Seleccionar Provincia---"/>
+			 <form:options items="${provincias}" itemValue="id" itemLabel="nombre" />
+			</form:select>
+			
+        	 <form:select id="localidadSelect" path="localidad.id" class="form-control mb-4">
+			<form:option value="NONE" label="---Seleccionar Localidad---"/>
+			<form:options items="${localidades}" itemValue="id" itemLabel="nombre" />
+			</form:select>
+			
+			<form:input type="text" path="telefono" class="form-control" placeholder="Telefono"/>
+			<form:input path="usuario.email" type="email" id="email" class="form-control mb-4" placeholder="E-mail"/>
+			<form:input path="usuario.password" type="password" id="password" class="form-control" placeholder="Password"/>		
+			<form:input type="text" path="paginaWeb" class="form-control" placeholder="Pagina Web"/>
+			<form:select path="especialidad" class="form-control mb-4">
+				 <form:option value="NONE" label="---Seleccionar Especialidad---"/>
+								 <form:options items="${especialidades}" />
+								</form:select>
+			<form:input type="text" path="manoDeObra" class="form-control" placeholder="Valor De La Mano de Obra"/>
+			<form:button class="btn btn-info my-4 btn-block" type="Submit">Registrese</form:button>
+
+
 </form:form>
- </div>
- </div>
-</body>
+			 			
+	</div>
+	 
+		<!-- Placed at the end of the document so the pages load faster -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" ></script>
+		<script>
+			window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')
+			
+			$('#provinciaSelect').change( function(){
+					$("#localidadSelect").empty()
+					let selectValue = $('#provinciaSelect').val();
+							
+						$.ajax({
+						  type: "GET",
+						  url: "<c:url value='buscarLocalidades' />",
+						  data: 'provinciaId=' + selectValue,
+						  success: function (data){
+									data.forEach( localidad => {
+									  	$("#localidadSelect").append('<option value="'+localidad.id+'">'+localidad.nombre+'</option>')
+								
+									}									
+							 	 )
+							  }
+							})	  
+						  
+						});
+		
+		</script>
+		<script src="<c:url value="/js/bootstrap.min.js" />" type="text/javascript"></script>
+	</body>
 </html>
