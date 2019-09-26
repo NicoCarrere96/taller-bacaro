@@ -20,6 +20,7 @@ public class TallerTest extends SpringTest{
 	@Autowired
 	private TallerDao dao;
 	
+	@SuppressWarnings("unchecked")
 	@Test
 	@Transactional
 	@Rollback

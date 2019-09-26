@@ -2,29 +2,37 @@
 <!DOCTYPE html>
 <html>
 	<head>
+	<title>BuscoTaller.com</title>
+ 	<meta charset="utf-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- Bootstrap core CSS -->
 	    <link href="<c:url value="/css/bootstrap.min.css" />" rel="stylesheet" >
 	    <!-- Bootstrap theme -->
 	    <link href="<c:url value="/css/bootstrap-theme.min.css" />" rel="stylesheet">
 	</head>
 	<body>
-		<div class = "container">
-		
 
-			<div class="row align-items-center">
-				<h1>Bienvenidos a Taller Bacaro</h1>
+<div class="jumbotron text-center" style="background-color:#0d80b3; color:white">
+  <h1>BuscoTaller.com</h1>
+  <p>La manera mas facil y comoda de conseguir taller</p> 
+</div>
+  
+
+				
+					<img alt="taller" src="img/img1.png" style="width: 100%; height: 45em;" />
+					<div class="row align-items-center">
 					<a href="cliente">
-						<button type="button" class=" d-inline btn btn-warning col-sm-6" style="height: 40em;">
-							<h1 class="display-1">Soy Cliente</h1>
+						<button type="button" class=" d-inline btn btn-warning col-sm-5" style="height: 6.5em;position: absolute;top: 85%; left:5%;">
+							<h1>Soy Cliente</h1>
 						</button>
 					</a>
 					<a href="login">
-						<button type="button" class=" d-inline btn btn-warning col-sm-6" style="height: 40em;">
-							<h1 class="display-1">Soy Taller</h1>
+						<button type="button" class=" d-inline btn btn-warning col-sm-5" style="height: 6.5em;position: absolute;top: 85%; left:55%;">
+							<h1 class="display-1">Tengo un Taller</h1>
 						</button>
 					</a>
 			</div>	
-		</div>
+		
 		
 		
 		<!-- Placed at the end of the document so the pages load faster -->

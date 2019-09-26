@@ -12,18 +12,21 @@
 	</head>
 
 	<body>
-	
+	<div class="jumbotron text-center" style="background-color:#0d80b3; color:white">
+  <h1>BuscoTaller.com</h1>
+  <p>La manera mas facil y comoda de conseguir taller</p> 
+</div>
 	<div class="container">
-		<h2>Cliente</h2>
+		<h2>Estimado Cliente, por favor ingrese su DNI </h2>
 
 		<c:choose>
 			<c:when test="${ empty encontrado }">
 				<form:form action="cliente/buscarCliente" method="POST" id="clienteForm" modelAttribute="cliente">				            
-		  		    <div class="form-group">
+		  		    <div class="form-inline">
 				        <label for="dni" class="control-label">DNI:</label>
-						<form:input path="dni" class="form-control" name="dni" id="dni" type="number" required="required"/>
+						<form:input path="dni" class="form-control" size="8" name="dni" id="dni" type="text" required="required"/>
 				    </div>                    
-				    
+				    <br>
 				    <div class="form-group">
 				        <button type="submit" class="btn btn-primary">Buscar</button>
 				    </div>     

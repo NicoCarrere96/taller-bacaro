@@ -21,7 +21,8 @@ public class OrdenTest extends SpringTest{
 	@Autowired
 	private OrdenDao dao;
 
-	    @Test
+	    @SuppressWarnings("deprecation")
+		@Test
 	    @Transactional @Rollback
 	    public void consutarUnaOrden(){
 	    	

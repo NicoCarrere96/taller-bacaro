@@ -9,7 +9,8 @@
 	    <link href="<c:url value="/css/bootstrap.min.css" />" rel="stylesheet" >
 	    <!-- Bootstrap theme -->
 	    <link href="<c:url value="/css/bootstrap-theme.min.css" />" rel="stylesheet">
-		<title>Reservas</title>
+		<title>Reserva de turno
+		</title>
 	</head>
 	<body>
 

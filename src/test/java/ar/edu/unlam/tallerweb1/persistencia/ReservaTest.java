@@ -19,7 +19,8 @@ public class ReservaTest extends SpringTest{
 	@Autowired
 	private ReservaDao dao;
 
-	    @Test
+	    @SuppressWarnings("deprecation")
+		@Test
 	    @Transactional @Rollback
 	    public void crearUnaReserva(){
 
