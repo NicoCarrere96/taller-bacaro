@@ -53,7 +53,7 @@
 			<form:options items="${localidades}" itemValue="id" itemLabel="nombre" />
 			</form:select>
 			
-			<form:input type="text" path="telefono" class="form-control" placeholder="telefono"/>
+			<form:input type="text" path="telefono" class="form-control" placeholder="Telefono"/>
 			<form:input path="usuario.email" type="email" id="email" class="form-control mb-4" placeholder="E-mail"/>
 			<form:input path="usuario.password" type="password" id="password" class="form-control" placeholder="Password"/>		
 			<form:input type="text" path="paginaWeb" class="form-control" placeholder="Pagina Web"/>
