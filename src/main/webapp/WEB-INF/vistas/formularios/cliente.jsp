@@ -1,4 +1,5 @@
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -8,14 +9,12 @@
 	    <link href="<c:url value="/css/bootstrap.min.css" />" rel="stylesheet" >
 	    <!-- Bootstrap theme -->
 	    <link href="<c:url value="/css/bootstrap-theme.min.css" />" rel="stylesheet">
-		<title>Cliente</title>
 	</head>
-
 	<body>
 	<div class="jumbotron text-center" style="background-color:#0d80b3; color:white">
-  <h1>BuscoTaller.com</h1>
-  <p>La manera mas facil y comoda de conseguir taller</p> 
-</div>
+	  <h1>BuscoTaller.com</h1>
+	  <p>La manera mas facil y comoda de conseguir taller</p> 
+	</div>
 	<div class="container">
 		<h2>Estimado Cliente, por favor ingrese su DNI </h2>
 

@@ -1,12 +1,16 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.unlam.tallerweb1.dao.TallerDao;
+import ar.edu.unlam.tallerweb1.modelo.taller.Localidad;
 import ar.edu.unlam.tallerweb1.modelo.taller.Taller;
+import ar.edu.unlam.tallerweb1.utils.Especialidad;
 @Service("servicioTaller")
 @Transactional
 public class ServicioTallerImpl implements ServicioTaller{
@@ -27,4 +31,13 @@ public class ServicioTallerImpl implements ServicioTaller{
 		servicioTallerDao.update(taller);
 	}
 
+	public List<Taller> filtrarTalleres(Localidad localidad, Especialidad especialidad) {
+		return servicioTallerDao.filtrarTalleres(localidad, especialidad);
+	}
+
+
+	@Override
+	public Taller buscarTallerPorId(Long tallerId) {
+		return servicioTallerDao.buscarTallerPorId(tallerId);
+	}
 }

@@ -14,19 +14,20 @@
 	<body>
 	
 	<div class="container">
-		<form:form action="nuevaReserva" method="POST" id="reservaForm" modelAttribute="reserva">
+		<form:form action="nuevaReserva" method="POST"  modelAttribute="reserva" >
 			<h2>Reserva de Turno</h2>
-                    
-		            
-  		    <div class="form-group">
-		        <label for="fecha" class="control-label">Fecha:</label>
-				<form:input path="fecha" class="form-control" name="fecha" id="fecha" type="date" required="required"/>
-		    </div>                    
-		    
-   		    <div class="form-group">
-		        <label for="fecha" class="control-label">Problema:</label>
+                                
+            <div class="form-group">
+		        <label for="problema" class="control-label">Problema:</label>
 				<form:textarea path="problema" class="form-control"/>
 		    </div> 
+		    <div class="form-group">
+		        <label for="fecha" class="control-label">Dia:</label>
+				<form:input type="date" path="fecha" />
+		    </div>         
+		    <form:hidden path="taller.id" />
+		    <form:hidden path="cliente.dni"/>
+		    <form:hidden path="estado" />
 		    
 		    <div class="form-group"> <!-- Submit Button -->
 		        <button type="submit" class="btn btn-primary">Guardar Orden</button>
