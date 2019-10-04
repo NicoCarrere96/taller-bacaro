@@ -12,7 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.cliente.Cliente;
 import ar.edu.unlam.tallerweb1.servicios.ServicioCliente;
-import ar.edu.unlam.tallerweb1.servicios.ServicioReserva;
 
 @Controller
 @RequestMapping(path = "/cliente")
@@ -20,8 +19,6 @@ public class ControladorCliente {
 	
 	@Inject
 	private ServicioCliente servicioCliente;
-	@Inject
-	private ServicioReserva servicioReserva;
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView mostrarFormBuscaCliente() {
@@ -52,7 +49,6 @@ public class ControladorCliente {
 	@RequestMapping(path = "/guardarCliente", method = RequestMethod.POST)
 	@Transactional
 	public ModelAndView guardaCliente(@ModelAttribute Cliente cliente) {
-		ModelMap modelo = new ModelMap();
 		
 		servicioCliente.guardarCliente(cliente);
 		

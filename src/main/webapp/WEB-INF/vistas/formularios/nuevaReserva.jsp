@@ -16,6 +16,19 @@
 	<div class="container">
 		<form:form action="nuevaReserva" method="POST"  modelAttribute="reserva" >
 			<h2>Reserva de Turno</h2>
+             
+             <div class="form-group">
+		        <label for="problema" class="control-label">Taller:</label>
+				<p>${ reserva.taller.nombreDelTaller }</p>
+		    </div> 
+            <div class="form-group">
+		        <label for="problema" class="control-label">Direccion:</label>
+				<p>${ reserva.taller.calle } ${ reserva.taller.numero } - ${ reserva.taller.localidad.nombre }</p>
+		    </div> 
+            <div class="form-group">
+		        <label for="problema" class="control-label">Telefono:</label>
+				<p>${ reserva.taller.telefono }</p>
+		    </div> 
                                 
             <div class="form-group">
 		        <label for="problema" class="control-label">Problema:</label>
@@ -24,7 +37,8 @@
 		    <div class="form-group">
 		        <label for="fecha" class="control-label">Dia:</label>
 				<form:input type="date" path="fecha" />
-		    </div>         
+		    </div>
+		             
 		    <form:hidden path="taller.id" />
 		    <form:hidden path="cliente.dni"/>
 		    <form:hidden path="estado" />

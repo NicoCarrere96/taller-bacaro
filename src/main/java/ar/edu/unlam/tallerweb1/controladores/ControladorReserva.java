@@ -11,9 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import ar.edu.unlam.tallerweb1.modelo.cliente.Cliente;
 import ar.edu.unlam.tallerweb1.modelo.cliente.Reserva;
-import ar.edu.unlam.tallerweb1.modelo.taller.Taller;
 import ar.edu.unlam.tallerweb1.servicios.ServicioCliente;
 import ar.edu.unlam.tallerweb1.servicios.ServicioReserva;
 import ar.edu.unlam.tallerweb1.servicios.ServicioTaller;
@@ -71,7 +69,6 @@ public class ControladorReserva {
 	@RequestMapping(path = "/nuevaReserva", method = RequestMethod.POST)
 	@Transactional
 	public ModelAndView guardarReserva(@ModelAttribute Reserva reserva) {
-		ModelMap modelo = new ModelMap();
 		
 		servicioReserva.guardarReserva(reserva);
 		

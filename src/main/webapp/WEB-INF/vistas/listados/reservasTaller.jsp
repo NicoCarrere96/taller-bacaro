@@ -17,7 +17,7 @@
 	  <h1>BuscoTaller.com</h1>
 	  <p>La manera mas facil y comoda de conseguir taller</p> 
 	</div>
-
+		<div class="container">
 	 	 <table class="table">
 		  <thead class="thead-light">
 		    <tr>
@@ -30,41 +30,42 @@
 		  </thead>
 		<tbody>
 		<c:forEach items="${reservas}" var="reserva">
-		  <tr>
-		    <td class="row">${ reserva.id }</td>
-			<td>${ reserva.fecha }</td>
-			<td>${ reserva.taller.nombreDelTaller }</td>
-			<td>${ reserva.cliente.nombre } ${ reserva.cliente.apellido }</td>
-			<td>
-			<c:choose>
-				<c:when test="${ reserva.estado eq 'PENDIENTE' }">
-					<a href="<c:url value="/orden/nueva/${ reserva.id }" />">
-						<button type="button" class="btn btn-warning">
-							Registrar orden de trabajo
-						</button>
-					</a>
-				</c:when>
-				<c:when test="${ reserva.estado eq 'ORDEN_REGISTRADA' }">
-					<a href="<c:url value="/orden/editar/${ reserva.id }" />">
-						<button type="button" class="btn btn-info">
-							Ver Orden
-						</button>
-					</a>
-				</c:when>
-				<c:otherwise>
-					<a href="<c:url value="/orden/editar/${ reserva.id }" />">
-						<button type="button" class="btn btn-info">
-							Ver Factura
-						</button>
-					</a>
-				</c:otherwise>
-			</c:choose>
-			</td>
-		  </tr>
-		
-		</c:forEach>
-		</tbody>
-	</table>
+			  <tr>
+			    <td class="row">${ reserva.id }</td>
+				<td>${ reserva.fecha }</td>
+				<td>${ reserva.taller.nombreDelTaller }</td>
+				<td>${ reserva.cliente.nombre } ${ reserva.cliente.apellido }</td>
+				<td>
+				<c:choose>
+					<c:when test="${ reserva.estado eq 'PENDIENTE' }">
+						<a href="<c:url value="/orden/nueva/${ reserva.id }" />">
+							<button type="button" class="btn btn-warning">
+								Registrar orden de trabajo
+							</button>
+						</a>
+					</c:when>
+					<c:when test="${ reserva.estado eq 'ORDEN_REGISTRADA' }">
+						<a href="<c:url value="/orden/editar/${ reserva.id }" />">
+							<button type="button" class="btn btn-info">
+								Ver Orden
+							</button>
+						</a>
+					</c:when>
+					<c:otherwise>
+						<a href="<c:url value="/orden/editar/${ reserva.id }" />">
+							<button type="button" class="btn btn-info">
+								Ver Factura
+							</button>
+						</a>
+					</c:otherwise>
+				</c:choose>
+				</td>
+			  </tr>
+			
+			</c:forEach>
+			</tbody>
+		</table>
+		</div>
 			<!-- Placed at the end of the document so the pages load faster -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" ></script>
 		<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
