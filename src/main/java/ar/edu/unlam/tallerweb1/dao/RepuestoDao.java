@@ -9,4 +9,7 @@ public interface RepuestoDao {
 	List<Repuesto> consultarRepuestosEnStock();
 	List<Repuesto> consultarRepuestosEnStockPorTaller(Taller taller);
 	Repuesto consultarRepuestoPorId(Long id);
-}
+	
+	Repuesto guardarRepuesto(Repuesto repuesto);
+	
+	}

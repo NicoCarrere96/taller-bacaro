@@ -9,4 +9,22 @@ public interface ServicioRepuesto {
 	List<Repuesto> consultarRepuestosEnStock();
 	List<Repuesto> consultarRepuestosEnStockPorTaller(Taller taller);
 	Repuesto consultarRepuestoPorId(Long id);
+		
+	public void guardarRepuesto(Repuesto repuesto);
+
+	Repuesto getId(Long id);
+	
+	List<Repuesto> buscarRepuestoPorId();
+
+	List<Repuesto> todosLosRepuestos();
+	
+	List<Repuesto> mostrarRepuestos();
+	
+	List<Repuesto> listarRepuestos();
+	
+	List<Repuesto> getAll();/**/
+
+
+	
+	
 }

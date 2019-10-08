@@ -5,12 +5,14 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.unlam.tallerweb1.dao.RepuestoDao;
 import ar.edu.unlam.tallerweb1.modelo.taller.Repuesto;
 import ar.edu.unlam.tallerweb1.modelo.taller.Taller;
 
 @Service("servicioRepuesto")
+@Transactional
 public class ServicioRepuestoImpl implements ServicioRepuesto {
 
 	@Inject
@@ -31,4 +33,8 @@ public class ServicioRepuestoImpl implements ServicioRepuesto {
 		return dao.consultarRepuestosEnStockPorTaller(taller);
 	}
 
+	/*@Override
+	public List<Repuesto> guardarRepuesto(Repuesto repuesto) {
+		return dao.guardarRepuesto(repuesto);
+	}*/
 }
