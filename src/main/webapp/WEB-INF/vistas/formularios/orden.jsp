@@ -26,11 +26,11 @@
 			</ul>            
 		                                                          
 		            
-  		    <div class="form-group">
+ <%--  		    <div class="form-group">
 		        <label for="horasDeTrabajo" class="control-label">Horas de Trabajo:</label>
 				<form:input path="horasDeTrabajo" class="form-control" type="number" required="required" value="${ orden.horasDeTrabajo }"/>
 		    </div>                   
-<%-- 	    	<div class="form-group">
+	    	<div class="form-group">
 			    <label class="control-label">Repuestos:</label>
 					<c:forEach items="${ orden.repuestos }" var="ordenRepuesto">
 					<div id="repuesto-list">

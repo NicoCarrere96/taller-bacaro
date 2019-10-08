@@ -26,7 +26,7 @@
 							<h1>Soy Cliente</h1>
 						</button>
 					</a>
-					<a href="login">
+					<a href="login-taller">
 						<button type="button" class=" d-inline btn btn-warning col-sm-5" style="height: 6.5em;position: absolute;top: 85%; left:55%;">
 							<h1 class="display-1">Tengo un Taller</h1>
 						</button>

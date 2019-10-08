@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
@@ -42,38 +41,65 @@ public class ControladorTaller {
 		ModelMap modelo = new ModelMap();
 		Taller taller = new Taller();
 		taller.setUsuario(new Usuario());
-		
+
 		modelo.addAttribute("taller", taller);
 		modelo.addAttribute("especialidades", Especialidad.values());
 		modelo.addAttribute("provincias", servicioLocalidad.consultarProvincias());
 //		modelo.addAttribute("localidades", servicioLocalidad.consultarLocalidades());
-		
+
 		return new ModelAndView("formularios/registrarse", modelo);
 	}
 
 	@RequestMapping(path = "/registro", method = RequestMethod.POST)
 	@Transactional
 	public ModelAndView registroPost(@ModelAttribute Taller taller) {
-		
+
 		taller.getUsuario().setRol("TALLER");
 		servicioLogin.guardarUsuario(taller.getUsuario());
 		servicioTaller.crearTaller(taller);
-		
-		
+
 		return new ModelAndView("redirect:/login");
 	}
-	
-	@RequestMapping(path = "/buscarLocalidades", /*produces = MediaType.APPLICATION_JSON_VALUE,*/ method = RequestMethod.GET)
+
+	@RequestMapping(path = "/buscarLocalidades", method = RequestMethod.GET)
 	@Transactional
-	public @ResponseBody List<Localidad> buscarLocalidades(@RequestParam Long provinciaId){
+	public @ResponseBody List<Localidad> buscarLocalidades(@RequestParam Long provinciaId) {
 		List<Localidad> localidades = new ArrayList<>();
 		Provincia provincia = new Provincia();
-		
+
 		provincia.setId(provinciaId);
-		
+
 		localidades.addAll(servicioLocalidad.buscarLocalidadesPorProvincia(provincia));
-		
+
 		return localidades;
+	}
+
+	@RequestMapping(path = "/filtro", method = RequestMethod.GET)
+	@Transactional
+	public ModelAndView filtrarTalleres(@RequestParam Long dniCliente) {
+		ModelMap modelo = new ModelMap();
+
+		modelo.addAttribute("especialidades", Especialidad.values());
+		modelo.addAttribute("provincias", servicioLocalidad.consultarProvincias());
+		modelo.addAttribute("dniCliente", dniCliente);
+
+		return new ModelAndView("filtroTalleres", modelo);
+	}
+
+	@RequestMapping(path = "/filtrado", method = RequestMethod.GET)
+	@Transactional
+	public ModelAndView listarTalleresFiltrados(@RequestParam Long provincia, @RequestParam Long localidad,
+			@RequestParam String especialidad, @RequestParam Long dniCliente) {
+		ModelMap modelo = new ModelMap();
+
+		Localidad localidadrtdo = servicioLocalidad.buscarLocalidadPorId(localidad);
+
+		modelo.addAttribute("talleres",
+				servicioTaller.filtrarTalleres(localidadrtdo, Especialidad.valueOf(especialidad)));
+
+		modelo.addAttribute("dniCliente", dniCliente);
+		
+		return new ModelAndView("listados/talleresFiltrados", modelo);
 	}
 
 }

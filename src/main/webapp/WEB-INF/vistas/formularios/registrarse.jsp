@@ -54,8 +54,8 @@
 			</form:select>
 			
 			<form:input type="text" path="telefono" class="form-control" placeholder="Telefono"/>
-			<form:input path="usuario.email" type="email" id="email" class="form-control mb-4" placeholder="E-mail"/>
-			<form:input path="usuario.password" type="password" id="password" class="form-control" placeholder="Password"/>		
+			<form:input path="email" type="email" id="email" class="form-control mb-4" placeholder="E-mail"/>
+			<form:input path="password" type="password" id="password" class="form-control" placeholder="Password"/>		
 			<form:input type="text" path="paginaWeb" class="form-control" placeholder="Pagina Web"/>
 			<form:select path="especialidad" class="form-control mb-4">
 				 <form:option value="NONE" label="---Seleccionar Especialidad---"/>

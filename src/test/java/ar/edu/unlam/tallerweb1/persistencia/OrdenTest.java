@@ -39,13 +39,11 @@ public class OrdenTest extends SpringTest{
 	    cl.setMail("euse@gmail.com");
 	    session().save(cl);
 	    
-	    Date dia = new Date();
-	    dia.setDate(2019-20-01);
 	    
 	    Reserva res = new Reserva();
 	    res.setTaller(tall);
 	    res.setCliente(cl);
-	    res.setFecha(dia);
+	    res.setFecha("20190909");
 	    session().save(res);
 	    
 	    Orden ot = new Orden();

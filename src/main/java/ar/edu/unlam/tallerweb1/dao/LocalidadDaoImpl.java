@@ -38,4 +38,9 @@ public class LocalidadDaoImpl implements LocalidadDao {
 		return (List<Provincia>) session.createCriteria(Provincia.class).list();
 	}
 
+	@Override
+	public Localidad buscarLocalidadPorId(Long localidad) {
+		return sessionFactory.getCurrentSession().get(Localidad.class, localidad);
+	}
+
 }

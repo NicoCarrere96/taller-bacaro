@@ -1,6 +1,5 @@
 package ar.edu.unlam.tallerweb1.persistencia;
 
-import java.util.Date;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +18,7 @@ public class ReservaTest extends SpringTest{
 	@Autowired
 	private ReservaDao dao;
 
-	    @SuppressWarnings("deprecation")
-		@Test
+	    @Test
 	    @Transactional @Rollback
 	    public void crearUnaReserva(){
 
@@ -35,13 +33,12 @@ public class ReservaTest extends SpringTest{
 	    cl.setMail("euse@gmail.com");
 	    session().save(cl);
 	    
-	    Date dia = new Date();
-	    dia.setDate(2019-19);
+	  
 	    
 	    Reserva res = new Reserva();
 	    res.setTaller(tall);
 	    res.setCliente(cl);
-	    res.setFecha(dia);
+	    res.setFecha("20190909");
 	    session().save(res);
 	    
 	    Reserva reserv = dao.buscarReservaPorId(res.getId());

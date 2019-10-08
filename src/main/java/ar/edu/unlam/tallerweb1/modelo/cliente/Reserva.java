@@ -1,7 +1,5 @@
 package ar.edu.unlam.tallerweb1.modelo.cliente;
 
-import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,7 +18,7 @@ public class Reserva {
 	private Taller taller;
 	@ManyToOne
 	private Cliente cliente;
-	private Date fecha;
+	private String fecha;
 	private String problema;
 	private EstadoReserva estado;
 	
@@ -35,12 +33,6 @@ public class Reserva {
 	}
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
-	}
-	public Date getFecha() {
-		return fecha;
-	}
-	public void setFecha(Date fecha) {
-		this.fecha = fecha;
 	}
 	public String getProblema() {
 		return problema;
@@ -59,6 +51,12 @@ public class Reserva {
 	}
 	public void setId(Long id) {
 		this.id = id;
+	}
+	public String getFecha() {
+		return fecha;
+	}
+	public void setFecha(String fecha) {
+		this.fecha = fecha;
 	}
 
 	

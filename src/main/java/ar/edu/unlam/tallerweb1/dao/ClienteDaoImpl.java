@@ -27,7 +27,8 @@ public class ClienteDaoImpl implements ClienteDao{
 	public void guardarCliente(Cliente cliente) {
 		Session session = sessionFactory.getCurrentSession();
 		
-		session.saveOrUpdate(cliente);
+		
+		session.saveOrUpdate("Cliente", cliente);
 		
 	}
 	

@@ -14,6 +14,7 @@
 						http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
 
 	<import resource="classpath:hibernateContext.xml" />
+	
 
 	<!--Se indica que la configuracion del MVC se hará utilizanbdo anotaciones-->
 	<mvc:annotation-driven />

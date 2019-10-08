@@ -9,4 +9,5 @@ public interface LocalidadDao {
 	List<Localidad> consultarLocalidades();
 	List<Localidad> buscarLocalidadesPorProvincia(Provincia provincia);
 	List<Provincia> consultarProvincias();
+	Localidad buscarLocalidadPorId(Long localidad);
 }
