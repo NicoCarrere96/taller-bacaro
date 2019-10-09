@@ -13,6 +13,7 @@ import ar.edu.unlam.tallerweb1.modelo.taller.Localidad;
 import ar.edu.unlam.tallerweb1.modelo.taller.Provincia;
 
 @Repository("localidadDao")
+@SuppressWarnings("unchecked")
 public class LocalidadDaoImpl implements LocalidadDao {
 
 	@Inject

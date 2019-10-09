@@ -13,5 +13,7 @@ public interface ServicioTaller {
 	public Taller buscarTallerPorId (Long tallerId);
 	public void crearTaller(Taller taller);
 	public void update(Taller taller);
-
+	
+	//public void buscarTallerPorId(Taller taller);
+	
 }

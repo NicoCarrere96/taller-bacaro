@@ -14,3 +14,5 @@ public interface TallerDao {
 		public List<Taller> filtrarTalleres(Localidad localidad, Especialidad especialidad);
 		public Taller buscarTallerPorId(Long tallerId);
 }
+
+
