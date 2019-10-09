@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ar.edu.unlam.tallerweb1.dao.TallerDao;
 import ar.edu.unlam.tallerweb1.modelo.taller.Localidad;
 import ar.edu.unlam.tallerweb1.modelo.taller.Taller;
+import ar.edu.unlam.tallerweb1.modelo.taller.Usuario;
 import ar.edu.unlam.tallerweb1.utils.Especialidad;
 @Service("servicioTaller")
 @Transactional
@@ -39,5 +40,9 @@ public class ServicioTallerImpl implements ServicioTaller{
 	@Override
 	public Taller buscarTallerPorId(Long tallerId) {
 		return servicioTallerDao.buscarTallerPorId(tallerId);
+	}
+	@Override
+	public Taller consultarTallerPorUsuario(Usuario usuario) {
+		return servicioTallerDao.consultarTallerPorUsuario(usuario);
 	}
 }

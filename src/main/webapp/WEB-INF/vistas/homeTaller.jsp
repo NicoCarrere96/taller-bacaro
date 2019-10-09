@@ -19,8 +19,7 @@
 	<nav>
 	
 		<div class="w3-bar w3-dark-grey">
-  				<a href="homeTaller" class="w3-bar-item w3-button w3-mobile w3-green" style="width:20%">Home</a>
-  				<a href="/taller-bacaro/listados/reservas" class="w3-bar-item w3-button w3-mobile" style="width:20%">Consultar Orden</a>
+  				<a href="<c:url value="/reserva/lista" />" class="w3-bar-item w3-button w3-mobile" style="width:20%">Consultar Orden</a>
   				<a href="/listados/repuestos.jsp" class="w3-bar-item w3-button w3-mobile" style="width:20%">Repuestos</a>
 	  			<a href="/formularios/tallerD.jsp" class="w3-bar-item w3-button w3-mobile" style="width:20%">Ver Datos del Taller</a>
 	
@@ -28,5 +27,8 @@
 	
 	</nav>
 	
+	
+	
+	${ taller.nombreDelTaller }
 	</body>
 </html>

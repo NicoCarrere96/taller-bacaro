@@ -19,7 +19,7 @@
 				</div>
 		<div class="container">
 		
-		<form:form class="text-center border border-light p-5" action="registro" method="POST" commandName="taller">
+		<form:form class="text-center border border-light p-5" action="registro" method="POST" commandName="taller" id="validar-form">
 
     <p class="h2 mb-4">Formulario de Registro</p>
 
@@ -54,8 +54,9 @@
 			</form:select>
 			
 			<form:input type="text" path="telefono" class="form-control" placeholder="Telefono"/>
-			<form:input path="email" type="email" id="email" class="form-control mb-4" placeholder="E-mail"/>
-			<form:input path="password" type="password" id="password" class="form-control" placeholder="Password"/>		
+			<form:input path="usuario.email" type="email" id="email" class="form-control mb-4" placeholder="E-mail"/>
+			<form:password path="usuario.password" id="password" class="form-control" placeholder="Password"/>	
+			<form:password  path="usuario.repetirpassword" id="repetirpassword" class="form-control" placeholder="Repetir Password"/>		
 			<form:input type="text" path="paginaWeb" class="form-control" placeholder="Pagina Web"/>
 			<form:select path="especialidad" class="form-control mb-4">
 				 <form:option value="NONE" label="---Seleccionar Especialidad---"/>

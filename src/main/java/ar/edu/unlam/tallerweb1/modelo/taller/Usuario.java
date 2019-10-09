@@ -1,9 +1,11 @@
 package ar.edu.unlam.tallerweb1.modelo.taller;
 
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 // Clase que modela el concepto de Usuario, la anotacion @Entity le avisa a hibernate que esta clase es persistible
 // el paquete ar.edu.unlam.tallerweb1.modelo esta indicado en el archivo hibernateCOntext.xml para que hibernate
@@ -17,6 +19,10 @@ public class Usuario {
 
 	private String email;
 	private String password;
+	
+	@Transient
+	private String repetirpassword;
+	
 	private String rol;
 	
 	public Long getId() {
@@ -38,6 +44,14 @@ public class Usuario {
 		this.password = password;
 	}
 
+	public String getRepetirpassword() {
+		return password;
+	}
+	public void setRepetirpassword(String password) {
+		this.password = password;
+	}
+
+	
 	public String getRol() {
 		return rol;
 	}
