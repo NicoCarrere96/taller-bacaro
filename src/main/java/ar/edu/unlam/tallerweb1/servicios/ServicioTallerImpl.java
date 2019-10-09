@@ -45,4 +45,5 @@ public class ServicioTallerImpl implements ServicioTaller{
 	public Taller consultarTallerPorUsuario(Usuario usuario) {
 		return servicioTallerDao.consultarTallerPorUsuario(usuario);
 	}
+
 }

@@ -13,6 +13,7 @@ import ar.edu.unlam.tallerweb1.modelo.taller.Repuesto;
 import ar.edu.unlam.tallerweb1.modelo.taller.Taller;
 
 @Repository("repuestoDao")
+@SuppressWarnings("unchecked")
 public class RepuestoDaoImpl implements RepuestoDao {
 
 	@Inject
@@ -41,6 +42,31 @@ public class RepuestoDaoImpl implements RepuestoDao {
 				.add(Restrictions.gt("stock", 0))
 				.add(Restrictions.eq("taller", taller))
 				.list();
+	}
+	
+	@Override
+	public void save(Repuesto repuesto) {
+		final Session session = sessionFactory.getCurrentSession();
+		session.save(repuesto);
+	}
+	
+	@Override
+	public void actualizarRepuesto(Repuesto repuesto) {
+		final Session session = sessionFactory.getCurrentSession();
+		session.update(repuesto);
+	}
+	
+	@Override
+	public List<Repuesto> getAll() {
+		final Session session = sessionFactory.getCurrentSession();
+		List<Repuesto> repuestos = session.createCriteria(Repuesto.class).list();
+		return repuestos;
+	}
+	
+	@Override
+	public void eliminarRepuesto(Repuesto repuesto) {
+		final Session session = sessionFactory.getCurrentSession();
+		session.delete(repuesto);
 	}
 
 }

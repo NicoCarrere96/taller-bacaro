@@ -15,5 +15,4 @@ public interface ServicioTaller {
 	public void crearTaller(Taller taller);
 	public void update(Taller taller);
 	public Taller consultarTallerPorUsuario(Usuario usuario);
-
 }

@@ -16,3 +16,5 @@ public interface TallerDao {
 		public Taller buscarTallerPorId(Long tallerId);
 		public Taller consultarTallerPorUsuario(Usuario usuario);
 }
+
+

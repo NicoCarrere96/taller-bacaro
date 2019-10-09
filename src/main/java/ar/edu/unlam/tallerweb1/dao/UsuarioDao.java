@@ -7,4 +7,5 @@ public interface UsuarioDao {
 	
 	Usuario consultarUsuario (Usuario usuario);
 	void guardarUsuario(Usuario usuario);
+	Usuario findById(Long usuarioId);
 }

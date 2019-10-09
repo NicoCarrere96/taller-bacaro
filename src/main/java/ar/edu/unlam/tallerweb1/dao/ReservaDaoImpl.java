@@ -14,6 +14,7 @@ import ar.edu.unlam.tallerweb1.modelo.cliente.Reserva;
 import ar.edu.unlam.tallerweb1.modelo.taller.Taller;
 
 @Repository("reservaDao")
+@SuppressWarnings("unchecked")
 public class ReservaDaoImpl implements ReservaDao {
 
 	@Inject
