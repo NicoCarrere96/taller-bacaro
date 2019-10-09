@@ -8,5 +8,7 @@ public interface ServicioTaller {
 	public Taller consultarTaller (Taller taller);
 	public void crearTaller(Taller taller);
 	public void update(Taller taller);
-
+	
+	//public void buscarTallerPorId(Taller taller);
+	
 }
