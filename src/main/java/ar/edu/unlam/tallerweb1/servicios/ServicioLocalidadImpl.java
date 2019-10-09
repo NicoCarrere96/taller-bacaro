@@ -31,4 +31,9 @@ public class ServicioLocalidadImpl implements ServicioLocalidad {
 		return dao.consultarProvincias();
 	}
 
+	@Override
+	public Localidad buscarLocalidadPorId(Long localidad) {
+		return dao.buscarLocalidadPorId(localidad);
+	}
+
 }

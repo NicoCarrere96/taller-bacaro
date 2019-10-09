@@ -9,7 +9,9 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
+import ar.edu.unlam.tallerweb1.modelo.cliente.Cliente;
 import ar.edu.unlam.tallerweb1.modelo.cliente.Reserva;
+import ar.edu.unlam.tallerweb1.modelo.taller.Taller;
 
 @Repository("reservaDao")
 @SuppressWarnings("unchecked")
@@ -36,6 +38,22 @@ public class ReservaDaoImpl implements ReservaDao {
 	public void guardarReserva(Reserva reserva) {
 		Session session = sessionFactory.getCurrentSession();
 		session.saveOrUpdate(reserva);
+	}
+
+	@Override
+	public List<Reserva> consultarReservasPorCliente(Cliente cliente) {
+		Session session = sessionFactory.getCurrentSession();
+		return (List<Reserva>) session.createCriteria(Reserva.class)
+				.add(Restrictions.eq("cliente", cliente))
+				.list();
+	}
+
+	@Override
+	public List<Reserva> consultarReservasPorTaller(Taller taller) {
+		Session session = sessionFactory.getCurrentSession();
+		return (List<Reserva>) session.createCriteria(Reserva.class)
+				.add(Restrictions.eq("taller", taller))
+				.list();
 	}
 
 }

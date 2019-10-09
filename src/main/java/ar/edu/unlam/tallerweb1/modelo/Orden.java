@@ -1,19 +1,12 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
 import ar.edu.unlam.tallerweb1.modelo.cliente.Reserva;
-import ar.edu.unlam.tallerweb1.modelo.taller.Repuesto;
 
 @Entity
 public class Orden {
@@ -24,11 +17,11 @@ public class Orden {
 	@OneToOne
 	private Reserva reserva;
 	private Integer horasDeTrabajo;
-	@ManyToMany
-	@JoinTable(name = "orden_repuesto",     
-		joinColumns = @JoinColumn(name = "orden_id"),
-	    inverseJoinColumns = @JoinColumn(name = "repuesto_id"))
-	private List<Repuesto> repuestos = new ArrayList<Repuesto>();
+//	@ManyToMany
+//	@JoinTable(name = "orden_repuesto",     
+//		joinColumns = @JoinColumn(name = "orden_id"),
+//	    inverseJoinColumns = @JoinColumn(name = "repuesto_id"))
+//	private List<Repuesto> repuestos = new ArrayList<Repuesto>();
 	private Double total;
 	
 	public Long getId() {
@@ -40,12 +33,12 @@ public class Orden {
 	public void setHorasDeTrabajo(Integer horasDeTrabajo) {
 		this.horasDeTrabajo = horasDeTrabajo;
 	}
-	public List<Repuesto> getRepuestos() {
-		return repuestos;
-	}
-	public void setRepuestos(List<Repuesto> repuestos) {
-		this.repuestos = repuestos;
-	}
+//	public List<Repuesto> getRepuestos() {
+//		return repuestos;
+//	}
+//	public void setRepuestos(List<Repuesto> repuestos) {
+//		this.repuestos = repuestos;
+//	}
 	public Reserva getReserva() {
 		return reserva;
 	}
@@ -64,9 +57,9 @@ public class Orden {
 	
 	public void calcularTotal() {
 		this.total = this.horasDeTrabajo * this.reserva.getTaller().getManoDeObra();
-		for (Repuesto repuesto : this.repuestos) {
-			this.total += repuesto.getPrecio();
-			repuesto.setStock(repuesto.getStock()-1);
-		}
+//		for (Repuesto repuesto : this.repuestos) {
+//			this.total += repuesto.getPrecio();
+//			repuesto.setStock(repuesto.getStock()-1);
+//		}
 	}
 }

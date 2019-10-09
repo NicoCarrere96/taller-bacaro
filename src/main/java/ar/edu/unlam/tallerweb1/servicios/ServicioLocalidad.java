@@ -8,5 +8,7 @@ import ar.edu.unlam.tallerweb1.modelo.taller.Provincia;
 public interface ServicioLocalidad {
 	List<Localidad> consultarLocalidades();
 	List<Localidad> buscarLocalidadesPorProvincia(Provincia provincia);
+	Localidad buscarLocalidadPorId(Long localidad);
+	
 	List<Provincia> consultarProvincias();
 }

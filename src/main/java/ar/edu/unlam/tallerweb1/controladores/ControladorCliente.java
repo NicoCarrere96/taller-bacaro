@@ -49,10 +49,9 @@ public class ControladorCliente {
 	@RequestMapping(path = "/guardarCliente", method = RequestMethod.POST)
 	@Transactional
 	public ModelAndView guardaCliente(@ModelAttribute Cliente cliente) {
-		ModelMap modelo = new ModelMap();
 		
 		servicioCliente.guardarCliente(cliente);
 		
-		return new ModelAndView("home", modelo);
+		return new ModelAndView("redirect:/reserva/cliente?dni="+ cliente.getDni());
 	}
 }

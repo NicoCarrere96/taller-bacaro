@@ -14,7 +14,7 @@
 	<body>
 	
 	<div class="container">
-		<c:url value="/orden/nueva/${ orden.reserva.id }" var="action"/>
+		<c:url value="/orden/nueva" var="action"/>
 		<form:form action="${ action }" method="POST" id="ordenForm" modelAttribute="orden">
 			<h2>Generar Orden de trabajo</h2>
 
@@ -25,7 +25,8 @@
 			  <li class="list-group-item"><strong>Problema:</strong><br> ${ orden.reserva.problema }</li>
 			</ul>            
 		                                                          
-		            
+		       
+		    <form:hidden path="reserva.id"/>      
   		    <div class="form-group">
 		        <label for="horasDeTrabajo" class="control-label">Horas de Trabajo:</label>
 				<form:input path="horasDeTrabajo" class="form-control" type="number" required="required" value="${ orden.horasDeTrabajo }"/>

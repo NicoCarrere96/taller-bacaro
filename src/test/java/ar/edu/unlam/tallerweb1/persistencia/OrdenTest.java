@@ -2,8 +2,6 @@ package ar.edu.unlam.tallerweb1.persistencia;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.Date;
-
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
@@ -21,7 +19,6 @@ public class OrdenTest extends SpringTest{
 	@Autowired
 	private OrdenDao dao;
 
-	    @SuppressWarnings("deprecation")
 		@Test
 	    @Transactional @Rollback
 	    public void consutarUnaOrden(){
@@ -39,8 +36,7 @@ public class OrdenTest extends SpringTest{
 	    cl.setMail("euse@gmail.com");
 	    session().save(cl);
 	    
-	    Date dia = new Date();
-	    dia.setDate(2019-20-01);
+	    String dia = "2019-20-01";
 	    
 	    Reserva res = new Reserva();
 	    res.setTaller(tall);
