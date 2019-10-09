@@ -33,8 +33,23 @@ public class ServicioRepuestoImpl implements ServicioRepuesto {
 		return dao.consultarRepuestosEnStockPorTaller(taller);
 	}
 
-	/*@Override
-	public List<Repuesto> guardarRepuesto(Repuesto repuesto) {
-		return dao.guardarRepuesto(repuesto);
-	}*/
+	@Override
+	public void guardarRepuesto(Repuesto repuesto) {
+		dao.save(repuesto);
+	}
+	
+	@Override
+	public void actualizarRepuesto(Repuesto repuesto) {
+		dao.actualizarRepuesto(repuesto);
+	}
+	
+	@Override
+	public List<Repuesto> getAll() {
+		return dao.getAll();
+	}
+	
+	@Override
+	public void eliminarRepuesto(Repuesto repuesto) {
+		dao.eliminarRepuesto(repuesto);
+	}
 }

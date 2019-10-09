@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import ar.edu.unlam.tallerweb1.modelo.cliente.Reserva;
 
 @Repository("reservaDao")
+@SuppressWarnings("unchecked")
 public class ReservaDaoImpl implements ReservaDao {
 
 	@Inject

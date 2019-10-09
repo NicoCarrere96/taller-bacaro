@@ -1,28 +1,19 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
-import java.util.List;
-
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import ar.edu.unlam.tallerweb1.modelo.cliente.Cliente;
 import ar.edu.unlam.tallerweb1.modelo.taller.Repuesto;
-import ar.edu.unlam.tallerweb1.modelo.taller.Taller;
-import ar.edu.unlam.tallerweb1.modelo.taller.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioRepuesto;
-import ar.edu.unlam.tallerweb1.servicios.ServicioTaller;
-import ar.edu.unlam.tallerweb1.utils.Especialidad;
+import ar.edu.unlam.tallerweb1.servicios.ServicioUsuario;
 
 @Controller
 @RequestMapping(path = "/stockRepuestos" , method = RequestMethod.GET)
@@ -31,135 +22,123 @@ public class ControladorStockRepuestos {
 	@Inject
 	private ServicioRepuesto servicioRepuesto;
 	
-	/*@RequestMapping(path = "crearRepuesto" , method = RequestMethod.POST)
-	public ModelAndView crearRepuesto(@ModelAttribute("repuesto") Repuesto repuesto , HttpServletRequest request) 
-	{
-		if(request.getSession().getAttribute("id") == null)
-		{
-			return new ModelAndView("redirect:/");
-
-	    }
-		
+	@Inject
+	private ServicioUsuario servicioUsuario;
 	
-	@RequestMapping (path  = " / editarRepuesto / {idRepuesto} " , method  =  RequestMethod . GET )
-	public  ModelAndView  irAeditarRepuesto (HttpServletRequest request, @PathVariable  long  idRepuesto ) {
-		
-		ModelMap modelo =  new  ModelMap ();
-		Repuesto repuesto = new  Repuesto ();
-		modelo . put ( " idRepuesto " , repuesto);
-		
-		if(servicioRepuesto.consultarRepuesto(repuesto) == null) {
-
-			servicioRepuesto.guardarRepuesto(repuesto);
-			modelo.put("aviso", "Se creo correctamente");
-
+	@RequestMapping("abmRepuestos")
+	public ModelAndView abmRepuestos(HttpServletRequest request) {
+		Long idUsuario = (Long) request.getSession().getAttribute("idUsuario");
+		ModelMap model = new ModelMap();
+		if (idUsuario != null) {
+			if (servicioUsuario.buscarPorId(idUsuario).getRol().equals("admin")) {
+				model.put("repuesto", servicioRepuesto.getAll());
+				return new ModelAndView("repuestos/abmRepuesto", model);
+			} else {
+				return new ModelAndView("redirect:/login");
+			}
 		} else {
-			modelo.put("aviso", "No se pudo crear correctamente");
-			Repuesto repuesto=new Repuesto();
-		   modelo.put("repuesto", servicioRepuesto.getIdRepuesto(idRepuesto));
-		   modelo.put("idRepuesto", repuesto);
-
-		}
-		
-		Repuesto repuestoNuevo= new Repuesto();
-		modelo.put("repuesto", repuestoNuevo);
-
-
-		List<Repuesto>repuestos = servicioRepuesto.listarTodosLosRepuestos();
-		modelo.put("repuestos", repuestos);
-
-		return new ModelAndView("stockRepuesto",modelo);
-		return  new  ModelAndView ( " editarRepuesto " , modelo);
-	}*/
-	
-	@RequestMapping ( path  = " / validarRepuesto / " , method  =  RequestMethod . POST )
-	public  ModelAndView  validarRepuesto ( @ModelAttribute ( " repuesto " ) Repuesto  repuesto) {
-		
-		ModelMap modelo =  new  ModelMap ();
-		modelo . put ( " repuesto " , modelo);
-		modelo . put ( " nombre " , modelo);
-		modelo . put ( " precio " , modelo);
-		servicioRepuesto . guardarRepuesto (repuesto);
-		modelo . put ( " aviso " , " Se CREO exitosamente " );
-
-		return  new  ModelAndView ( " editarRepuesto " , modelo);
-	}
-	@RequestMapping ( " / formRepuesto " )
-	public  ModelAndView  ingresarRepuesto ( ) {
-
-		 ModelMap modelo = new  ModelMap ();
-		 Repuesto repuesto = new  Repuesto ();
-		modelo . put ( " repuesto " , repuesto);	
-		return  new  ModelAndView ( " formRepuesto " , modelo);
-	}
-	
-	
-	/*
-	 
-	  @RequestMapping(path="/agregarRepuesto " , method  =  RequestMethod . GET)
-	public ModelAndView agregarRepuesto(HttpServletRequest request)
-	{
-		Long idRepuesto = (Long) request.getSession().getAttribute("idRepuesto");
-		ModelMap model = new ModelMap();
-		//Long idRepuesto = (Long) request.getSession().getAttribute("idRepuesto");
-		ModelMap model = new ModelMap();
-		if (idRepuesto != null) 
-		{
-		  Repuesto repuesto = new Repuesto();
-		  model.put("repuesto", repuesto);
-		  return new ModelAndView("/agregarRepuesto", model);
-		} 
-		else
-		{
 			return new ModelAndView("redirect:/login");
 		}
 	}
-	@RequestMapping(path = "/guardarRepuesto", method = RequestMethod.POST)
-	public ModelAndView guardarRepuesto(@RequestParam("Repuesto") Long idRepuesto,
-			@ModelAttribute("Repuesto") Repuesto repuesto, HttpServletRequest request)
-	{
-		//Long idRepuesto = (Long) request.getSession().getAttribute("idRepuesto");
+	
+	@RequestMapping("/agregarRepuesto")
+	public ModelAndView agregarRepuesto(HttpServletRequest request) {
+		Long idUsuario = (Long) request.getSession().getAttribute("idUsuario");
 		ModelMap model = new ModelMap();
-		
-		if (idRepuesto != null) {
-			if (servicioRepuesto.buscarPorId(idRepuesto)) {
-				repuesto.setIdRepuesto(servicioRepuesto.getId(IdRepuesto));
-				servicioRepuesto.guardarRepuesto(Repuesto);
+		if (idUsuario != null) {
+			if (servicioUsuario.buscarPorId(idUsuario).getRol().equals("admin")) {
+				Repuesto repuesto = new Repuesto();
+				model.put("Repuesto", repuesto);
+				return new ModelAndView("repuestos/agregarRepuesto", model);
+			} else {
+				model.put("avisoError", "Acceso denegado");
+				model.put("mensajeError", "Para acceder usted debe tener rol ADMINISTRADOR");
+				return new ModelAndView("mensaje", model);}
+		} else {
+			return new ModelAndView("redirect:/login");
+		}
+	} 
+	
+	@RequestMapping(path = "/guardarRepuesto", method = RequestMethod.POST)
+	public ModelAndView guardarRepuesto(@ModelAttribute("Repuesto") Repuesto repuesto,
+			HttpServletRequest request) {
+		Long idAdmin = (Long) request.getSession().getAttribute("idUsuario");
+		ModelMap model = new ModelMap();
+		if (idAdmin != null) {
+			if (servicioUsuario.buscarPorId(idAdmin).getRol().equals("admin")) {
+				servicioRepuesto.guardarRepuesto(repuesto);
 
 				model.put("aviso", "Creacion Exitosa");
-				model.put("mensaje",String.format("Se ha guardado con el id %d de manera exitosa", vehiculo.getId()));
+				model.put("mensaje",String.format("Se ha guardado con el id %d de manera exitosa", repuesto.getId()));
 			} else {
 				model.put("avisoError", "Creacion Fallida");
-				model.put("mensajeError", String.format("No se ha podido crear el vehiculo"));
+				model.put("mensajeError", String.format("No se ha podido crear el repuesto"));
 			}
 			return new ModelAndView("/mensaje", model);
 		} else {
 			return new ModelAndView("redirect:/login");
 		}
 	}
-	
-	@RequestMapping(path = "/guardarRepuesto", method = RequestMethod.POST)
-	public ModelAndView guardarRepuesto(@ModelAttribute("Repuesto") Repuesto repuesto, HttpServletRequest request)
-	{
-		Long idRepuesto = (Long) request.getSession().getAttribute("idRepuesto");
+
+	@RequestMapping(path = "/actualizarRepuesto", method = RequestMethod.POST)
+	public ModelAndView actualizarRepuesto(@ModelAttribute("repuesto") Repuesto repuesto,
+			HttpServletRequest request) {
+
+		Long idAdmin = (Long) request.getSession().getAttribute("idUsuario");
 		ModelMap model = new ModelMap();
-		if (idRepuesto != null) 
-		{
-			if (servicioRepuesto.buscarRepuestoPorId(idRepuesto))
-			{
-				if (servicioRepuesto.consultarRepuesto(repuesto) == null) 
-				{
-					servicioRepuesto.nuevoRepuesto(repuesto);
-					model.put("repuesto", repuesto);
-					model.put("aviso", "Creacion Exitosa");
-					model.put("mensaje",String.format("Se ha creado el repuesto con el id %d de manera exitosa", repuesto.getId()));
-				} 
-			 }
-			else 
-			{
-				model.put("avisoError", "El repuesto no se guardo");
-				model.put("mensajeError", String.format("El repuesto no se guardo correctamente : %s", repuesto.getId()));
+		if (idAdmin != null) {
+			if (servicioUsuario.buscarPorId(idAdmin).getRol().equals("admin")) {
+				servicioRepuesto.actualizarRepuesto(repuesto);
+				model.put("aviso", "Actualización exitosa");
+				model.put("mensaje", String.format("El repuesto con el id %d  se ha actualizado de manera exitosa",
+						repuesto.getId()));
+				return new ModelAndView("repuestos/mensaje", model);
+			} else {
+				return new ModelAndView("redirect:/login");
 			}
-	    }
-     }*/	
+		} else {
+			return new ModelAndView("redirect:/login");
+		}
+	}
+
+	@RequestMapping("/modificarRepuesto")
+	public ModelAndView modificarRepuesto(@RequestParam("idRepuesto") Long idRepuesto, HttpServletRequest request) {
+
+		Long idAdmin = (Long) request.getSession().getAttribute("idUsuario");
+		ModelMap model = new ModelMap();
+		if (idAdmin != null) {
+			if (servicioUsuario.buscarPorId(idAdmin).getRol().equals("admin")) {
+				Repuesto repuesto = servicioRepuesto.consultarRepuestoPorId(idRepuesto);
+				
+				model.put("repuesto", repuesto);
+				return new ModelAndView("repuestos/modificarRepuesto", model);
+			} else {
+				return new ModelAndView("redirect:/login");
+			}
+		} else {
+			return new ModelAndView("redirect:/login");
+		}
+	}
+
+	@RequestMapping("/eliminarRepuesto")
+	public ModelAndView eliminarRepuesto(@RequestParam("idRepuesto") Long idRepuesto, HttpServletRequest request) {
+
+		Long idAdmin = (Long) request.getSession().getAttribute("idUsuario");
+		ModelMap model = new ModelMap();
+		if (idAdmin != null) {
+			if (servicioUsuario.buscarPorId(idAdmin).getRol().equals("admin")) {
+				Repuesto repuesto = servicioRepuesto.consultarRepuestoPorId(idRepuesto);
+				servicioRepuesto.eliminarRepuesto(repuesto);
+				model.put("aviso", "Eliminación exitosa");
+				model.put("mensaje", "El repuesto se ha eliminado de manera exitosa");
+			} else {
+				model.put("avisoError", "Eliminacion Cancelada");
+				model.put("mensajeError",String.format("El repuesto con el id %d  no pudo eliminarse"));
+			}
+			return new ModelAndView("repuestos/mensaje", model);
+		} else {
+			return new ModelAndView("redirect:/login");
+		}
+	}
+	
 }

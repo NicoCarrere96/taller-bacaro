@@ -13,6 +13,7 @@ import ar.edu.unlam.tallerweb1.modelo.Orden;
 import ar.edu.unlam.tallerweb1.modelo.cliente.Reserva;
 
 @Repository("ordenDao")
+@SuppressWarnings("unchecked")
 public class OrdenDaoImpl implements OrdenDao {
 	
 	@Inject
