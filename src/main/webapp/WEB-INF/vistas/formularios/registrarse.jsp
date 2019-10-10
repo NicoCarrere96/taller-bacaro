@@ -21,7 +21,7 @@
 		
 		<form:form class="text-center border border-light p-5" action="registro" method="POST" commandName="taller" id="validar-form">
 
-    <p class="h2 mb-4">Formulario de Registro</p>
+    <p class="h2 mb-4">Modificar datos del Taller</p>
 
     <div class="form-row mb-4">
         <div class="col">

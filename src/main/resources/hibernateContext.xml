@@ -9,7 +9,7 @@
 	<bean id="dataSource"
 		  class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost:3306/tallerBacaro" />
+		<property name="url" value="jdbc:mysql://localhost:3306/taller-bacaro" />
 		<property name="username" value="root" />
 		<property name="password" value="unlam2019" />
 	</bean>
@@ -34,7 +34,7 @@
 				<!--create: lo crea siempre-->
 				<!--update: aplica cambios realizados-->
 				<!--none: no modifica nunca el esquema de datos-->
-				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.hbm2ddl.auto">create-drop</prop>
 			</props>
 		</property>
 		<!--Se configura qué paquetes debe escanear hibernate en busca de clases persistible, es decir-->

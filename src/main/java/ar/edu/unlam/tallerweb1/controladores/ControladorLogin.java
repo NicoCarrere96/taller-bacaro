@@ -55,13 +55,13 @@ public class ControladorLogin {
 			if (usuarioBuscado.getRol().equals("admin")) {
 				return new ModelAndView("repuestos/abmRepuesto");
 			}
-			return new ModelAndView("redirect:/homeTaller");
+			return new ModelAndView("redirect:/taller/homeTaller");
 			
 		} else {
 			// si el usuario no existe agrega un mensaje de error en el modelo.
 			model.put("error", "Usuario o clave incorrecta");
 		}
-		return new ModelAndView("homeTaller", model);
+		return new ModelAndView("login", model);
 	}
 
 	// Escucha la URL /home por GET, y redirige a una vista.

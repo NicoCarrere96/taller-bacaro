@@ -12,6 +12,10 @@
 	</head>
 
 	<body>
+	<div class="jumbotron text-center" style="background-color:#0d80b3; color:white">
+  				<h1>BuscoTaller.com</h1>
+  				<p>La manera mas facil y comoda de conseguir taller</p> 
+				</div>
 	
 	<div class="container">
 		<form:form action="nuevaReserva" method="POST"  modelAttribute="reserva" >

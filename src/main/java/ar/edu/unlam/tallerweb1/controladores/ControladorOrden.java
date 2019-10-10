@@ -64,8 +64,8 @@ public class ControladorOrden {
 	public ModelAndView guardarOrden(@ModelAttribute Orden orden) {
 
 		orden.setReserva(servicioReserva.buscarReservaPorId(orden.getReserva().getId()));
-		orden.getReserva().setEstado(EstadoReserva.ORDEN_REGISTRADA);	
-		orden.calcularTotal();
+		//orden.getReserva().setEstado(EstadoReserva.ORDEN_REGISTRADA);	
+		//orden.calcularTotal();
 		servicioOrden.guardarOrden(orden);
 		
 		return new ModelAndView("home");
