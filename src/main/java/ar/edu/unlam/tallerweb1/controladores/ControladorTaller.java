@@ -55,7 +55,7 @@ public class ControladorTaller {
 	@Transactional
 	public ModelAndView registroPost(@ModelAttribute Taller taller) {
 
-		taller.getUsuario().setRol("TALLER");
+		taller.getUsuario().setRol("taller");
 		servicioLogin.guardarUsuario(taller.getUsuario());
 		servicioTaller.crearTaller(taller);
 
@@ -103,7 +103,7 @@ public class ControladorTaller {
 		return new ModelAndView("listados/talleresFiltrados", modelo);
 	}
 
-	@RequestMapping("/homeTaller")
+	@RequestMapping(path = "/homeTaller", method = RequestMethod.GET)
 	public ModelAndView irAlHomeTaller(HttpServletRequest request) {
 		Usuario usuarioLogueado = (Usuario) request.getSession().getAttribute("usuario");
 
@@ -113,13 +113,13 @@ public class ControladorTaller {
 
 			return new ModelAndView("homeTaller", modelo);
 		} else {
-			return new ModelAndView("redirect:login");
+			return new ModelAndView("redirect:/login");
 		}
 	}
 
-	@RequestMapping("/modificarTaller")
+	@RequestMapping(path = "/modificarTaller", method = RequestMethod.GET)
 	@Transactional
-	public ModelAndView ModificarTaller(HttpServletRequest request) {
+	public ModelAndView modificarTaller(HttpServletRequest request) {
 		Usuario usuarioLogueado = (Usuario) request.getSession().getAttribute("usuario");
 
 		if (usuarioLogueado != null) {
@@ -134,8 +134,28 @@ public class ControladorTaller {
 			return new ModelAndView("formularios/modificarTaller", modelo);
 		} else {
 
-			return new ModelAndView("redirect:login");
+			return new ModelAndView("redirect:/login");
 		}
 	}
 
+	@RequestMapping(path = "/modificarTaller", method = RequestMethod.POST)
+	@Transactional
+	public ModelAndView modificarTaller(HttpServletRequest request, @ModelAttribute Taller taller) {
+		Usuario usuarioLogueado = (Usuario) request.getSession().getAttribute("usuario");
+
+		if (usuarioLogueado != null) {
+			ModelMap modelo = new ModelMap();
+			taller.setLocalidad(servicioLocalidad.buscarLocalidadPorId(taller.getLocalidad().getId()));
+			
+			servicioTaller.update(taller);
+			
+			modelo.put("taller", taller);
+
+			return new ModelAndView("homeTaller", modelo);
+		} else {
+
+			return new ModelAndView("redirect:/login");
+		}
+	}
+	
 }

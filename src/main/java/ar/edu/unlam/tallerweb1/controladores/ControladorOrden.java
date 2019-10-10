@@ -64,11 +64,11 @@ public class ControladorOrden {
 	public ModelAndView guardarOrden(@ModelAttribute Orden orden) {
 
 		orden.setReserva(servicioReserva.buscarReservaPorId(orden.getReserva().getId()));
-		//orden.getReserva().setEstado(EstadoReserva.ORDEN_REGISTRADA);	
+		orden.getReserva().setEstado(EstadoReserva.ORDEN_REGISTRADA);	
 		//orden.calcularTotal();
 		servicioOrden.guardarOrden(orden);
 		
-		return new ModelAndView("home");
+		return new ModelAndView("redirect:/reserva/lista");
 	}
 	
 //	@RequestMapping(path = "/agregarRepuesto", method = RequestMethod.POST)

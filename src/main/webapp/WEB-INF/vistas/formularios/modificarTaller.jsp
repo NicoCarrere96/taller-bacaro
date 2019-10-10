@@ -37,7 +37,7 @@
 	</nav>
 	<div class="container">
 
-		<form:form class="form-horizontal" action="registro" method="POST"
+		<form:form class="form-horizontal" action="modificarTaller" method="POST"
 			commandName="taller" id="validar-form">
 
 			<p class="h2 mb-4">Modificar Datos del Taller</p>
@@ -100,8 +100,10 @@
 						placeholder="Telefono" />
 				</div>
 			</div>
+			<form:hidden path="usuario.id" />
 			<form:hidden path="usuario.email" />
 			<form:hidden path="usuario.password" />
+			<form:hidden path="usuario.rol" />
 			<div class="form-group">
 				<label class="control-label col-sm-2">Pagina Web: </label>
 				<div class="col-sm-10">

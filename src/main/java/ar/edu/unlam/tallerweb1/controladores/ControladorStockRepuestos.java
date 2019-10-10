@@ -22,9 +22,6 @@ public class ControladorStockRepuestos {
 	@Inject
 	private ServicioRepuesto servicioRepuesto;
 
-	@Inject
-	private ServicioUsuario servicioUsuario;
-
 	@RequestMapping("abmRepuestos")
 	public ModelAndView abmRepuestos(HttpServletRequest request) {
 		String rolUsuario = (String) request.getSession().getAttribute("ROL");
@@ -37,7 +34,7 @@ public class ControladorStockRepuestos {
 				return new ModelAndView("repuestos/abmRepuesto");
 			}
 		} else {
-			return new ModelAndView("repuestos/abmRepuesto");
+			return new ModelAndView("redirect:/login");
 		}
 	}
 
