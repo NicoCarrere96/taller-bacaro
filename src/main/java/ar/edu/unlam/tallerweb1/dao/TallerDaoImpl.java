@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import ar.edu.unlam.tallerweb1.modelo.taller.Localidad;
 import ar.edu.unlam.tallerweb1.modelo.taller.Taller;
+import ar.edu.unlam.tallerweb1.modelo.taller.Usuario;
 import ar.edu.unlam.tallerweb1.utils.Especialidad;
 
 @Repository("TallerDao")
@@ -59,4 +60,10 @@ public class TallerDaoImpl implements TallerDao {
 		return (Taller) sessionFactory.getCurrentSession().get(Taller.class, tallerId);
 	}
 
+	public Taller consultarTallerPorUsuario(Usuario usuario) {
+		
+		return (Taller) sessionFactory.getCurrentSession().createCriteria(Taller.class)
+				.add(Restrictions.eq("usuario",usuario))
+				.uniqueResult();
+	}
 }

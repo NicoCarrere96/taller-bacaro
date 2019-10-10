@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -98,8 +99,43 @@ public class ControladorTaller {
 				servicioTaller.filtrarTalleres(localidadrtdo, Especialidad.valueOf(especialidad)));
 
 		modelo.addAttribute("dniCliente", dniCliente);
-		
+
 		return new ModelAndView("listados/talleresFiltrados", modelo);
+	}
+
+	@RequestMapping("/homeTaller")
+	public ModelAndView irAlHomeTaller(HttpServletRequest request) {
+		Usuario usuarioLogueado = (Usuario) request.getSession().getAttribute("usuario");
+
+		if (usuarioLogueado != null) {
+			ModelMap modelo = new ModelMap();
+			modelo.put("taller", servicioTaller.consultarTallerPorUsuario((usuarioLogueado)));
+
+			return new ModelAndView("homeTaller", modelo);
+		} else {
+			return new ModelAndView("redirect:login");
+		}
+	}
+
+	@RequestMapping("/modificarTaller")
+	@Transactional
+	public ModelAndView ModificarTaller(HttpServletRequest request) {
+		Usuario usuarioLogueado = (Usuario) request.getSession().getAttribute("usuario");
+
+		if (usuarioLogueado != null) {
+			ModelMap modelo = new ModelMap();
+			Taller taller = servicioTaller.consultarTallerPorUsuario((usuarioLogueado));
+
+			modelo.put("taller", taller);
+			modelo.put("provincias", servicioLocalidad.consultarProvincias());
+			modelo.put("localidades",
+					servicioLocalidad.buscarLocalidadesPorProvincia(taller.getLocalidad().getProvincia()));
+
+			return new ModelAndView("formularios/modificarTaller", modelo);
+		} else {
+
+			return new ModelAndView("redirect:login");
+		}
 	}
 
 }

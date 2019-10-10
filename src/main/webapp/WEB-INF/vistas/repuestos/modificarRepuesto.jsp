@@ -3,13 +3,33 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>    
-<c:set var="url" value="${pageContext.request.contextPath}"/>
-  
-<%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
-<t:nav-admin>
-	<jsp:attribute name="body">
+<!DOCTYPE html>
+<html>
+	<head>
+	<!-- Bootstrap core CSS -->
+	    <link href="<c:url value="/css/bootstrap.min.css" />" rel="stylesheet" >
+	<!-- w3 CSS -->    
+	     <link href="<c:url value="/css/w3.css" />" rel="stylesheet" >
+	    <!-- Bootstrap theme -->
+	    <link href="<c:url value="/css/bootstrap-theme.min.css" />" rel="stylesheet">
+	</head>
 	
-	<br>
+	<body >
+		 <div class="jumbotron text-center" style="background-color:#0d80b3; color:white">
+  				<h1>BuscoTaller.com</h1>
+  				<p>La manera mas facil y comoda de conseguir taller</p> 
+				</div>
+	<nav>
+	
+		<div class="w3-bar w3-dark-grey">
+				<a href="<c:url value="/reserva/lista" />" class="w3-bar-item w3-button w3-mobile" style="width:33%">Consultar Reservas</a>
+  				<a href="<c:url value="/stockRepuestos/abmRepuestos" />" class="w3-bar-item w3-button w3-mobile" style="width:33%">Listado de Repuestos</a>
+  				<a href="<c:url value="/taller/homeTaller" />" class="w3-bar-item w3-button w3-mobile" style="width:33%">Datos Taller</a>
+	  			
+		</div>
+	
+	</nav>
+		<br>
 	<div class="container">
 	<h1>Modificar Repuesto</h1>
 	<form:form action="actualizarRepuesto" modelAttribute="repuesto"
@@ -17,6 +37,9 @@
 		<div class="form-row">
 			<div class="form-group col-md-12">
 
+
+				<form:hidden path="id"/>
+				<form:hidden path="taller.id"/>
 					<div class="form-group col-md-12">
 					<label for="nombre">Nombre</label>
 					<form:input type="text" required="required" class="form-control"
@@ -43,7 +66,4 @@
 	</form:form>
 </div>
 
-			
-	</jsp:attribute>
-</t:nav-admin>	
 	

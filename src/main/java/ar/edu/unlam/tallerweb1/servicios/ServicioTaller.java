@@ -4,6 +4,7 @@ import java.util.List;
 
 import ar.edu.unlam.tallerweb1.modelo.taller.Localidad;
 import ar.edu.unlam.tallerweb1.modelo.taller.Taller;
+import ar.edu.unlam.tallerweb1.modelo.taller.Usuario;
 import ar.edu.unlam.tallerweb1.utils.Especialidad;
 
 public interface ServicioTaller {
@@ -13,7 +14,5 @@ public interface ServicioTaller {
 	public Taller buscarTallerPorId (Long tallerId);
 	public void crearTaller(Taller taller);
 	public void update(Taller taller);
-	
-	//public void buscarTallerPorId(Taller taller);
-	
+	public Taller consultarTallerPorUsuario(Usuario usuario);
 }

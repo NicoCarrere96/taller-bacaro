@@ -39,7 +39,7 @@ public class ReservaTest extends SpringTest{
 	    Reserva res = new Reserva();
 	    res.setTaller(tall);
 	    res.setCliente(cl);
-	    res.setFecha(dia);
+	    res.setFecha("20190909");
 	    session().save(res);
 	    
 	    Reserva reserv = dao.buscarReservaPorId(res.getId());

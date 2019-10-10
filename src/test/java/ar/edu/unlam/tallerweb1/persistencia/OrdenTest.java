@@ -41,7 +41,7 @@ public class OrdenTest extends SpringTest{
 	    Reserva res = new Reserva();
 	    res.setTaller(tall);
 	    res.setCliente(cl);
-	    res.setFecha(dia);
+	    res.setFecha("20190909");
 	    session().save(res);
 	    
 	    Orden ot = new Orden();

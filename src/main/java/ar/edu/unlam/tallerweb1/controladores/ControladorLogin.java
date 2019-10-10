@@ -47,11 +47,16 @@ public class ControladorLogin {
 		// hace una llamada a otro action a través de la URL correspondiente a ésta
 		Usuario usuarioBuscado = servicioLogin.consultarUsuario(usuario);
 		if (usuarioBuscado != null) {
+
+			
 			request.getSession().setAttribute("ROL", usuarioBuscado.getRol());
+			request.getSession().setAttribute("usuario", usuarioBuscado);
+			
 			if (usuarioBuscado.getRol().equals("admin")) {
 				return new ModelAndView("repuestos/abmRepuesto");
 			}
-			return new ModelAndView("redirect:/home");
+			return new ModelAndView("redirect:/taller/homeTaller");
+			
 		} else {
 			// si el usuario no existe agrega un mensaje de error en el modelo.
 			model.put("error", "Usuario o clave incorrecta");
