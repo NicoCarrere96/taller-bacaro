@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.unlam.tallerweb1.dao.RepuestoDao;
+import ar.edu.unlam.tallerweb1.modelo.Orden;
+import ar.edu.unlam.tallerweb1.modelo.taller.OrdenRepuesto;
 import ar.edu.unlam.tallerweb1.modelo.taller.Repuesto;
 import ar.edu.unlam.tallerweb1.modelo.taller.Taller;
 
@@ -51,5 +53,15 @@ public class ServicioRepuestoImpl implements ServicioRepuesto {
 	@Override
 	public void eliminarRepuesto(Repuesto repuesto) {
 		dao.eliminarRepuesto(repuesto);
+	}
+
+	@Override
+	public List<OrdenRepuesto> consultarRepuestosPorOrden(Orden orden) {
+		return dao.consultarRepuestosPorOrden(orden);
+	}
+
+	@Override
+	public void agregarRepuestoALaOrden(OrdenRepuesto ordRep) {
+		dao.agregarRepuestoALaOrden(ordRep);
 	}
 }

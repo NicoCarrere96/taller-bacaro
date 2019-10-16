@@ -39,28 +39,36 @@
 			  <li class="list-group-item"><strong>Problema:</strong><br> ${ orden.reserva.problema }</li>
 			</ul>            
 		                                                          
-
-		            
-  		    <div class="form-group">
-		       
+		    <form:hidden path="id"/>   
 		    <form:hidden path="reserva.id"/>      
   		    <div class="form-group">
 		        <label for="horasDeTrabajo" class="control-label">Horas de Trabajo:</label>
 				<form:input path="horasDeTrabajo" class="form-control" type="number" required="required" value="${ orden.horasDeTrabajo }"/>
-		    </div>                   
-	    	<%-- <div class="form-group">
-			    <label class="control-label">Repuestos:</label>
-					<c:forEach items="${ orden.repuestos }" var="ordenRepuesto">
-					<div id="repuesto-list">
-				        <input type="text" class="form-control" value="${ ordenRepuesto.repuesto.nombre } - ${ ordenRepuesto.repuesto.precio }" disabled> 
-					</div>
-					</c:forEach>
-				
-					<form:select path="repuestos" class=" form-control custom-select" id="repuestoSelect">
-					        <form:options items="${ listaRepuestos }" itemValue="id" itemLabel="nombre"/>
-					</form:select>
-					<button type="button" class="btn btn-warning sm" onclick="agregaRepuesto()">Agregar Repuesto</button>
-			  </div>    --%>   
+		    </div>
+		    
+		    
+               
+	    	<div class="form-group">
+	    			<table class="table">
+	    				<thead>
+	    					<tr>
+   						      <th scope="col">Repuesto</th>
+						      <th scope="col">Precio U.</th>
+						      <th scope="col">Cantidad</th>
+	    					</tr>
+	    				</thead>
+	    				<tbody>
+	    					<c:forEach items="${ listaRepuestos }" var="ordRep">
+	    						<tr>
+	    							<td>${ ordRep.repuesto.nombre }</td>
+	    							<td>${ ordRep.repuesto.precio }</td>
+	    							<td>${ ordRep.cantidad }</td>
+	    						</tr>
+	    					</c:forEach>
+	    				</tbody>
+	    			</table>
+					<a href="<c:url value="/orden/agregarRepuesto?reserva=${ orden.reserva.id }"/>" class="btn btn-warning sm" >Agregar Repuesto</a>
+			  </div> 
 		    
 		    <div class="form-group"> <!-- Submit Button -->
 		        <button type="submit" class="btn btn-primary">Guardar Orden</button>

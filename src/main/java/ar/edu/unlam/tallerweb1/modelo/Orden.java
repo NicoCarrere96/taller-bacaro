@@ -17,11 +17,7 @@ public class Orden {
 	@OneToOne
 	private Reserva reserva;
 	private Integer horasDeTrabajo;
-//	@ManyToMany
-//	@JoinTable(name = "orden_repuesto",     
-//		joinColumns = @JoinColumn(name = "orden_id"),
-//	    inverseJoinColumns = @JoinColumn(name = "repuesto_id"))
-//	private List<Repuesto> repuestos = new ArrayList<Repuesto>();
+
 	private Double total;
 	
 	public Long getId() {
@@ -33,12 +29,6 @@ public class Orden {
 	public void setHorasDeTrabajo(Integer horasDeTrabajo) {
 		this.horasDeTrabajo = horasDeTrabajo;
 	}
-//	public List<Repuesto> getRepuestos() {
-//		return repuestos;
-//	}
-//	public void setRepuestos(List<Repuesto> repuestos) {
-//		this.repuestos = repuestos;
-//	}
 	public Reserva getReserva() {
 		return reserva;
 	}
@@ -54,12 +44,5 @@ public class Orden {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
-	public void calcularTotal() {
-		this.total = this.horasDeTrabajo * this.reserva.getTaller().getManoDeObra();
-//		for (Repuesto repuesto : this.repuestos) {
-//			this.total += repuesto.getPrecio();
-//			repuesto.setStock(repuesto.getStock()-1);
-//		}
-	}
+
 }
