@@ -9,6 +9,7 @@
 	    <link href="<c:url value="/css/bootstrap.min.css" />" rel="stylesheet" >
 	    <!-- Bootstrap theme -->
 	    <link href="<c:url value="/css/bootstrap-theme.min.css" />" rel="stylesheet">
+	      <link href="<c:url value="/css/w3.css" />" rel="stylesheet" >
 		<title>Reserva de turno
 		</title>
 	</head>
@@ -42,6 +43,8 @@
 			<td class="row">${ taller.localidad.nombre }</td>
 			<td class="row">${ taller.localidad.provincia.nombre }</td>
 			<td class="row">${ taller.especialidad }</td>
+			<td><input type="button" value="Ver en Mapa" class="btn btn-info"
+			onclick="window.open('https://www.google.com/maps/place/${taller.calle }+${taller.numero },${taller.localidad.nombre }','popUpWindow','height=400,width=1200,left=100,top=100,resizable=yes,scrollbars=yes,toolbar=no,menubar=no,location=no,directories=no, status=yes');"></td>	
 			<td class="row">
 				<a href="<c:url value="/reserva/nueva?tallerId=${ taller.id }&dniCliente=${ dniCliente }" />">
 					<button type="button" class="btn btn-info">
@@ -60,6 +63,7 @@
 	
 	
 			<!-- Placed at the end of the document so the pages load faster -->
+			
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" ></script>
 		<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
 		<script src="<c:url value="/js/bootstrap.min.js" />" type="text/javascript"></script>
