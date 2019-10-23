@@ -21,6 +21,7 @@ public class Reserva {
 	private String fecha;
 	private String problema;
 	private EstadoReserva estado;
+	private Integer duracion;
 	
 	public Taller getTaller() {
 		return taller;
@@ -57,6 +58,12 @@ public class Reserva {
 	}
 	public void setFecha(String fecha) {
 		this.fecha = fecha;
+	}
+	public Integer getDuracion() {
+		return duracion;
+	}
+	public void setDuracion(Integer duracion) {
+		this.duracion = duracion;
 	}
 
 	
