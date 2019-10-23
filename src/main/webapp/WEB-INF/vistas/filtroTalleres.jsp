@@ -7,8 +7,7 @@
 	    <link href="<c:url value="/css/bootstrap.min.css" />" rel="stylesheet" >
 	    <!-- Bootstrap theme -->
 	    <link href="<c:url value="/css/bootstrap-theme.min.css" />" rel="stylesheet">
-	</head>
-	</head>
+  	</head>
 	<body>
 	<div class="jumbotron text-center" style="background-color:#0d80b3; color:white">
 	  <h1>BuscoTaller.com</h1>
@@ -45,9 +44,6 @@
 			</button>
 					
 		</div>
-		
-		
-		<!-- Placed at the end of the document so the pages load faster -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" ></script>
 		<script>
 		window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')
