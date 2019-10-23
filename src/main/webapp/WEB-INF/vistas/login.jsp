@@ -34,7 +34,7 @@
 				<form:input path="password" type="password" id="password"
 					class="form-control" placeholder="Password" />
 				<br>
-				<button class="btn btn-lg btn-primary btn-block" Type="Submit">Entrar</button>
+			<button class="btn btn-lg btn-block btn-info" style="color: white" Type="Submit">Entrar</button>
 			</form:form>
 			<br>
 			<c:if test="${not empty error}">
