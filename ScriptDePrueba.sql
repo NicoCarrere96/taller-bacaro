@@ -35,5 +35,19 @@ INSERT INTO `taller-bacaro`.`repuesto` (`id`, `nombre`, `precio`, `stock`, `tall
 INSERT INTO `taller-bacaro`.`repuesto` (`id`, `nombre`, `precio`, `stock`, `taller_id` )  VALUES ('5', 'Estereo', '12000', '40', 1);
 INSERT INTO `taller-bacaro`.`repuesto` (`id`, `nombre`, `precio`, `stock`, `taller_id` )  VALUES ('6', 'Disco', '200', '0', 1);
 INSERT INTO `taller-bacaro`.`repuesto` (`id`, `nombre`, `precio`, `stock`, `taller_id` )  VALUES ('7', 'Pastilla', '120', '0', 1);
-
+INSERT INTO `taller-bacaro`.diadeatencion
+VALUES 	(1	,'Lunes'	,'2019/01/01/18:00:00'	,'2019/01/01/09:00:00'	,1	,1	),
+		(2	,'Martes'	,'2019/01/01/18:00:00'	,'2019/01/01/09:00:00'	,1	,1	),
+        (3	,'Miercoles'	,'2019/01/01/18:00:00'	,'2019/01/01/09:00:00'	,1	,1	),
+        (4	,'Jueves'	,'2019/01/01/18:00:00'	,'2019/01/01/09:00:00'	,1	,1	),
+        (5	,'Viernes'	,'2019/01/01/18:00:00'	,'2019/01/01/09:00:00'	,1	,1	),
+        (6	,'Sabado'	,'2019/01/01/13:00:00'	,'2019/01/01/09:00:00'	,1	,1	);
+        
+INSERT INTO turno
+VALUES 	(1	,now(),'20191023','2019/01/01/09:00:00',1),
+		(2	,now(),'20191023','2019/01/01/09:30:00',2),
+		(3	,now(),'20191024','2019/01/01/10:00:00',3),
+        (4	,now(),'20191023','2019/01/01/09:30:00',4),
+		(5	,now(),'20191024','2019/01/01/10:00:00',5),
+        (6	,now(),'20191023','2019/01/01/10:30:00',6);        
 

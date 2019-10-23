@@ -1,5 +1,8 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
@@ -11,10 +14,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import ar.edu.unlam.tallerweb1.modelo.cliente.DiaDeAtencion;
 import ar.edu.unlam.tallerweb1.modelo.cliente.Reserva;
 import ar.edu.unlam.tallerweb1.servicios.ServicioCliente;
 import ar.edu.unlam.tallerweb1.servicios.ServicioReserva;
 import ar.edu.unlam.tallerweb1.servicios.ServicioTaller;
+import ar.edu.unlam.tallerweb1.servicios.ServicioTurno;
 import ar.edu.unlam.tallerweb1.utils.EstadoReserva;
 
 @Controller
@@ -27,6 +32,8 @@ public class ControladorReserva {
 	private ServicioCliente servicioCliente;
 	@Inject
 	private ServicioTaller servicioTaller;
+	@Inject
+	private ServicioTurno servicioTurno;
 	
 	@RequestMapping(path = "/lista", method = RequestMethod.GET)
 	@Transactional
@@ -60,8 +67,10 @@ public class ControladorReserva {
 		reserva.setCliente(servicioCliente.consultarClientePorDni(dniCliente));
 		reserva.setTaller(servicioTaller.buscarTallerPorId(tallerId));
 		reserva.setEstado(EstadoReserva.PENDIENTE);
+		List<DiaDeAtencion> dias= servicioTurno.consultarDiaDeAtencion();
 		
 		modelo.addAttribute("reserva", reserva);
+		modelo.put("dias", dias);
 		
 		return new ModelAndView("formularios/nuevaReserva", modelo);
 	}

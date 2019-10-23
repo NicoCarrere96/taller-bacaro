@@ -1,6 +1,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix ="fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -8,6 +9,7 @@
 	    <link href="<c:url value="/css/bootstrap.min.css" />" rel="stylesheet" >
 	    <!-- Bootstrap theme -->
 	    <link href="<c:url value="/css/bootstrap-theme.min.css" />" rel="stylesheet">
+	    <link href="<c:url value="/css/bootstrap-datetimepicker.css" />"rel="stylesheet" type="text/css">
 		<title>Reserva de Turnos</title>
 	</head>
 
@@ -38,18 +40,40 @@
 		        <label for="problema" class="control-label">Problema:</label>
 				<form:textarea path="problema" class="form-control"/>
 		    </div> 
-		    <div class="form-group">
-		        <label for="fecha" class="control-label">Dia:</label>
-				<form:input type="date" path="fecha" />
-		    </div>
+		    
+		<label for="sel1">Seleccione Día:</label> 
+					<table class="table table-hover">
+					<thead>
+						<tr>
+							
+							<th scope="col">Dias</th>
+							<th scope="col">Rango horario</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach items="${dias}" var="dias">
+						
+							<tr>
+
+								<th scope="row"></th>
+									<td>${dias.dia}</td>
+									<td><fmt:formatDate type = "time" pattern="hh:mm" value = "${dias.horaAtencionInicio}" /> - 
+									<fmt:formatDate type = "time" pattern="hh:mm" value = "${dias.horaAtencionFinalizacion}" />
+									 </td>
+									
+									<td><a class="btn btn-lg btn-block btn-info" style="color: white" role="button" href="<c:url value="/fechas/${dias.getId()}" />"> Seleccionar</a></td>
+							</tr> 
+						</c:forEach>				
+					</tbody>
+				</table>
+					
+				
+					
 		             
 		    <form:hidden path="taller.id" />
 		    <form:hidden path="cliente.dni"/>
 		    <form:hidden path="estado" />
-		    
-		    <div class="form-group"> <!-- Submit Button -->
-		        <button type="submit" class="btn btn-primary">Guardar Orden</button>
-		    </div>     
+		        
 		</form:form>
 	</div>
 		
