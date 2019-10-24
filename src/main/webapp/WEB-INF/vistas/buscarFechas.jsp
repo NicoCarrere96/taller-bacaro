@@ -40,15 +40,17 @@
 					</thead>
 					<tbody>
 					
-						<c:forEach items="${fechas}" var="fechas">
+						<c:forEach items="${fechas}" var="fecha">
 							<tr>
 								<th scope="row"></th>
 									
-									<td><fmt:formatDate type = "date"  value = "${fechas}" /></td>
+									<td><fmt:formatDate pattern = "dd/MM/yyyy" type = "date"  value = "${fecha}" /></td>
 									<td></td>
 									<td></td>
-									<td><a  href="${pageContext.request.contextPath}/horarios/<fmt:formatDate type = "date"  value = "${fechas}"/>/${diaDeAtencion}" class="btn btn-lg btn-block btn-info" style="color: white" role="button" >Seleccionar</a></td>
-
+									<td><a  href="${pageContext.request.contextPath}/horarios/<fmt:formatDate pattern = "dd/MM/yyyy" type = "date"  value = "${fecha}"/>/${diaDeAtencion}" 
+									class="btn btn-lg btn-block btn-info" style="color: white" role="button" >Seleccionar</a>
+									</td>
+							</tr>
 						</c:forEach>				
 					</tbody>
 				</table>
