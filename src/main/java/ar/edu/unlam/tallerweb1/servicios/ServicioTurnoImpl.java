@@ -164,6 +164,7 @@ public class ServicioTurnoImpl implements ServicioTurno{
 		
 		while (fechaHasta.after(fechaDesde)) {
 
+			reserva.setDuracion(30);
 			fechaDesde.add(Calendar.MINUTE, reserva.getDuracion());
 			
 			miTurno.setHoraTurno(fechaDesde.getTime());
