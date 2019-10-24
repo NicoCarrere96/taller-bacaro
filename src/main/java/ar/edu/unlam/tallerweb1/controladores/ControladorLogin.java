@@ -76,4 +76,9 @@ public class ControladorLogin {
 	public ModelAndView inicio() {
 		return new ModelAndView("index");
 	}
+	@RequestMapping("/cerrar-sesion")
+	public ModelAndView cerrarSession(HttpServletRequest request) {
+		request.getSession().invalidate();
+		return new ModelAndView("index");
+	}
 }
