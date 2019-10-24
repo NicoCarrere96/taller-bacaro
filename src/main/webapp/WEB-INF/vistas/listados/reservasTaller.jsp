@@ -52,7 +52,7 @@
 						<td class="row">${ reserva.id }</td>
 						<td>${ reserva.fecha }</td>
 						<td>${ reserva.taller.nombreDelTaller }</td>
-						<td>${ reserva.cliente.nombre }${ reserva.cliente.apellido }</td>
+						<td>${ reserva.cliente.nombre } ${ reserva.cliente.apellido }</td>
 						<td><c:choose>
 								<c:when test="${ reserva.estado eq 'PENDIENTE' }">
 									<a href="<c:url value="/orden/nueva/${ reserva.id }" />">
