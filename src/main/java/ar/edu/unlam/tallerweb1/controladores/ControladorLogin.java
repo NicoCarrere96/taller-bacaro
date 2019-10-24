@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.taller.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioLogin;
+import ar.edu.unlam.tallerweb1.servicios.ServicioTaller;
 
 @Controller
 public class ControladorLogin {
@@ -21,6 +22,8 @@ public class ControladorLogin {
 	// @Service o @Repository y debe estar en un paquete de los indicados en applicationContext.xml
 	@Inject
 	private ServicioLogin servicioLogin;
+	@Inject
+	private ServicioTaller servicioTaller;
 
 	// Este metodo escucha la URL localhost:8080/NOMBRE_APP/login si la misma es invocada por metodo http GET
 	@RequestMapping(path = "/login", method = RequestMethod.GET)
@@ -51,10 +54,8 @@ public class ControladorLogin {
 			
 			request.getSession().setAttribute("ROL", usuarioBuscado.getRol());
 			request.getSession().setAttribute("usuario", usuarioBuscado);
+			request.getSession().setAttribute("taller", servicioTaller.consultarTallerPorUsuario(usuarioBuscado));
 			
-			if (usuarioBuscado.getRol().equals("admin")) {
-				return new ModelAndView("repuestos/abmRepuesto");
-			}
 			return new ModelAndView("redirect:/taller/homeTaller");
 			
 		} else {

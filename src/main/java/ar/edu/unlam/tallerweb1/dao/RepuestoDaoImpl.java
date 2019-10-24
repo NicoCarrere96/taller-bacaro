@@ -9,6 +9,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
+import ar.edu.unlam.tallerweb1.modelo.Orden;
+import ar.edu.unlam.tallerweb1.modelo.taller.OrdenRepuesto;
 import ar.edu.unlam.tallerweb1.modelo.taller.Repuesto;
 import ar.edu.unlam.tallerweb1.modelo.taller.Taller;
 
@@ -67,6 +69,20 @@ public class RepuestoDaoImpl implements RepuestoDao {
 	public void eliminarRepuesto(Repuesto repuesto) {
 		final Session session = sessionFactory.getCurrentSession();
 		session.delete(repuesto);
+	}
+
+	@Override
+	public List<OrdenRepuesto> consultarRepuestosPorOrden(Orden orden) {
+		Session session = sessionFactory.getCurrentSession();
+		return (List<OrdenRepuesto>) session.createCriteria(OrdenRepuesto.class)
+				.add(Restrictions.eq("orden", orden))
+				.list();
+	}
+
+	@Override
+	public void agregarRepuestoALaOrden(OrdenRepuesto ordRep) {
+		Session session = sessionFactory.getCurrentSession();
+		session.saveOrUpdate("ordenRepuesto", ordRep);
 	}
 
 }
