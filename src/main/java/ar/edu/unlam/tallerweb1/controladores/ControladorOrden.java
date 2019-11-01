@@ -50,7 +50,7 @@ public class ControladorOrden {
 
 			return new ModelAndView("formularios/orden", modelo);
 		} else {
-			return new ModelAndView("redirect: /login");
+			return new ModelAndView("redirect:/login");
 		}
 
 	}
@@ -84,7 +84,7 @@ public class ControladorOrden {
 
 			return new ModelAndView("redirect:/reserva/lista");
 		} else {
-			return new ModelAndView("redirect: /login");
+			return new ModelAndView("redirect:/login");
 		}
 	}
 
@@ -102,7 +102,7 @@ public class ControladorOrden {
 			modelo.addAttribute("ordenRep", ordRep);
 			return new ModelAndView("formularios/agregarRepuesto", modelo);
 		} else {
-			return new ModelAndView("redirect: /login");
+			return new ModelAndView("redirect:/login");
 		}
 	}
 
@@ -116,7 +116,7 @@ public class ControladorOrden {
 
 		return new ModelAndView("redirect: editar/" + ordRep.getOrden().getReserva().getId());
 		} else {
-			return new ModelAndView("redirect: /login");
+			return new ModelAndView("redirect:/login");
 		}
 	}
 
