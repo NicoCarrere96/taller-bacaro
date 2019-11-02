@@ -81,4 +81,8 @@ public class ControladorLogin {
 		request.getSession().invalidate();
 		return new ModelAndView("index");
 	}
+
+	public void setServicioLogin(ServicioLogin servicio) {
+		this.servicioLogin = servicio;		
+	}
 }

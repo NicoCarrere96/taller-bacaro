@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
@@ -40,14 +42,14 @@ public class ControladorOrden {
 
 		Orden orden = new Orden();
 		orden.setReserva(servicioReserva.buscarReservaPorId(idReserva));
-		
 		servicioOrden.guardarOrden(orden);
 		modelo.addAttribute("orden", orden);
 
 		return new ModelAndView("formularios/orden", modelo);
 
 	}
-
+	
+	
 	@RequestMapping(path = "/editar/{idReserva}", method = RequestMethod.GET)
 	@Transactional
 	public ModelAndView formularioDeOrdenEdicion(@PathVariable Long idReserva) {
@@ -58,7 +60,12 @@ public class ControladorOrden {
 		
 		modelo.addAttribute("orden", orden);
 		modelo.addAttribute("listaRepuestos", servicioRepuesto.consultarRepuestosPorOrden(orden));
-
+		if(orden.getReserva().getEstado()==EstadoReserva.RECHAZADA) {
+			servicioOrden.modificarOrden(orden);
+		}
+		if(orden.getReserva().getEstado()==EstadoReserva.PENDIENTE) {
+			servicioOrden.actualizarOrden(orden);
+		}
 		return new ModelAndView("formularios/orden", modelo);
 
 	}
@@ -68,13 +75,45 @@ public class ControladorOrden {
 	public ModelAndView guardarOrden(@ModelAttribute Orden orden) {
 
 		orden.setReserva(servicioReserva.buscarReservaPorId(orden.getReserva().getId()));
-		orden.getReserva().setEstado(EstadoReserva.ORDEN_REGISTRADA);
-		//orden.calcularTotal();
+		orden.getReserva().setEstado(EstadoReserva.PRESUPUESTADA);
+		servicioOrden.calcularTotal(orden);
 		servicioOrden.guardarOrden(orden);
+		
 		
 		return new ModelAndView("redirect:/reserva/lista");
 	}
+
+	@RequestMapping(path = "/ordenPresupuestada", method = RequestMethod.GET)
+	@Transactional
+	public ModelAndView verPresupuesto(HttpServletRequest request, @RequestParam ("idReserva") Long idReserva) {
+		ModelMap modelo = new ModelMap();
+		Reserva reserva = servicioReserva.buscarReservaPorId(idReserva);
+		Orden orden = servicioOrden.consultarOrdenPorReserva(reserva);
+		servicioOrden.calcularTotal(orden);
+		
+		List<OrdenRepuesto> listaRepuestos = servicioRepuesto.consultarRepuestosPorOrden(orden);
+		
+		modelo.put("reserva", reserva);
+		modelo.put("orden", orden);
+		modelo.put("repuestos", listaRepuestos);
+		
+		return new ModelAndView("formularios/ordenPresupuestada", modelo);
+	}	
 	
+	@RequestMapping(path = "/contestarPresupuesto", method = RequestMethod.GET )
+	@Transactional
+	public ModelAndView aprobarOrden(@RequestParam Boolean aprobado, @RequestParam Long id) {
+		
+		Orden orden = servicioOrden.consultarOrdenPorId(id);
+		
+		if(aprobado) {
+			servicioOrden.aprobarOrden(orden);
+		} else {
+			servicioOrden.rechazarOrden(orden);
+
+		}
+		return new ModelAndView("redirect:/cliente");
+	}
 	@RequestMapping(path = "/agregarRepuesto", method = RequestMethod.GET)
 	@Transactional
 	public ModelAndView agregarRepuesto(HttpServletRequest request, @RequestParam Long reserva) {

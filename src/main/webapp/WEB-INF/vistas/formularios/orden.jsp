@@ -71,7 +71,7 @@
 			  </div> 
 		    
 		    <div class="form-group"> <!-- Submit Button -->
-		        <button type="submit" class="btn btn-primary">Guardar Orden</button>
+		        <button type="submit" class="btn btn-primary">Generar Presupuesto</button>
 		    </div> 
 		</form:form>
 	</div>

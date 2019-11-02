@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import ar.edu.unlam.tallerweb1.dao.OrdenDao;
 import ar.edu.unlam.tallerweb1.modelo.Orden;
 import ar.edu.unlam.tallerweb1.modelo.cliente.Reserva;
+import ar.edu.unlam.tallerweb1.utils.EstadoReserva;
 
 @Service("servicioOrden")
 public class ServicioOrdenImpl implements ServicioOrden {
@@ -39,8 +40,29 @@ public class ServicioOrdenImpl implements ServicioOrden {
 
 	@Override
 	public void actualizarOrden(Orden orden) {
-		// TODO Auto-generated method stub
+		orden.getReserva().setEstado(EstadoReserva.PRESUPUESTADA);	
+	}
+
+	@Override
+	public void calcularTotal(Orden orden) {
+	orden.setTotal(7000.0);
 		
 	}
 	
+	@Override
+	public void aprobarOrden(Orden orden) {
+		orden.getReserva().setEstado(EstadoReserva.APROBADA);
+
+	}
+
+	@Override
+	public void rechazarOrden(Orden orden) {
+		orden.getReserva().setEstado(EstadoReserva.RECHAZADA);
+
+	}
+	@Override
+	public void modificarOrden(Orden orden) {
+		orden.getReserva().setEstado(EstadoReserva.PRESUPUESTADA);
+
+	}
 }
