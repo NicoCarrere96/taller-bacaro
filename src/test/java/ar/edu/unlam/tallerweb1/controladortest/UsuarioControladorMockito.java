@@ -1,4 +1,11 @@
-package ar.edu.unlam.tallerweb1.persistencia;
+package ar.edu.unlam.tallerweb1.controladortest;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,11 +29,7 @@ import ar.edu.unlam.tallerweb1.controladores.ControladorLogin;
 import ar.edu.unlam.tallerweb1.modelo.taller.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioLogin;
 
-import static org.mockito.Mockito.*;
-import static org.assertj.core.api.Assertions.*;
-
-public class UsuarioMockitoTest extends SpringTest{
-
+public class UsuarioControladorMockito extends SpringTest{
 	
 	@Mock
 	private ServicioLogin servicioLogin;
@@ -178,4 +181,5 @@ public class UsuarioMockitoTest extends SpringTest{
 
 		session().save(usuario1);
 	}
+
 }
