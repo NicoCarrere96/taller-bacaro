@@ -18,9 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.cliente.DiaDeAtencion;
-import ar.edu.unlam.tallerweb1.modelo.cliente.Reserva;
 import ar.edu.unlam.tallerweb1.modelo.cliente.Turno;
-import ar.edu.unlam.tallerweb1.servicios.ServicioReserva;
 import ar.edu.unlam.tallerweb1.servicios.ServicioTurno;
 
 @Controller
@@ -28,8 +26,7 @@ public class ControladorTurno {
 	@Inject
 	private ServicioTurno servicioTurno;
 	
-	@Inject
-	private ServicioReserva servicioReserva;
+
 	
 	@RequestMapping(path="/fechas/{diaDeAtencionId}") 
 	public ModelAndView irAConsultarFecha(@PathVariable Long diaDeAtencionId) {
@@ -55,7 +52,6 @@ public class ControladorTurno {
 			@PathVariable int anio,
 			@PathVariable Long diaDeAtencionId ,HttpServletRequest request) {
 		
-//		Long idUsuario = (Long) request.getSession().getAttribute("idUsuario");
 		
 		Calendar fechaGC = new GregorianCalendar();
 		fechaGC.set(Calendar.DATE, dia);
@@ -88,20 +84,19 @@ public class ControladorTurno {
 		model.put("turno", miTurno);		
 		model.put("diaDeAtencion", diaDeAtencion);
 		
+		System.out.print("muestra lista de horarios, deberia ser aptos para SQL"+ listHorariosPosibles);
 				
 		return new ModelAndView ("buscarHorarios",model);
 	}
 	
-	@RequestMapping(path = "/validarTurno", method = RequestMethod.POST)
+	@RequestMapping(path = "/guardarTurno", method = RequestMethod.POST)
 	@Transactional
-	public ModelAndView guardarTurno(@ModelAttribute("Reserva") Reserva reserva) {
+	public ModelAndView guardarTurno(@ModelAttribute("turno") Turno turno) {
 		
-		ModelMap model = new ModelMap();
-         servicioReserva.guardarReserva(reserva);
-         model.put("aviso", "Creacion Exitosa");
+         servicioTurno.guardarTurno(turno);
 		
 		
-		return new ModelAndView("repuestos/mensaje",model);
+		return new ModelAndView("redirect:reserva/nueva"+ turno.getFechaTurno()+turno.getHoraTurno());
 		
 	}
 	

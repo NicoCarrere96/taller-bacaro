@@ -24,7 +24,7 @@
 			
 			<div id="loginbox" style="margin-top:20px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
 			<h1>TURNO</h1>
-				<form:form action="${pageContext.request.contextPath}/validarTurno" method="POST" modelAttribute="turno" >
+				<form:form action="guardarTurno" method="POST" modelAttribute="turno" >
 				
 			 
 				
@@ -44,7 +44,7 @@
 							<form:option value="0">Seleccione Horario</form:option>
 							
 									<c:forEach items="${horarios}" var="horarios">
-										<form:option value="${horarios}"><fmt:formatDate type = "time" pattern="hh:mm"  value = "${horarios}" /></form:option>
+										<form:option value="${horarios}"><fmt:formatDate type = "time" pattern="HH:mm"  value = "${horarios}" /></form:option>
 									
 									</c:forEach>
 						

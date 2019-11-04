@@ -16,10 +16,6 @@
   				<h1>BuscoTaller.com</h1>
   				<p>La manera mas facil y comoda de conseguir taller</p> 
   				 <ul class="nav navbar-nav navbar-right">
-					<li><a href="${pageContext.request.contextPath}/taller/registro"><span class="glyphicon glyphicon-user"
-							style="color: white"></span> Registrarse</a></li>
-					<li><a href="${pageContext.request.contextPath}/login"><span class="glyphicon glyphicon-log-in"
-							style="color: white"></span> Login</a></li>
 					<li><a href="${pageContext.request.contextPath}/cerrar-sesion"><span class="glyphicon glyphicon-log-in"
 							style="color: white"></span> Logout</a></li>
 				 </ul>
