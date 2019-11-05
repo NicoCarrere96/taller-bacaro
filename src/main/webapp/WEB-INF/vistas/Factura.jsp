@@ -28,7 +28,7 @@
 	</nav>
 	<br>
 	<div class="container">
-		<c:url value="/factura/generarFactura?ordenId=${ordenId} " var="action"/> 
+		<c:url value="/factura/generarFactura?ordenId=${orden.id} " var="action"/> 
 		
 			<h2>Generar factura</h2>
 
@@ -41,7 +41,14 @@
 			  <li class="list-group-item"><strong>Cantidado:</strong><br> ${ OrdenRepuesto.cantidad }</li>
 			  <li class="list-group-item"><strong>Total:</strong><br> $ ${ factura.total }</li>
 			</ul>            
-		                                                          
+		      
+		      <c:forEach items="${ listaRepuestos }" var="OrdenRepuesto">
+	    						<tr>
+	    							<td>${ OrdenRepuesto.repuesto.nombre }</td>
+	    							<td>${ OrdenRepuesto.repuesto.precio }</td>
+	    							<td>${ OrdenRepuesto.cantidad }</td>
+	    						</tr>
+	    	 </c:forEach>                                                    
 	 	      
 		
 	</div>
