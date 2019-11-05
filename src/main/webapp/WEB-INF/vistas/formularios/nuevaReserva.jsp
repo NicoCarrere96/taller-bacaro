@@ -69,7 +69,9 @@
 					
 				<br>
 						<button class="btn btn-lg btn-block btn-info"  onclick="ShowSelected()" style="color: white" Type="Submit"> Guardar Reserva</button>
-					
+			<br>
+			<br>
+			
 		             
 		    <form:hidden path="taller.id" />
 		    <form:hidden path="cliente.dni"/>
@@ -87,7 +89,7 @@
 									alert('Para continuar es necesario que seleccione un día de Atención  ¡GRACIAS!');
 								}
 								else{
-									location.href="fechas/"+cod;
+									location.href="nuevaReserva";
 								}
 					
 							

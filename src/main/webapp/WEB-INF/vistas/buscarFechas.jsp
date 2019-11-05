@@ -60,7 +60,7 @@
 				</div>
 				
 				
-			 	<a href="<c:url value="//"/>" class="btn btn-lg btn-block btn-info" style="color: white" role="button"><span class="glyphicon glyphicon-hand-left"></span></a>	 
+			 	<a href="<c:url value="/nueva?tallerId=${tallerId }&dniCliente=${dniCliente }"/>" class="btn btn-lg btn-block btn-info" style="color: white" role="button"><span class="glyphicon glyphicon-hand-left"></span></a>	 
 				
 			</div>
 		</div>	
