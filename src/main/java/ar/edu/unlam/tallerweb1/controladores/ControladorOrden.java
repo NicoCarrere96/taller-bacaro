@@ -125,7 +125,7 @@ public class ControladorOrden {
 			servicioOrden.rechazarOrden(orden);
 
 		}
-		return new ModelAndView("redirect:/cliente");
+		return new ModelAndView("redirect:/reserva/cliente?dni="+ orden.getReserva().getCliente().getDni());
 	}
 
 
