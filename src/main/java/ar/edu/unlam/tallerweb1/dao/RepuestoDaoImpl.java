@@ -47,6 +47,14 @@ public class RepuestoDaoImpl implements RepuestoDao {
 	}
 	
 	@Override
+	public List<Repuesto> consultarRepuestosPorTaller(Taller taller) {
+		Session session = sessionFactory.getCurrentSession();
+		return (List<Repuesto>) session.createCriteria(Repuesto.class)
+				.add(Restrictions.eq("taller", taller))
+				.list();
+	}
+	
+	@Override
 	public void save(Repuesto repuesto) {
 		final Session session = sessionFactory.getCurrentSession();
 		session.save(repuesto);

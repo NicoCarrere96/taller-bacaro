@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unlam.tallerweb1.modelo.Orden;
 import ar.edu.unlam.tallerweb1.modelo.cliente.DiaDeAtencion;
 import ar.edu.unlam.tallerweb1.modelo.cliente.Reserva;
+import ar.edu.unlam.tallerweb1.modelo.taller.Taller;
 import ar.edu.unlam.tallerweb1.servicios.ServicioCliente;
 import ar.edu.unlam.tallerweb1.servicios.ServicioOrden;
 import ar.edu.unlam.tallerweb1.servicios.ServicioRepuesto;
@@ -46,12 +47,19 @@ public class ControladorReserva {
 	
 	@RequestMapping(path = "/lista", method = RequestMethod.GET)
 	@Transactional
-	public ModelAndView traerListadoDeReservas() {
-		ModelMap modelo = new ModelMap();
+	public ModelAndView traerListadoDeReservas(HttpServletRequest request) {
+		Taller taller = (Taller) request.getSession().getAttribute("taller");
+
+		if (taller != null) {
 		
-		modelo.addAttribute("reservas", servicioReserva.consultarReservas());
-		
-		return new ModelAndView("listados/reservasTaller", modelo);
+			ModelMap modelo = new ModelMap();
+
+			modelo.addAttribute("reservas", servicioReserva.consultarReservasPorTaller(taller));
+
+			return new ModelAndView("listados/reservasTaller", modelo);
+		} else {
+			return new ModelAndView("redirect:/login");
+		}
 	}
 	
 	@RequestMapping(path = "/cliente", method = RequestMethod.GET)
