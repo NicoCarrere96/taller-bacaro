@@ -7,14 +7,19 @@ import ar.edu.unlam.tallerweb1.modelo.cliente.Reserva;
 
 public interface ServicioOrden {
 	void guardarOrden(Orden orden);
+
 	void actualizarOrden(Orden orden);
+
 	List<Orden> consultarOrdenes();
+
 	Orden consultarOrdenPorId(Long id);
+
 	Orden consultarOrdenPorReserva(Reserva reserva);
-	void calcularTotal(Orden orden);
+
 	void aprobarOrden(Orden orden);
+
 	void rechazarOrden(Orden orden);
+
 	void modificarOrden(Orden orden);
-	
-	
+
 }

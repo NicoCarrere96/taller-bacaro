@@ -84,7 +84,7 @@
 								</c:when>
 								
 								<c:otherwise>
-									<a href="<c:url value="/orden/editar/${ reserva.id }" />">
+									<a href="<c:url value="/factura/verFactura?reservaId=${ reserva.id }" />">
 										<button type="button" class="btn btn-info">Ver
 											Factura</button>
 									</a>
