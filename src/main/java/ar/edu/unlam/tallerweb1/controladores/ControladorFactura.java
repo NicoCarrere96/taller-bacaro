@@ -14,11 +14,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Orden;
 import ar.edu.unlam.tallerweb1.modelo.cliente.Reserva;
-import ar.edu.unlam.tallerweb1.modelo.taller.Factura;
 import ar.edu.unlam.tallerweb1.modelo.taller.OrdenRepuesto;
 import ar.edu.unlam.tallerweb1.servicios.ServicioOrden;
 import ar.edu.unlam.tallerweb1.servicios.ServicioRepuesto;
 import ar.edu.unlam.tallerweb1.servicios.ServicioReserva;
+import ar.edu.unlam.tallerweb1.utils.EstadoReserva;
 
 @Controller
 @RequestMapping(path = "/factura")
@@ -35,19 +35,23 @@ public class ControladorFactura {
 	@Transactional
 	public ModelAndView crearFactura(@RequestParam Long ordenId) {
 		ModelMap modelo = new ModelMap();
-		Factura factura = new Factura();
 		Orden ordenBuscada = servicioOrden.consultarOrdenPorId(ordenId);
 		List<OrdenRepuesto> listaRepuestos = servicioRepuesto.consultarRepuestosPorOrden(ordenBuscada);
 		
-		factura.setOrden(ordenBuscada);
+		ordenBuscada.setTotal(ordenBuscada.getReserva().getTaller().getManoDeObra() * ordenBuscada.getHorasDeTrabajo());
 		
 		for(OrdenRepuesto repuesto : listaRepuestos){
-			factura.setTotal(factura.getTotal() + (repuesto.getCantidad() * repuesto.getRepuesto().getPrecio()));
+			ordenBuscada.setTotal(ordenBuscada.getTotal() + (repuesto.getCantidad() * repuesto.getRepuesto().getPrecio()));
 		}
+		ordenBuscada.getReserva().setEstado(EstadoReserva.FACTURADA);
 		
-		modelo.put("factura", factura);
+		servicioReserva.guardarReserva(ordenBuscada.getReserva());
+		servicioOrden.guardarOrden(ordenBuscada);
 		
-		return new ModelAndView("factura", modelo);
+		modelo.put("factura", ordenBuscada);
+		modelo.put("listaRepuestos", listaRepuestos);
+		
+		return new ModelAndView("facturaGenerada", modelo);
 		
 	}
 	
@@ -60,10 +64,11 @@ public class ControladorFactura {
 		Orden ordenBuscada = servicioOrden.consultarOrdenPorReserva(reserva);
 		List<OrdenRepuesto> listaRepuestos = servicioRepuesto.consultarRepuestosPorOrden(ordenBuscada);
 		
-		modelo.put("orden", ordenBuscada);
+		modelo.put("factura", ordenBuscada);
 		modelo.put("listaRepuestos", listaRepuestos);
+		modelo.put("cliente", true);
 		
-		return new ModelAndView("factura", modelo);
+		return new ModelAndView("facturaGenerada", modelo);
 		
 	}
 }

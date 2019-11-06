@@ -8,11 +8,13 @@ import ar.edu.unlam.tallerweb1.modelo.taller.Taller;
 
 public interface ServicioReserva {
 	List<Reserva> consultarReservas();
+
 	List<Reserva> consultarReservasPorCliente(Cliente cliente);
+
 	List<Reserva> consultarReservasPorTaller(Taller taller);
-	
+
 	Reserva buscarReservaPorId(Long id);
+
 	void guardarReserva(Reserva reserva);
-	
-	
+
 }

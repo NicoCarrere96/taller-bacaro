@@ -16,11 +16,11 @@ public class ServicioOrdenImpl implements ServicioOrden {
 
 	@Inject
 	OrdenDao ordenDao;
-	
+
 	@Override
 	public void guardarOrden(Orden orden) {
 		ordenDao.guardarOrden(orden);
-		
+
 	}
 
 	@Override
@@ -40,15 +40,10 @@ public class ServicioOrdenImpl implements ServicioOrden {
 
 	@Override
 	public void actualizarOrden(Orden orden) {
-		orden.getReserva().setEstado(EstadoReserva.PRESUPUESTADA);	
+		orden.getReserva().setEstado(EstadoReserva.PRESUPUESTADA);
 	}
 
-	@Override
-	public void calcularTotal(Orden orden) {
-	orden.setTotal(7000.0);
-		
-	}
-	
+
 	@Override
 	public void aprobarOrden(Orden orden) {
 		orden.getReserva().setEstado(EstadoReserva.APROBADA);
@@ -60,6 +55,7 @@ public class ServicioOrdenImpl implements ServicioOrden {
 		orden.getReserva().setEstado(EstadoReserva.RECHAZADA);
 
 	}
+
 	@Override
 	public void modificarOrden(Orden orden) {
 		orden.getReserva().setEstado(EstadoReserva.PRESUPUESTADA);

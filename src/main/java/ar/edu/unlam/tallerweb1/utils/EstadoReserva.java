@@ -5,6 +5,7 @@ public enum EstadoReserva {
 	PRESUPUESTADA,
 	APROBADA,
 	RECHAZADA,
-	FINALIZADA;
+	FACTURADA,
+	PAGADA;
 	
 }
