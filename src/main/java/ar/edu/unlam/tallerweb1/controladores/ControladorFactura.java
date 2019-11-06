@@ -5,7 +5,6 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.test.web.client.RequestMatcher;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,10 +13,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Orden;
+import ar.edu.unlam.tallerweb1.modelo.cliente.Reserva;
 import ar.edu.unlam.tallerweb1.modelo.taller.Factura;
 import ar.edu.unlam.tallerweb1.modelo.taller.OrdenRepuesto;
 import ar.edu.unlam.tallerweb1.servicios.ServicioOrden;
 import ar.edu.unlam.tallerweb1.servicios.ServicioRepuesto;
+import ar.edu.unlam.tallerweb1.servicios.ServicioReserva;
 
 @Controller
 @RequestMapping(path = "/factura")
@@ -27,10 +28,11 @@ public class ControladorFactura {
 	private ServicioOrden servicioOrden;
 	@Inject
 	private ServicioRepuesto servicioRepuesto;
+	@Inject
+	private ServicioReserva servicioReserva;
 	
 	@RequestMapping(path = "/generarFactura", method = RequestMethod.GET)
 	@Transactional
-	// /factura/generarFactura?ordenId=
 	public ModelAndView crearFactura(@RequestParam Long ordenId) {
 		ModelMap modelo = new ModelMap();
 		Factura factura = new Factura();
@@ -44,6 +46,22 @@ public class ControladorFactura {
 		}
 		
 		modelo.put("factura", factura);
+		
+		return new ModelAndView("factura", modelo);
+		
+	}
+	
+	@RequestMapping(path = "/verFactura", method = RequestMethod.GET)
+	@Transactional
+	public ModelAndView verFactura(@RequestParam Long reservaId) {
+		ModelMap modelo = new ModelMap();
+		
+		Reserva reserva = servicioReserva.buscarReservaPorId(reservaId);
+		Orden ordenBuscada = servicioOrden.consultarOrdenPorReserva(reserva);
+		List<OrdenRepuesto> listaRepuestos = servicioRepuesto.consultarRepuestosPorOrden(ordenBuscada);
+		
+		modelo.put("orden", ordenBuscada);
+		modelo.put("listaRepuestos", listaRepuestos);
 		
 		return new ModelAndView("factura", modelo);
 		
