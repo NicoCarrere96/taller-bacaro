@@ -51,6 +51,16 @@ public class OrdenDaoImpl implements OrdenDao {
 
 
 
+	@Override
+	public Integer calcularTotal(Orden orden) {
+		return 1000;
+		
+	}
+
+
+
+
+
 //	@Override
 //	public void actualizarOrden(Orden orden) {
 //		Session session = sessionFactory.getCurrentSession();

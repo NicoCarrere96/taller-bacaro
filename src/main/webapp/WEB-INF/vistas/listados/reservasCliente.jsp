@@ -48,10 +48,24 @@
 			<td class="row">${ reserva.cliente.nombre } ${ reserva.cliente.apellido }</td>
 			<td class="row">${ reserva.estado }</td>
 			<td class="row">
-				<c:if test="${ reserva.estado eq 'FINALIZADA' }">
+				<c:if test="${ reserva.estado eq 'PRESUPUESTADA' }">
+					<a href="<c:url value="/orden/ordenPresupuestada?idReserva=${ reserva.id }" />">
+						<button type="button" class="btn btn-info">
+							Ver Presupuesto
+						</button>
+					</a>
+				</c:if>
+				<c:if test="${ reserva.estado eq 'APROBADA' }">
 					<a href="">
 						<button type="button" class="btn btn-info">
 							Ver Factura
+						</button>
+					</a>
+				</c:if>
+				<c:if test="${ reserva.estado eq 'RECHAZADA' }">
+					<a href="<c:url value="/orden/ordenPresupuestada?idReserva=${ reserva.id }" />">
+						<button type="button" class="btn btn-info">
+							Ver Presupuesto Rechazado
 						</button>
 					</a>
 				</c:if>

@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.taller.Repuesto;
+import ar.edu.unlam.tallerweb1.modelo.taller.Taller;
 import ar.edu.unlam.tallerweb1.servicios.ServicioRepuesto;
-import ar.edu.unlam.tallerweb1.servicios.ServicioUsuario;
 
 @Controller
 @RequestMapping(path = "/stockRepuestos", method = RequestMethod.GET)
@@ -24,15 +24,12 @@ public class ControladorStockRepuestos {
 
 	@RequestMapping("abmRepuestos")
 	public ModelAndView abmRepuestos(HttpServletRequest request) {
-		String rolUsuario = (String) request.getSession().getAttribute("ROL");
+		Taller taller = (Taller) request.getSession().getAttribute("taller");
 		ModelMap model = new ModelMap();
-		if (rolUsuario != null) {
-			if (rolUsuario.equals("taller")) {
-				model.put("repuesto", servicioRepuesto.getAll());
-				return new ModelAndView("repuestos/abmRepuesto", model);
-			} else {
-				return new ModelAndView("repuestos/abmRepuesto");
-			}
+
+		if (taller != null) {
+			model.put("repuesto", servicioRepuesto.consultarRepuestosPorTaller(taller));
+			return new ModelAndView("repuestos/abmRepuesto", model);
 		} else {
 			return new ModelAndView("redirect:/login");
 		}
@@ -40,18 +37,13 @@ public class ControladorStockRepuestos {
 
 	@RequestMapping("/agregarRepuesto")
 	public ModelAndView agregarRepuesto(HttpServletRequest request) {
-		String rolUsuario = (String) request.getSession().getAttribute("ROL");
+		Taller taller = (Taller) request.getSession().getAttribute("taller");
 		ModelMap model = new ModelMap();
-		if (rolUsuario != null) {
-			if (rolUsuario.equals("taller")) {
-				Repuesto repuesto = new Repuesto();
-				model.put("repuesto", repuesto);
-				return new ModelAndView("repuestos/agregarRepuesto", model);
-			} else {
-				model.put("avisoError", "Acceso denegado");
-				model.put("mensajeError", "Para acceder usted debe tener rol ADMINISTRADOR");
-				return new ModelAndView("mensaje", model);
-			}
+
+		if (taller != null) {
+			Repuesto repuesto = new Repuesto();
+			model.put("repuesto", repuesto);
+			return new ModelAndView("repuestos/agregarRepuesto", model);
 		} else {
 			return new ModelAndView("redirect:/login");
 		}
@@ -59,19 +51,13 @@ public class ControladorStockRepuestos {
 
 	@RequestMapping(path = "/guardarRepuesto", method = RequestMethod.POST)
 	public ModelAndView guardarRepuesto(@ModelAttribute("Repuesto") Repuesto repuesto, HttpServletRequest request) {
-		String rolUsuario = (String) request.getSession().getAttribute("ROL");
-		ModelMap model = new ModelMap();
-		if (rolUsuario != null) {
-			if (rolUsuario.equals("taller")) {
-				servicioRepuesto.guardarRepuesto(repuesto);
+		Taller taller = (Taller) request.getSession().getAttribute("taller");
+		if (taller != null) {
 
-				model.put("aviso", "Creacion Exitosa");
-				model.put("mensaje", String.format("Se ha guardado con el id %d de manera exitosa", repuesto.getId()));
-			} else {
-				model.put("avisoError", "Creacion Fallida");
-				model.put("mensajeError", String.format("No se ha podido crear el repuesto"));
-			}
-			return new ModelAndView("repuestos/mensaje", model);
+			repuesto.setTaller(taller);
+			servicioRepuesto.guardarRepuesto(repuesto);
+
+			return new ModelAndView("redirect: abmRepuestos");
 		} else {
 			return new ModelAndView("redirect:/login");
 		}
@@ -79,19 +65,12 @@ public class ControladorStockRepuestos {
 
 	@RequestMapping(path = "/actualizarRepuesto", method = RequestMethod.POST)
 	public ModelAndView actualizarRepuesto(@ModelAttribute("repuesto") Repuesto repuesto, HttpServletRequest request) {
+		Taller taller = (Taller) request.getSession().getAttribute("taller");
+		if (taller != null) {
+			repuesto.setTaller(taller);
+			servicioRepuesto.actualizarRepuesto(repuesto);
 
-		String rolUsuario = (String) request.getSession().getAttribute("ROL");
-		ModelMap model = new ModelMap();
-		if (rolUsuario != null) {
-			if (rolUsuario.equals("taller")) {
-				servicioRepuesto.actualizarRepuesto(repuesto);
-				model.put("aviso", "Actualizacion exitosa");
-				model.put("mensaje", String.format("El repuesto con el id %d  se ha actualizado de manera exitosa",
-						repuesto.getId()));
-				return new ModelAndView("repuestos/mensaje", model);
-			} else {
-				return new ModelAndView("redirect:/login");
-			}
+			return new ModelAndView("redirect: abmRepuestos");
 		} else {
 			return new ModelAndView("redirect:/login");
 		}
@@ -100,17 +79,13 @@ public class ControladorStockRepuestos {
 	@RequestMapping("/modificarRepuesto")
 	public ModelAndView modificarRepuesto(@RequestParam("idRepuesto") Long idRepuesto, HttpServletRequest request) {
 
-		String rolUsuario = (String) request.getSession().getAttribute("ROL");
+		Taller taller = (Taller) request.getSession().getAttribute("taller");
 		ModelMap model = new ModelMap();
-		if (rolUsuario != null) {
-			if (rolUsuario.equals("taller")) {
-				Repuesto repuesto = servicioRepuesto.consultarRepuestoPorId(idRepuesto);
+		if (taller != null) {
+			Repuesto repuesto = servicioRepuesto.consultarRepuestoPorId(idRepuesto);
 
-				model.put("repuesto", repuesto);
-				return new ModelAndView("repuestos/modificarRepuesto", model);
-			} else {
-				return new ModelAndView("redirect:/login");
-			}
+			model.put("repuesto", repuesto);
+			return new ModelAndView("repuestos/modificarRepuesto", model);
 		} else {
 			return new ModelAndView("redirect:/login");
 		}
@@ -119,19 +94,12 @@ public class ControladorStockRepuestos {
 	@RequestMapping("/eliminarRepuesto")
 	public ModelAndView eliminarRepuesto(@RequestParam("idRepuesto") Long idRepuesto, HttpServletRequest request) {
 
-		String rolUsuario = (String) request.getSession().getAttribute("ROL");
-		ModelMap model = new ModelMap();
-		if (rolUsuario != null) {
-			if (rolUsuario.equals("taller")) {
-				Repuesto repuesto = servicioRepuesto.consultarRepuestoPorId(idRepuesto);
-				servicioRepuesto.eliminarRepuesto(repuesto);
-				model.put("aviso", "Eliminacion exitosa");
-				model.put("mensaje", "El repuesto se ha eliminado de manera exitosa");
-			} else {
-				model.put("avisoError", "Eliminacion Cancelada");
-				model.put("mensajeError", String.format("El repuesto con el id %d  no pudo eliminarse"));
-			}
-			return new ModelAndView("repuestos/mensaje", model);
+		Taller taller = (Taller) request.getSession().getAttribute("taller");
+		if (taller != null) {
+			Repuesto repuesto = servicioRepuesto.consultarRepuestoPorId(idRepuesto);
+			
+			servicioRepuesto.eliminarRepuesto(repuesto);
+			return new ModelAndView("redirect: abmRepuestos");
 		} else {
 			return new ModelAndView("redirect:/login");
 		}

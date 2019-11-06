@@ -10,6 +10,7 @@ import ar.edu.unlam.tallerweb1.modelo.taller.Taller;
 public interface RepuestoDao {
 	List<Repuesto> consultarRepuestosEnStock();
 	List<Repuesto> consultarRepuestosEnStockPorTaller(Taller taller);
+	List<Repuesto> consultarRepuestosPorTaller(Taller taller);
 	Repuesto consultarRepuestoPorId(Long id);
 	
 	 void save(Repuesto repuesto);

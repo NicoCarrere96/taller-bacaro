@@ -57,8 +57,8 @@
 
 								<th scope="row"></th>
 									<td>${dias.dia}</td>
-									<td><fmt:formatDate type = "time" pattern="hh:mm" value = "${dias.horaAtencionInicio}" /> - 
-									<fmt:formatDate type = "time" pattern="hh:mm" value = "${dias.horaAtencionFinalizacion}" />
+									<td><fmt:formatDate type = "time" pattern="HH:mm" value = "${dias.horaAtencionInicio}" /> - 
+									<fmt:formatDate type = "time" pattern="HH:mm" value = "${dias.horaAtencionFinalizacion}" />
 									 </td>
 									
 									<td><a class="btn btn-lg btn-block btn-info" style="color: white" role="button" href="<c:url value="/fechas/${dias.getId()}" />"> Seleccionar</a></td>

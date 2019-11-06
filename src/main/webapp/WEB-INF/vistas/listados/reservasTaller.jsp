@@ -43,6 +43,7 @@
 					<th scope="col">Fecha</th>
 					<th scope="col">Taller</th>
 					<th scope="col">Cliente</th>
+					<th scope="col">Estado Orden</th>					
 					<th scope="col"></th>
 				</tr>
 			</thead>
@@ -53,19 +54,35 @@
 						<td>${ reserva.fecha }</td>
 						<td>${ reserva.taller.nombreDelTaller }</td>
 						<td>${ reserva.cliente.nombre } ${ reserva.cliente.apellido }</td>
+						<td>${ reserva.estado }</td>
 						<td><c:choose>
 								<c:when test="${ reserva.estado eq 'PENDIENTE' }">
 									<a href="<c:url value="/orden/nueva/${ reserva.id }" />">
 										<button type="button" class="btn btn-warning">
-											Registrar orden de trabajo</button>
+											Presupuestar orden</button>
 									</a>
 								</c:when>
-								<c:when test="${ reserva.estado eq 'ORDEN_REGISTRADA' }">
+								
+								<c:when test="${ reserva.estado eq 'PRESUPUESTADA' }">
 									<a href="<c:url value="/orden/editar/${ reserva.id }" />">
 										<button type="button" class="btn btn-info">Ver Orden
 										</button>
 									</a>
 								</c:when>
+								<c:when test="${ reserva.estado eq 'APROBADA' }">
+									<a href="<c:url value="/orden/editar/${ reserva.id }" />">
+										<button type="button" class="btn btn-info">Facturar Orden
+										</button>
+									</a>
+								</c:when>
+								
+								<c:when test="${ reserva.estado eq 'RECHAZADA' }">
+									<a href="<c:url value="/orden/editar/${ reserva.id }" />">
+										<button type="button" class="btn btn-warning">
+											Presupuestar nuevamente orden de trabajo</button>
+									</a>
+								</c:when>
+								
 								<c:otherwise>
 									<a href="<c:url value="/factura/verFactura?reservaId=${ reserva.id }" />">
 										<button type="button" class="btn btn-info">Ver

@@ -51,8 +51,6 @@ public class ControladorLogin {
 		Usuario usuarioBuscado = servicioLogin.consultarUsuario(usuario);
 		if (usuarioBuscado != null) {
 
-			
-			request.getSession().setAttribute("ROL", usuarioBuscado.getRol());
 			request.getSession().setAttribute("usuario", usuarioBuscado);
 			request.getSession().setAttribute("taller", servicioTaller.consultarTallerPorUsuario(usuarioBuscado));
 			
@@ -80,5 +78,9 @@ public class ControladorLogin {
 	public ModelAndView cerrarSession(HttpServletRequest request) {
 		request.getSession().invalidate();
 		return new ModelAndView("index");
+	}
+
+	public void setServicioLogin(ServicioLogin servicio) {
+		this.servicioLogin = servicio;		
 	}
 }

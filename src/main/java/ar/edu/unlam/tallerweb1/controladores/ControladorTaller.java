@@ -105,11 +105,11 @@ public class ControladorTaller {
 
 	@RequestMapping(path = "/homeTaller", method = RequestMethod.GET)
 	public ModelAndView irAlHomeTaller(HttpServletRequest request) {
-		Usuario usuarioLogueado = (Usuario) request.getSession().getAttribute("usuario");
+		Taller taller = (Taller) request.getSession().getAttribute("taller");
 
-		if (usuarioLogueado != null) {
+		if (taller != null) {
 			ModelMap modelo = new ModelMap();
-			modelo.put("taller", servicioTaller.consultarTallerPorUsuario((usuarioLogueado)));
+			modelo.put("taller", taller);
 
 			return new ModelAndView("homeTaller", modelo);
 		} else {
@@ -120,11 +120,10 @@ public class ControladorTaller {
 	@RequestMapping(path = "/modificarTaller", method = RequestMethod.GET)
 	@Transactional
 	public ModelAndView modificarTaller(HttpServletRequest request) {
-		Usuario usuarioLogueado = (Usuario) request.getSession().getAttribute("usuario");
+		Taller taller = (Taller) request.getSession().getAttribute("taller");
 
-		if (usuarioLogueado != null) {
+		if (taller != null) {
 			ModelMap modelo = new ModelMap();
-			Taller taller = servicioTaller.consultarTallerPorUsuario((usuarioLogueado));
 
 			modelo.put("taller", taller);
 			modelo.put("provincias", servicioLocalidad.consultarProvincias());

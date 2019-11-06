@@ -43,8 +43,11 @@
 			<td class="row">${ taller.localidad.nombre }</td>
 			<td class="row">${ taller.localidad.provincia.nombre }</td>
 			<td class="row">${ taller.especialidad }</td>
-			<td><input type="button" value="Ver en Mapa" class="btn btn-info"
-			onclick="window.open('https://www.google.com/maps/place/${taller.calle }+${taller.numero },${taller.localidad.nombre }','popUpWindow','height=400,width=1200,left=100,top=100,resizable=yes,scrollbars=yes,toolbar=no,menubar=no,location=no,directories=no, status=yes');"></td>	
+			<td><input type="button" value="Ver en Mapa" class="btn btn-success"
+			onclick="window.open('https://www.google.com/maps/place/${taller.calle }+${taller.numero },${taller.localidad.nombre }','popUpWindow','height=600,width=1200,left=100,top=100,resizable=yes,scrollbars=yes,toolbar=no,menubar=no,location=no,directories=no, status=yes');"></td>	
+			<td><input type="button" value="Como llegar?" class="btn btn-warning"
+			onclick="window.open('https://www.google.com/maps/dir/${taller.calle }+${taller.numero },${taller.localidad.nombre }','popUpWindow','height=600,width=1200,left=100,top=100,resizable=yes,scrollbars=yes,toolbar=no,menubar=no,location=no,directories=no, status=yes');"></td>	
+					
 			<td class="row">
 				<a href="<c:url value="/reserva/nueva?tallerId=${ taller.id }&dniCliente=${ dniCliente }" />">
 					<button type="button" class="btn btn-info">

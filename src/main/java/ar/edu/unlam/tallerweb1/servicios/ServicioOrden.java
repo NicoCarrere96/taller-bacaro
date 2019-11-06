@@ -11,5 +11,10 @@ public interface ServicioOrden {
 	List<Orden> consultarOrdenes();
 	Orden consultarOrdenPorId(Long id);
 	Orden consultarOrdenPorReserva(Reserva reserva);
+	void calcularTotal(Orden orden);
+	void aprobarOrden(Orden orden);
+	void rechazarOrden(Orden orden);
+	void modificarOrden(Orden orden);
+	
 	
 }
