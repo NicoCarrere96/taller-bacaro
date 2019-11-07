@@ -11,7 +11,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import ar.edu.unlam.tallerweb1.modelo.taller.Taller;
 
 @Entity
 public class Turno {

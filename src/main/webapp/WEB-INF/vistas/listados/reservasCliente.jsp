@@ -21,7 +21,7 @@
 	
 	<div class="container">
 		<a href="<c:url value="/taller/filtro?dniCliente=${ dniCliente }"/>" >
-			<button type="button" class="btn btn-primary  float-right">
+			<button type="button" class="btn btn-info  float-right">
 				Nueva Reserva
 			</button>
 		</a>
@@ -77,7 +77,7 @@
 	</table>
 	</div>
 	
-	
+	<a href="<c:url value="/cliente?dni=${ dniCliente }"/>" class="btn btn-lg btn-block btn-info" role="button" ><span class="glyphicon glyphicon-hand-left"></span></a>	 
 	
 	
 			<!-- Placed at the end of the document so the pages load faster -->

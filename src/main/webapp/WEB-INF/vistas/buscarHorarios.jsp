@@ -44,7 +44,7 @@
 							<form:option value="0">Seleccione Horario</form:option>
 							
 									<c:forEach items="${horarios}" var="horarios">
-										<form:option value="${horarios}"><fmt:formatDate type = "time" pattern="hh:mm"  value = "${horarios}" /></form:option>
+										<form:option value="${horarios}"><fmt:formatDate type = "time" pattern="HH:mm"  value = "${horarios}" /></form:option>
 									
 									</c:forEach>
 						

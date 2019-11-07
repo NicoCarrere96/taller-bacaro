@@ -39,9 +39,13 @@
 			</select>
 		</div>
 		
-			<button type="button" class="btn btn-primary" id="btnBuscarTalleres">
+			<button type="button" class="btn btn-info" id="btnBuscarTalleres">
 				Buscar Talleres
 			</button>
+			<br>
+			<br>
+			
+			<a href="<c:url value="/reserva/cliente?dni=${ dniCliente }"/>" class="btn btn-lg btn-block btn-info" role="button" ><span class="glyphicon glyphicon-hand-left"></span></a>	 
 					
 		</div>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" ></script>

@@ -66,7 +66,7 @@
 						<form:input path="telefono" type="text" class="form-control" value="${ cliente.telefono }"/>
 				    </div>
    				    <div class="form-group">
-				        <form:button type="submit" class="btn btn-primary" >
+				        <form:button type="submit" class="btn btn-lg btn-block btn-info" >
 				        	<c:choose>
 				        		<c:when test="${ encontrado }">
 									Avanzar
@@ -81,7 +81,7 @@
 			</c:otherwise>
 		</c:choose>
 		
-		
+		<a href="<c:url value="/"/>" class="btn btn-lg btn-block btn-info" role="button" ><span class="glyphicon glyphicon-hand-left"></span></a>	 
 		    
 	</div>
 		

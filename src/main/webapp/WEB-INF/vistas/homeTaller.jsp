@@ -15,12 +15,11 @@
 		 <div class="jumbotron text-center" style="background-color:#0d80b3; color:white">
   				<h1>BuscoTaller.com</h1>
   				<p>La manera mas facil y comoda de conseguir taller</p> 
-  				 <ul class="nav navbar-nav navbar-right">
-					<li><a href="${pageContext.request.contextPath}/taller/registro">
-					<span class="glyphicon glyphicon-user" style="color: white"></span> Registrarse</a></li>
-					<li><a href="${pageContext.request.contextPath}/login"><span class="glyphicon glyphicon-log-in" style="color: white"></span> Login</a></li>
-					<li><a href="${pageContext.request.contextPath}/cerrar-sesion"><span class="glyphicon glyphicon-log-in" style="color: white"></span> Logout</a></li>
-				 </ul>
+
+  				 <span class="nav navbar-nav navbar-right">
+					<a href="${pageContext.request.contextPath}/cerrar-sesion"><span class="glyphicon glyphicon-log-in"
+							style="color: white"></span> Logout</a>
+				 </span>
 				</div>
 	<nav>
 	
@@ -52,5 +51,7 @@
 	
 	<a href="modificarTaller" class="btn btn-success" style="width:20%">Modificar Datos</a>
 	</div>
+	<br><br>
+	<a href="<c:url value="/login"/>" class="btn btn-lg btn-block btn-info" role="button" ><span class="glyphicon glyphicon-hand-left"></span></a>	 
 	</body>
 </html>
