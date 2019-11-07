@@ -24,7 +24,7 @@
 			
 			<div id="loginbox" style="margin-top:20px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
 			<h1>TURNO</h1>
-				<form:form action="guardarTurno" method="POST" modelAttribute="turno" >
+				<form:form action="${pageContext.request.contextPath}/validarTurno" method="POST" modelAttribute="turno" >
 				
 			 
 				

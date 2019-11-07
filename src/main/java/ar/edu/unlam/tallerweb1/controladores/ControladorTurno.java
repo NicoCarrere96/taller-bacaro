@@ -18,13 +18,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.cliente.DiaDeAtencion;
+import ar.edu.unlam.tallerweb1.modelo.cliente.Reserva;
 import ar.edu.unlam.tallerweb1.modelo.cliente.Turno;
+import ar.edu.unlam.tallerweb1.servicios.ServicioReserva;
 import ar.edu.unlam.tallerweb1.servicios.ServicioTurno;
 
 @Controller
 public class ControladorTurno {
 	@Inject
 	private ServicioTurno servicioTurno;
+	
+	@Inject
+	private ServicioReserva servicioReserva;
 	
 
 	
@@ -89,17 +94,17 @@ public class ControladorTurno {
 		return new ModelAndView ("buscarHorarios",model);
 	}
 	
-	@RequestMapping(path = "/guardarTurno", method = RequestMethod.POST)
+	@RequestMapping(path = "/validarTurno", method = RequestMethod.POST)
 	@Transactional
-	public ModelAndView guardarTurno(@ModelAttribute("turno") Turno turno) {
-		
-         servicioTurno.guardarTurno(turno);
-		
-		
-		return new ModelAndView("redirect:reserva/nueva"+ turno.getFechaTurno()+turno.getHoraTurno());
-		
-	}
-	
+	public ModelAndView guardarTurno(@ModelAttribute("Reserva") Reserva reserva) {
 
+		ModelMap model = new ModelMap();
+         servicioReserva.guardarReserva(reserva);
+         model.put("aviso", "Creacion Exitosa");
+
+
+		return new ModelAndView("repuestos/mensaje",model);
+
+	}
 }
 
