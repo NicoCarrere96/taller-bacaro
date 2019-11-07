@@ -67,8 +67,11 @@
 					</tbody>
 				</table>
 					
-				
-					
+				<br>
+						<button class="btn btn-lg btn-block btn-info"  onclick="ShowSelected()" style="color: white" Type="Submit"> Guardar Reserva</button>
+			<br>
+			<br>
+			
 		             
 		    <form:hidden path="taller.id" />
 		    <form:hidden path="cliente.dni"/>
@@ -78,6 +81,20 @@
 	</div>
 		
 		<!-- Placed at the end of the document so the pages load faster -->
+				<script type="text/javascript">
+							function ShowSelected()
+							{
+							var cod = document.getElementById("diaDeAtencionId").value;
+								if(cod == null || cod == 0){
+									alert('Para continuar es necesario que seleccione un día de Atención  ¡GRACIAS!');
+								}
+								else{
+									location.href="nuevaReserva";
+								}
+					
+							
+							}
+		</script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" ></script>
 		<script>
 			window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')

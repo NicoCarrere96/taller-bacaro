@@ -31,6 +31,8 @@ public class ControladorTurno {
 	@Inject
 	private ServicioReserva servicioReserva;
 	
+
+	
 	@RequestMapping(path="/fechas/{diaDeAtencionId}") 
 	public ModelAndView irAConsultarFecha(@PathVariable Long diaDeAtencionId) {
 		
@@ -55,7 +57,6 @@ public class ControladorTurno {
 			@PathVariable int anio,
 			@PathVariable Long diaDeAtencionId ,HttpServletRequest request) {
 		
-//		Long idUsuario = (Long) request.getSession().getAttribute("idUsuario");
 		
 		Calendar fechaGC = new GregorianCalendar();
 		fechaGC.set(Calendar.DATE, dia);
@@ -88,6 +89,7 @@ public class ControladorTurno {
 		model.put("turno", miTurno);		
 		model.put("diaDeAtencion", diaDeAtencion);
 		
+		System.out.print("muestra lista de horarios, deberia ser aptos para SQL"+ listHorariosPosibles);
 				
 		return new ModelAndView ("buscarHorarios",model);
 	}
@@ -95,16 +97,14 @@ public class ControladorTurno {
 	@RequestMapping(path = "/validarTurno", method = RequestMethod.POST)
 	@Transactional
 	public ModelAndView guardarTurno(@ModelAttribute("Reserva") Reserva reserva) {
-		
+
 		ModelMap model = new ModelMap();
          servicioReserva.guardarReserva(reserva);
          model.put("aviso", "Creacion Exitosa");
-		
-		
-		return new ModelAndView("repuestos/mensaje",model);
-		
-	}
-	
 
+
+		return new ModelAndView("repuestos/mensaje",model);
+
+	}
 }
 
