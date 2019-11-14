@@ -18,20 +18,22 @@
 		<h1>BuscoTaller.com</h1>
 		<p>La manera mas facil y comoda de conseguir taller</p>
 	</div>
-	<nav>
+	<c:if test="${ ! cliente }">
+		<nav>
 
-		<div class="w3-bar w3-dark-grey">
-			<a href="<c:url value="/reserva/lista" />"
-				class="w3-bar-item w3-button w3-mobile" style="width: 33%">Consultar
-				Reservas</a> <a href="<c:url value="/stockRepuestos/abmRepuestos" />"
-				class="w3-bar-item w3-button w3-mobile" style="width: 33%">Listado
-				de Repuestos</a> <a href="<c:url value="/taller/homeTaller" />"
-				class="w3-bar-item w3-button w3-mobile" style="width: 33%">Datos
-				Taller</a>
+			<div class="w3-bar w3-dark-grey">
+				<a href="<c:url value="/reserva/lista" />"
+					class="w3-bar-item w3-button w3-mobile" style="width: 33%">Consultar
+					Reservas</a> <a href="<c:url value="/stockRepuestos/abmRepuestos" />"
+					class="w3-bar-item w3-button w3-mobile" style="width: 33%">Listado
+					de Repuestos</a> <a href="<c:url value="/taller/homeTaller" />"
+					class="w3-bar-item w3-button w3-mobile" style="width: 33%">Datos
+					Taller</a>
 
-		</div>
+			</div>
 
-	</nav>
+		</nav>
+	</c:if>
 	<br>
 	<div class="container">
 		<h2>Factura</h2>
@@ -68,7 +70,12 @@
 				${ factura.total }</li>
 		</ul>
 
+		<a
+			href="<c:url value="/factura/getPdf?reservaId=${ factura.reserva.id }"/>"
+			class="btn btn-danger" role="button">Imprimir factura</a>
 	</div>
+
+
 
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script
