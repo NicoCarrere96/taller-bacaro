@@ -56,6 +56,14 @@
 				${ factura.total }</li>
 		</ul>
 			</div>
+			<div class=w3-center>
+									<form action="http://localhost:8080/taller-bacaro/" method="GET">
+  <script
+   src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js"
+   data-preference-id="${preference.id }">
+  </script>
+</form>
+			</div>
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

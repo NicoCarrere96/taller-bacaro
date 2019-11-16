@@ -71,15 +71,16 @@
 	    					</c:forEach>
 	    				</tbody>
 	    			</table>
+	    			<br>
 	    			<c:choose>
 	    				<c:when test="${ orden.reserva.estado eq 'APROBADA' }">
 		    				<div class="form-group"> <!-- Submit Button -->
-									<a href="<c:url value="/factura/generarFactura?ordenId=${ orden.id }"/>" class="btn btn-primary sm" >Generar Factura</a>
+									<a href="<c:url value="/orden/generarFactura?ordenId=${ orden.id }"/>" class="btn btn-primary sm" >Generar Factura</a>
 						    </div>
 	    				</c:when>
 	    				<c:otherwise>
 	    					<a href="<c:url value="/orden/agregarRepuesto?reserva=${ orden.reserva.id }"/>" class="btn btn-warning sm" >Agregar Repuesto</a>
-
+							<br><br>
 					    
 						    <div class="form-group"> <!-- Submit Button -->
 						        <button type="submit" class="btn btn-primary">Generar Presupuesto</button>

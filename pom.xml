@@ -44,6 +44,11 @@
 	</build>
 	<dependencies>
 		<dependency>
+			<groupId> com.mercadopago </groupId>
+			<artifactId> dx-java </artifactId>
+			<version> 1.0.33 </version>
+		</dependency>
+		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.11</version>
