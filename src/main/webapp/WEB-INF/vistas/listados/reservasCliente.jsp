@@ -56,7 +56,7 @@
 					</a>
 				</c:if>
 				<c:if test="${ reserva.estado eq 'FACTURADA' }">
-					<a href="<c:url value="/factura/verFactura?reservaId=${ reserva.id }" />">
+					<a href="<c:url value="/factura/generadaFactura?ordenId=${ reserva.id }" />">
 						<button type="button" class="btn btn-info">
 							Ver Factura
 						</button>

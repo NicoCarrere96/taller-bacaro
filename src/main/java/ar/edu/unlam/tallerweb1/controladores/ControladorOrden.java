@@ -15,7 +15,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mercadopago.resources.Preference;
+
 import ar.edu.unlam.tallerweb1.modelo.Orden;
+import ar.edu.unlam.tallerweb1.modelo.cliente.Cliente;
 import ar.edu.unlam.tallerweb1.modelo.cliente.Reserva;
 import ar.edu.unlam.tallerweb1.modelo.taller.OrdenRepuesto;
 import ar.edu.unlam.tallerweb1.modelo.taller.Taller;
@@ -168,5 +171,28 @@ public class ControladorOrden {
 			return new ModelAndView("redirect:/login");
 		}
 	}
+	@RequestMapping(path = "/generarFactura", method = RequestMethod.GET)
+	@Transactional
+	public ModelAndView crearFactura(@RequestParam Long ordenId) {
+		ModelMap modelo = new ModelMap();
+		Orden ordenBuscada = servicioOrden.consultarOrdenPorId(ordenId);
+		List<OrdenRepuesto> listaRepuestos = servicioRepuesto.consultarRepuestosPorOrden(ordenBuscada);
+		Taller taller = ordenBuscada.getReserva().getTaller();
+		Cliente cliente = ordenBuscada.getReserva().getCliente();
+		ordenBuscada.setTotal(taller.getManoDeObra() * ordenBuscada.getHorasDeTrabajo());
+		
+		for(OrdenRepuesto repuesto : listaRepuestos){
+			ordenBuscada.setTotal(ordenBuscada.getTotal() + (repuesto.getCantidad() * repuesto.getRepuesto().getPrecio()));
+		}
+		ordenBuscada.getReserva().setEstado(EstadoReserva.FACTURADA);
+		
+		servicioReserva.guardarReserva(ordenBuscada.getReserva());
+		servicioOrden.guardarOrden(ordenBuscada);
+		Double orden = ordenBuscada.getTotal();
+		modelo.put("factura", ordenBuscada);
+		modelo.put("listaRepuestos", listaRepuestos);
+		return new ModelAndView("facturaGenerada", modelo);
+	
 
+}
 }
