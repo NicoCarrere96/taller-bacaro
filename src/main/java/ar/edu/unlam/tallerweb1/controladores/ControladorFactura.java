@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
-import com.mercadopago.resources.Preference;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -21,8 +20,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mercadopago.resources.Preference;
+
 import ar.edu.unlam.tallerweb1.modelo.Orden;
 import ar.edu.unlam.tallerweb1.modelo.cliente.Cliente;
+import ar.edu.unlam.tallerweb1.modelo.cliente.Reserva;
 import ar.edu.unlam.tallerweb1.modelo.taller.OrdenRepuesto;
 import ar.edu.unlam.tallerweb1.modelo.taller.Taller;
 import ar.edu.unlam.tallerweb1.servicios.ServicioOrden;
@@ -68,15 +70,14 @@ public class ControladorFactura {
 		modelo.put("listaRepuestos", listaRepuestos);
 		Preference preference = servicioPago.realizarPago(cliente,taller, orden);
 		
-		if (preference == null)
-			return new ModelAndView("Error");
 		modelo.put("preference", preference);
-		return new ModelAndView("facturaGenerada2", modelo);
 
 		servicioOrden.createPDF(ordenBuscada, listaRepuestos);
 
 
-		return new ModelAndView("facturaGenerada", modelo);
+		if (preference == null)
+			return new ModelAndView("Error");
+		return new ModelAndView("facturaGenerada2", modelo);
 
 	}
 	
