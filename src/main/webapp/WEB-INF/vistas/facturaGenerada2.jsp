@@ -19,22 +19,7 @@
 		<h1>BuscoTaller.com</h1>
 		<p>La manera mas facil y comoda de conseguir taller</p>
 	</div>
-	<c:if test="${ ! cliente }">
-		<nav>
 
-			<div class="w3-bar w3-dark-grey">
-				<a href="<c:url value="/reserva/lista" />"
-					class="w3-bar-item w3-button w3-mobile" style="width: 33%">Consultar
-					Reservas</a> <a href="<c:url value="/stockRepuestos/abmRepuestos" />"
-					class="w3-bar-item w3-button w3-mobile" style="width: 33%">Listado
-					de Repuestos</a> <a href="<c:url value="/taller/homeTaller" />"
-					class="w3-bar-item w3-button w3-mobile" style="width: 33%">Datos
-					Taller</a>
-
-			</div>
-
-		</nav>
-	</c:if>
 	<br>
 	<div class="container">
 		<h2>Factura</h2>
@@ -70,13 +55,20 @@
 			<li class="list-group-item"><strong>Total:</strong><br> $
 				${ factura.total }</li>
 		</ul>
-
+			</div>
+			<div class="w3-center">
 		<a
 			href="<c:url value="/factura/getPdf?reservaId=${ factura.reserva.id }"/>"
 			class="btn btn-danger" role="button">Imprimir factura</a>
-	</div>
-
-
+			</div>
+			<div class=w3-center>
+									<form action="http://localhost:8080/taller-bacaro/" method="GET">
+  <script
+   src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js"
+   data-preference-id="${preference.id }">
+  </script>
+</form>
+			</div>
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

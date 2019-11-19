@@ -25,7 +25,7 @@
 	
 	<span class="w3-white" style="text-shadow:1px 1px 0 #444">Nombre Del Taller: </span>${ reserva.taller.nombreDelTaller }
 	<br><br>
-	<span class="w3-white" style="text-shadow:1px 1px 0 #444">Mano De Obra por Hora: </span>${ reserva.taller.manoDeObra } 
+	<span class="w3-white" style="text-shadow:1px 1px 0 #444">Mano De Obra por Hora: $</span>${ reserva.taller.manoDeObra } 
 	<br><br>
 	<span class="w3-white" style="text-shadow:1px 1px 0 #444">Problema: </span>${ reserva.problema }
 	<br><br>
@@ -51,7 +51,7 @@
 	    				</tbody>
 	    			</table>
 				</div> 
-	<span class="w3-white" style="text-shadow:1px 1px 0 #444">Total Presupuestado: </span>${ orden.total }
+	<span class="w3-white" style="text-shadow:1px 1px 0 #444">Total Presupuestado: $ </span>${ orden.total }
 	<br><br>
 	<a href="<c:url value="contestarPresupuesto?aprobado=true&id=${ reserva.id }" />" class="btn btn-success" style="width:20%">Aprobar</a>
 	

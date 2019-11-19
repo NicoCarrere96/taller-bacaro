@@ -20,10 +20,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mercadopago.resources.Preference;
+
 import ar.edu.unlam.tallerweb1.modelo.Orden;
+import ar.edu.unlam.tallerweb1.modelo.cliente.Cliente;
 import ar.edu.unlam.tallerweb1.modelo.cliente.Reserva;
 import ar.edu.unlam.tallerweb1.modelo.taller.OrdenRepuesto;
+import ar.edu.unlam.tallerweb1.modelo.taller.Taller;
 import ar.edu.unlam.tallerweb1.servicios.ServicioOrden;
+import ar.edu.unlam.tallerweb1.servicios.ServicioPago;
 import ar.edu.unlam.tallerweb1.servicios.ServicioRepuesto;
 import ar.edu.unlam.tallerweb1.servicios.ServicioReserva;
 import ar.edu.unlam.tallerweb1.utils.EstadoReserva;
@@ -38,32 +43,66 @@ public class ControladorFactura {
 	private ServicioRepuesto servicioRepuesto;
 	@Inject
 	private ServicioReserva servicioReserva;
-
+	@Inject
+	private ServicioPago servicioPago;
+	
 	@RequestMapping(path = "/generarFactura", method = RequestMethod.GET)
 	@Transactional
 	public ModelAndView crearFactura(@RequestParam Long ordenId) {
 		ModelMap modelo = new ModelMap();
 		Orden ordenBuscada = servicioOrden.consultarOrdenPorId(ordenId);
 		List<OrdenRepuesto> listaRepuestos = servicioRepuesto.consultarRepuestosPorOrden(ordenBuscada);
+		Taller taller = ordenBuscada.getReserva().getTaller();
+		Cliente cliente = ordenBuscada.getReserva().getCliente();
+		ordenBuscada.setTotal(taller.getManoDeObra() * ordenBuscada.getHorasDeTrabajo());
+		
+		for(OrdenRepuesto repuesto : listaRepuestos){
+			ordenBuscada.setTotal(ordenBuscada.getTotal() + (repuesto.getCantidad() * repuesto.getRepuesto().getPrecio()));
+		}
+		ordenBuscada.getReserva().setEstado(EstadoReserva.FACTURADA);
+		
+		servicioReserva.guardarReserva(ordenBuscada.getReserva());
+		servicioOrden.guardarOrden(ordenBuscada);
+		Double orden = ordenBuscada.getTotal();
+		modelo.put("factura", ordenBuscada);
+		modelo.put("listaRepuestos", listaRepuestos);
+		return new ModelAndView("facturaGenerada", modelo);
+	
 
-		ordenBuscada.setTotal(ordenBuscada.getReserva().getTaller().getManoDeObra() * ordenBuscada.getHorasDeTrabajo());
+}
+	
+	@RequestMapping(path = "/generadaFactura", method = RequestMethod.GET)
+	@Transactional
+	public ModelAndView verFactura(@RequestParam Long ordenId) {
+		ModelMap modelo = new ModelMap();
+		Orden ordenBuscada = servicioOrden.consultarOrdenPorId(ordenId);
+		List<OrdenRepuesto> listaRepuestos = servicioRepuesto.consultarRepuestosPorOrden(ordenBuscada);
 
-		for(OrdenRepuesto repuesto : listaRepuestos) {
-			ordenBuscada
-					.setTotal(ordenBuscada.getTotal() + (repuesto.getCantidad() * repuesto.getRepuesto().getPrecio()));
+		Taller taller = ordenBuscada.getReserva().getTaller();
+		Cliente cliente = ordenBuscada.getReserva().getCliente();
+		ordenBuscada.setTotal(taller.getManoDeObra() * ordenBuscada.getHorasDeTrabajo());
+		
+		for(OrdenRepuesto repuesto : listaRepuestos){
+			ordenBuscada.setTotal(ordenBuscada.getTotal() + (repuesto.getCantidad() * repuesto.getRepuesto().getPrecio()));
 		}
 		ordenBuscada.getReserva().setEstado(EstadoReserva.FACTURADA);
 
 		servicioReserva.guardarReserva(ordenBuscada.getReserva());
 		servicioOrden.guardarOrden(ordenBuscada);
 
+		Double orden = ordenBuscada.getTotal();
 		modelo.put("factura", ordenBuscada);
 		modelo.put("listaRepuestos", listaRepuestos);
+		Preference preference = servicioPago.realizarPago(cliente,taller, orden);
+		
+		modelo.put("preference", preference);
 
 		servicioOrden.createPDF(ordenBuscada, listaRepuestos);
 
 
-		return new ModelAndView("facturaGenerada", modelo);
+		if (preference == null)
+			return new ModelAndView("Error");
+		return new ModelAndView("facturaGenerada2", modelo);
 
 	}
 	
@@ -121,3 +160,4 @@ public class ControladorFactura {
 	
 	
 }
+

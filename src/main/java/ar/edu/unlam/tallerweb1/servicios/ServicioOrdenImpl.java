@@ -82,7 +82,7 @@ public class ServicioOrdenImpl implements ServicioOrden {
 			PdfWriter.getInstance(document, new FileOutputStream("/temp/factura-" + orden.getReserva().getId()+".pdf"));
 			document.open();
 			Font font = FontFactory.getFont(FontFactory.TIMES_ROMAN, 16, BaseColor.BLACK);
-			Paragraph factura = new Paragraph("Factura Nº: " + orden.getId(), font);
+			Paragraph factura = new Paragraph("Factura Nro: " + orden.getId(), font);
 			Paragraph taller = new Paragraph("Taller: " + orden.getReserva().getTaller().getNombreDelTaller(), font);
 			Paragraph manoDeObra = new Paragraph(
 					"Mano de obra: $" + (orden.getHorasDeTrabajo() * orden.getReserva().getTaller().getManoDeObra()),
