@@ -48,7 +48,7 @@ public class ControladorFactura {
 
 		ordenBuscada.setTotal(ordenBuscada.getReserva().getTaller().getManoDeObra() * ordenBuscada.getHorasDeTrabajo());
 
-		for (OrdenRepuesto repuesto : listaRepuestos) {
+		for(OrdenRepuesto repuesto : listaRepuestos) {
 			ordenBuscada
 					.setTotal(ordenBuscada.getTotal() + (repuesto.getCantidad() * repuesto.getRepuesto().getPrecio()));
 		}
@@ -106,4 +106,18 @@ public class ControladorFactura {
 		return new ModelAndView("facturaGenerada", modelo);
 
 	}
+
+	public void setServicioOrden(ServicioOrden servicioOrden) {
+		this.servicioOrden = servicioOrden;
+	}
+
+	public void setServicioRepuesto(ServicioRepuesto servicioRepuesto) {
+		this.servicioRepuesto = servicioRepuesto;
+	}
+
+	public void setServicioReserva(ServicioReserva servicioReserva) {
+		this.servicioReserva = servicioReserva;
+	}
+	
+	
 }
