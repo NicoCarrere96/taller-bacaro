@@ -4,12 +4,13 @@
 <%@ taglib prefix ="fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
-	<head>
+		<head>
 		<!-- Bootstrap core CSS -->
 	    <link href="<c:url value="/css/bootstrap.min.css" />" rel="stylesheet" >
 	    <!-- Bootstrap theme -->
 	    <link href="<c:url value="/css/bootstrap-theme.min.css" />" rel="stylesheet">
-	    <link href="<c:url value="/css/bootstrap-datetimepicker.css" />"rel="stylesheet" type="text/css">
+	    <link href="<c:url value="/css/bootstrap-datetimepicker.css" />"rel="stylesheet" >
+	     <link href="<c:url value="/css/bootstrap-datetimepicker.min.css" />"rel="stylesheet" >
 		<title>Reserva de Turnos</title>
 	</head>
 
@@ -41,34 +42,23 @@
 				<form:textarea path="problema" class="form-control"/>
 		    </div> 
 		    
-		<label for="sel1">Seleccione Día:</label> 
-					<table class="table table-hover">
-					<thead>
-						<tr>
-							
-							<th scope="col">Dias</th>
-							<th scope="col">Rango horario</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach items="${dias}" var="dias">
-						
-							<tr>
-
-								<th scope="row"></th>
-									<td>${dias.dia}</td>
-									<td><fmt:formatDate type = "time" pattern="HH:mm" value = "${dias.horaAtencionInicio}" /> - 
-									<fmt:formatDate type = "time" pattern="HH:mm" value = "${dias.horaAtencionFinalizacion}" />
-									 </td>
-									
-									<td><a class="btn btn-lg btn-block btn-info" style="color: white" role="button" href="<c:url value="/fechas/${dias.getId()}" />"> Seleccionar</a></td>
-							</tr> 
-						</c:forEach>				
-					</tbody>
-				</table>
+		<div class="container">
+    <div class="col-sm-6" style="height:130px;">
+        <div class="form-group">
+            <div class='input-group date' id='datetimepicker4'>
+             <input type='text' class="form-control" name="fecha" id="fecha"/>
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar">
+                    </span>
+                </span>
+            </div>
+        </div>
+    </div>
+    
+</div>
 					
 				<br>
-						<button class="btn btn-lg btn-block btn-info"  onclick="ShowSelected()" style="color: white" Type="Submit"> Guardar Reserva</button>
+						<button class="btn btn-lg btn-block btn-info" style="color: white" Type="Submit"> Guardar Reserva</button>
 			<br>
 			<br>
 			
@@ -80,25 +70,23 @@
 		</form:form>
 	</div>
 		
-		<!-- Placed at the end of the document so the pages load faster -->
-				<script type="text/javascript">
-							function ShowSelected()
-							{
-							var cod = document.getElementById("diaDeAtencionId").value;
-								if(cod == null || cod == 0){
-									alert('Para continuar es necesario que seleccione un día de Atención  ¡GRACIAS!');
-								}
-								else{
-									location.href="nuevaReserva";
-								}
-					
-							
-							}
-		</script>
+	
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" ></script>
 		<script>
 			window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')
 		</script>
 		<script src="<c:url value="/js/bootstrap.min.js" />" type="text/javascript"></script>
+		<script src="<c:url value="/js/momentjs-with-locale.js" />" type="text/javascript"> </script>
+		<script src="<c:url value="/js/bootstrap-datetimepicker.min.js" />" type="text/javascript"> </script>
+	
+<script type="text/javascript">
+        $(function () {
+            $('#datetimepicker4').datetimepicker({
+            	format: 'DD/MM/YYYY',
+                daysOfWeekDisabled: [0]
+            });
+        });
+    </script>
+		
 	</body>
 </html>
