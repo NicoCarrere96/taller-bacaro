@@ -175,14 +175,13 @@ public class ControladorOrden {
 	
 		
 	@RequestMapping("/eliminarRepuesto")
-	public ModelAndView eliminarRepuesto(@RequestParam Long idOrdenRepuesto, HttpServletRequest request) {
+	public ModelAndView eliminarRepuesto(@RequestParam Long ordRep, @RequestParam Long reserva, HttpServletRequest request) {
 
 		Taller taller = (Taller) request.getSession().getAttribute("taller");
 		if (taller != null) {
-			Repuesto repuesto = servicioRepuesto.consultarRepuestoPorId(idOrdenRepuesto);
 			
-			servicioRepuesto.eliminarRepuesto(repuesto);
-			return new ModelAndView("redirect: /orden");
+			servicioRepuesto.eliminarRepuestoEnLaOrden(ordRep);
+			return new ModelAndView("redirect: editar/" + reserva);
 		} else {
 			return new ModelAndView("redirect:/login");
 		}
