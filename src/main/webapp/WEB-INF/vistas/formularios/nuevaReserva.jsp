@@ -56,6 +56,19 @@
     </div>
     
 </div>
+<label for="sel1">Seleccione Horarios:</label>
+							<div class="form-group">
+							
+							<select	 id="horarios" name="horarios" class="form-control">
+								<option value="0">Seleccione Horario</option>
+								<c:forEach items="${horarios}" var="ho">
+									<option value="${ho.id}">${ho.descripcion} </option>
+								
+								</c:forEach>
+								
+							</select>
+						 	
+						</div>
 					
 				<br>
 						<button class="btn btn-lg btn-block btn-info" style="color: white" Type="Submit"> Guardar Reserva</button>
