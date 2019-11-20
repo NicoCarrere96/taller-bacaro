@@ -10,19 +10,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import ar.edu.unlam.tallerweb1.modelo.Orden;
-import ar.edu.unlam.tallerweb1.modelo.cliente.DiaDeAtencion;
 import ar.edu.unlam.tallerweb1.modelo.cliente.Reserva;
+import ar.edu.unlam.tallerweb1.modelo.cliente.Turno;
 import ar.edu.unlam.tallerweb1.modelo.taller.Taller;
 import ar.edu.unlam.tallerweb1.servicios.ServicioCliente;
-import ar.edu.unlam.tallerweb1.servicios.ServicioOrden;
-import ar.edu.unlam.tallerweb1.servicios.ServicioRepuesto;
 import ar.edu.unlam.tallerweb1.servicios.ServicioReserva;
 import ar.edu.unlam.tallerweb1.servicios.ServicioTaller;
 import ar.edu.unlam.tallerweb1.servicios.ServicioTurno;
@@ -40,10 +36,7 @@ public class ControladorReserva {
 	private ServicioTaller servicioTaller;
 	@Inject
 	private ServicioTurno servicioTurno;
-	@Inject 
-	private ServicioOrden servicioOrden;
-	@Inject 
-	private ServicioRepuesto servicioRepuesto;
+
 	
 	@RequestMapping(path = "/lista", method = RequestMethod.GET)
 	@Transactional
@@ -85,10 +78,10 @@ public class ControladorReserva {
 		reserva.setCliente(servicioCliente.consultarClientePorDni(dniCliente));
 		reserva.setTaller(servicioTaller.buscarTallerPorId(tallerId));
 		reserva.setEstado(EstadoReserva.PENDIENTE);
-		List<DiaDeAtencion> dias= servicioTurno.consultarDiaDeAtencion();
+		List<Turno> horarios= servicioTurno.ListarTurnosPosibles();
 		
 		modelo.addAttribute("reserva", reserva);
-		modelo.put("dias", dias);
+		modelo.put("horarios", horarios);
 		
 		return new ModelAndView("formularios/nuevaReserva", modelo);
 	}
