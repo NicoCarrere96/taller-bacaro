@@ -59,6 +59,7 @@
    						      <th scope="col">Repuesto</th>
 						      <th scope="col">Precio U.</th>
 						      <th scope="col">Cantidad</th>
+						     
 	    					</tr>
 	    				</thead>
 	    				<tbody>
@@ -67,7 +68,14 @@
 	    							<td>${ ordRep.repuesto.nombre }</td>
 	    							<td>${ ordRep.repuesto.precio }</td>
 	    							<td>${ ordRep.cantidad }</td>
+	    							<td><c:out value="" /> 
+	    							
+	    							<a
+											class="btn btn-default btn-circle"
+											href="<c:url value="/orden/eliminarRepuesto?id=${ ordRep.repuesto.id}" />"><span
+												class="glyphicon glyphicon-trash"></span> </a></td>
 	    						</tr>
+	    						
 	    					</c:forEach>
 	    				</tbody>
 	    			</table>
@@ -79,8 +87,8 @@
 	    				</c:when>
 	    				<c:otherwise>
 	    					<a href="<c:url value="/orden/agregarRepuesto?reserva=${ orden.reserva.id }"/>" class="btn btn-warning sm" >Agregar Repuesto</a>
-
-					    
+							
+										    
 						    <div class="form-group"> <!-- Submit Button -->
 						        <button type="submit" class="btn btn-primary">Generar Presupuesto</button>
 						    </div> 

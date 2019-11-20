@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unlam.tallerweb1.modelo.Orden;
 import ar.edu.unlam.tallerweb1.modelo.cliente.Reserva;
 import ar.edu.unlam.tallerweb1.modelo.taller.OrdenRepuesto;
+import ar.edu.unlam.tallerweb1.modelo.taller.Repuesto;
 import ar.edu.unlam.tallerweb1.modelo.taller.Taller;
 import ar.edu.unlam.tallerweb1.servicios.ServicioOrden;
 import ar.edu.unlam.tallerweb1.servicios.ServicioRepuesto;
@@ -168,5 +169,39 @@ public class ControladorOrden {
 			return new ModelAndView("redirect:/login");
 		}
 	}
+	
+	
+	
+	/*@RequestMapping(path = "/eliminarRepuesto", method = RequestMethod.GET)
+	@Transactional
+	public ModelAndView eliminarRepuesto(HttpServletRequest request, @RequestParam Long OrdenRepuesto) {
+		Taller taller = (Taller) request.getSession().getAttribute("taller");
 
+		if (taller != null) {
+			servicioRepuesto.eliminarRepuestoEnLaOrden(OrdenRepuesto);
+
+			return new ModelAndView("redirect: editar/" + OrdenRepuesto.getOrden().getReserva().getId());
+		} else {
+			return new ModelAndView("redirect:/login");
+		}
+		
+	@RequestMapping("/eliminarRepuesto")
+	public ModelAndView eliminarRepuesto(@RequestParam("idRepuesto") Long idRepuesto, HttpServletRequest request) {
+
+		Taller taller = (Taller) request.getSession().getAttribute("taller");
+		if (taller != null) {
+			Repuesto repuesto = servicioRepuesto.consultarRepuestoPorId(idRepuesto);
+			
+			servicioRepuesto.eliminarRepuesto(repuesto);
+			return new ModelAndView("redirect: /orden");
+		} else {
+			return new ModelAndView("redirect:/login");
+		}
+	}*/
+	
+	
+	
 }
+
+
+

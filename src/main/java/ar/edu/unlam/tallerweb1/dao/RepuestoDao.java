@@ -18,8 +18,12 @@ public interface RepuestoDao {
 	 List<Repuesto> getAll();
 	 void eliminarRepuesto(Repuesto repuesto);
 	
-	 
+		 
 	 List<OrdenRepuesto> consultarRepuestosPorOrden(Orden orden);
 	 void agregarRepuestoALaOrden(OrdenRepuesto ordRep);
-	
+	 void eliminarRepuestoEnLaOrden(OrdenRepuesto ordRep);
+	 
+	 
+	 
+	 	
 	}
