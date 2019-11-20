@@ -15,7 +15,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mercadopago.resources.Preference;
+
 import ar.edu.unlam.tallerweb1.modelo.Orden;
+import ar.edu.unlam.tallerweb1.modelo.cliente.Cliente;
 import ar.edu.unlam.tallerweb1.modelo.cliente.Reserva;
 import ar.edu.unlam.tallerweb1.modelo.taller.OrdenRepuesto;
 import ar.edu.unlam.tallerweb1.modelo.taller.Repuesto;
@@ -168,40 +171,24 @@ public class ControladorOrden {
 		} else {
 			return new ModelAndView("redirect:/login");
 		}
-	}
+	}	
 	
-	
-	
-	/*@RequestMapping(path = "/eliminarRepuesto", method = RequestMethod.GET)
-	@Transactional
-	public ModelAndView eliminarRepuesto(HttpServletRequest request, @RequestParam Long OrdenRepuesto) {
-		Taller taller = (Taller) request.getSession().getAttribute("taller");
-
-		if (taller != null) {
-			servicioRepuesto.eliminarRepuestoEnLaOrden(OrdenRepuesto);
-
-			return new ModelAndView("redirect: editar/" + OrdenRepuesto.getOrden().getReserva().getId());
-		} else {
-			return new ModelAndView("redirect:/login");
-		}
 		
 	@RequestMapping("/eliminarRepuesto")
-	public ModelAndView eliminarRepuesto(@RequestParam("idRepuesto") Long idRepuesto, HttpServletRequest request) {
+	public ModelAndView eliminarRepuesto(@RequestParam Long idOrdenRepuesto, HttpServletRequest request) {
 
 		Taller taller = (Taller) request.getSession().getAttribute("taller");
 		if (taller != null) {
-			Repuesto repuesto = servicioRepuesto.consultarRepuestoPorId(idRepuesto);
+			Repuesto repuesto = servicioRepuesto.consultarRepuestoPorId(idOrdenRepuesto);
 			
 			servicioRepuesto.eliminarRepuesto(repuesto);
 			return new ModelAndView("redirect: /orden");
 		} else {
 			return new ModelAndView("redirect:/login");
 		}
-	}*/
+	}
 	
 	
 	
 }
-
-
 

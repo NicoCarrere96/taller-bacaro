@@ -72,13 +72,14 @@
 	    							
 	    							<a
 											class="btn btn-default btn-circle"
-											href="<c:url value="/orden/eliminarRepuesto?id=${ ordRep.repuesto.id}" />"><span
+											href="<c:url value="/orden/eliminarRepuesto?id=${ ordRep.id}" />"><span
 												class="glyphicon glyphicon-trash"></span> </a></td>
 	    						</tr>
 	    						
 	    					</c:forEach>
 	    				</tbody>
 	    			</table>
+	    			<br>
 	    			<c:choose>
 	    				<c:when test="${ orden.reserva.estado eq 'APROBADA' }">
 		    				<div class="form-group"> <!-- Submit Button -->
@@ -87,9 +88,9 @@
 	    				</c:when>
 	    				<c:otherwise>
 	    					<a href="<c:url value="/orden/agregarRepuesto?reserva=${ orden.reserva.id }"/>" class="btn btn-warning sm" >Agregar Repuesto</a>
-							
-										    
-						    <div class="form-group"> <!-- Submit Button -->
+							<br><br>
+					    
+					        <div class="form-group"> <!-- Submit Button -->
 						        <button type="submit" class="btn btn-primary">Generar Presupuesto</button>
 						    </div> 
 	    				

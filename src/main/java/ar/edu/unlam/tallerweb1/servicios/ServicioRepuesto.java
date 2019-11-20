@@ -19,5 +19,5 @@ public interface ServicioRepuesto {
 	
 	List<OrdenRepuesto> consultarRepuestosPorOrden(Orden orden);
 	void agregarRepuestoALaOrden(OrdenRepuesto ordRep);
-	void eliminarRepuestoEnLaOrden(OrdenRepuesto ordRep);
+	void eliminarRepuestoEnLaOrden(Long idOrdRep);
 }

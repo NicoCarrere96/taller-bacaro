@@ -1,14 +1,28 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.ServletOutputStream;
 
 import org.springframework.stereotype.Service;
+
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Chunk;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 
 import ar.edu.unlam.tallerweb1.dao.OrdenDao;
 import ar.edu.unlam.tallerweb1.modelo.Orden;
 import ar.edu.unlam.tallerweb1.modelo.cliente.Reserva;
+import ar.edu.unlam.tallerweb1.modelo.taller.OrdenRepuesto;
 import ar.edu.unlam.tallerweb1.utils.EstadoReserva;
 
 @Service("servicioOrden")
@@ -43,7 +57,6 @@ public class ServicioOrdenImpl implements ServicioOrden {
 		orden.getReserva().setEstado(EstadoReserva.PRESUPUESTADA);
 	}
 
-
 	@Override
 	public void aprobarOrden(Orden orden) {
 		orden.getReserva().setEstado(EstadoReserva.APROBADA);
@@ -59,6 +72,55 @@ public class ServicioOrdenImpl implements ServicioOrden {
 	@Override
 	public void modificarOrden(Orden orden) {
 		orden.getReserva().setEstado(EstadoReserva.PRESUPUESTADA);
+
+	}
+
+	@Override
+	public Document createPDF(Orden orden, List<OrdenRepuesto> ordRepList) {
+		Document document = new Document();
+		try {
+			PdfWriter.getInstance(document, new FileOutputStream("/temp/factura-" + orden.getReserva().getId()+".pdf"));
+			document.open();
+			Font font = FontFactory.getFont(FontFactory.TIMES_ROMAN, 16, BaseColor.BLACK);
+			Paragraph factura = new Paragraph("Factura Nro: " + orden.getId(), font);
+			Paragraph taller = new Paragraph("Taller: " + orden.getReserva().getTaller().getNombreDelTaller(), font);
+			Paragraph manoDeObra = new Paragraph(
+					"Mano de obra: $" + (orden.getHorasDeTrabajo() * orden.getReserva().getTaller().getManoDeObra()),
+					font);
+			Paragraph detalle = new Paragraph("Detalle: ", font);
+			
+			document.add(factura);
+			document.add(taller);
+			document.add(manoDeObra);
+			document.add(detalle);
+
+			PdfPTable table = new PdfPTable(4);
+			table.addCell("Repuesto");
+			table.addCell("Precio U.");
+			table.addCell("Cantidad");
+			table.addCell("Precio Total");
+
+			for (OrdenRepuesto ordRep : ordRepList) {
+				Double precioTotal = ordRep.getRepuesto().getPrecio() * ordRep.getCantidad();
+				table.addCell(ordRep.getRepuesto().getNombre());
+				table.addCell(ordRep.getRepuesto().getPrecio().toString());
+				table.addCell(ordRep.getCantidad().toString());
+				table.addCell(precioTotal.toString());
+			}
+			
+			document.add(table);
+			
+			document.add(new Paragraph("Total: $" + orden.getTotal(), font));
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (DocumentException e) {
+			e.printStackTrace();
+		}
+
+		document.close();
+		
+		return document;
 
 	}
 }

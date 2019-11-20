@@ -94,8 +94,9 @@ public class RepuestoDaoImpl implements RepuestoDao {
 	}
 
 	@Override
-	public void eliminarRepuestoEnLaOrden(OrdenRepuesto ordRep) {
+	public void eliminarRepuestoEnLaOrden(Long idOrdRep) {
 		Session session = sessionFactory.getCurrentSession();
-		session.delete("ordenRepuesto", ordRep);
+		
+		session.delete("ordenRepuesto", session.load(OrdenRepuesto.class, idOrdRep));
 	}
 }

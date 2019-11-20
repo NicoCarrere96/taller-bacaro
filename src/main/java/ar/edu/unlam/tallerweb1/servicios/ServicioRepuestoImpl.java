@@ -71,7 +71,7 @@ public class ServicioRepuestoImpl implements ServicioRepuesto {
 	}
 	
 	@Override
-	public void eliminarRepuestoEnLaOrden(OrdenRepuesto ordRep) {
-		dao.eliminarRepuestoEnLaOrden(ordRep);
+	public void eliminarRepuestoEnLaOrden(Long idOrdRep) {
+		dao.eliminarRepuestoEnLaOrden(idOrdRep);
 	}
 }
