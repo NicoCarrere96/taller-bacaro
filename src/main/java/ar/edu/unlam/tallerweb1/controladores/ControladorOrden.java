@@ -21,6 +21,7 @@ import ar.edu.unlam.tallerweb1.modelo.Orden;
 import ar.edu.unlam.tallerweb1.modelo.cliente.Cliente;
 import ar.edu.unlam.tallerweb1.modelo.cliente.Reserva;
 import ar.edu.unlam.tallerweb1.modelo.taller.OrdenRepuesto;
+import ar.edu.unlam.tallerweb1.modelo.taller.Repuesto;
 import ar.edu.unlam.tallerweb1.modelo.taller.Taller;
 import ar.edu.unlam.tallerweb1.servicios.ServicioOrden;
 import ar.edu.unlam.tallerweb1.servicios.ServicioRepuesto;
@@ -170,6 +171,23 @@ public class ControladorOrden {
 		} else {
 			return new ModelAndView("redirect:/login");
 		}
+	}	
+	
+		
+	@RequestMapping("/eliminarRepuesto")
+	public ModelAndView eliminarRepuesto(@RequestParam Long ordRep, @RequestParam Long reserva, HttpServletRequest request) {
+
+		Taller taller = (Taller) request.getSession().getAttribute("taller");
+		if (taller != null) {
+			
+			servicioRepuesto.eliminarRepuestoEnLaOrden(ordRep);
+			return new ModelAndView("redirect: editar/" + reserva);
+		} else {
+			return new ModelAndView("redirect:/login");
+		}
 	}
 	
+	
+	
 }
+
