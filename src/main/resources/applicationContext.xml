@@ -28,6 +28,6 @@
 	<context:component-scan base-package="ar.edu.unlam.tallerweb1.dao" />
 	<context:component-scan base-package="ar.edu.unlam.tallerweb1.servicios" />
 	
-
+	<bean class="com.mercadopago.resources.Preference"/>
 </beans>
 

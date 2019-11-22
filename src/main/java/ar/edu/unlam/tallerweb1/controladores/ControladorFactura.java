@@ -63,9 +63,13 @@ public class ControladorFactura {
 		
 		servicioReserva.guardarReserva(ordenBuscada.getReserva());
 		servicioOrden.guardarOrden(ordenBuscada);
-		Double orden = ordenBuscada.getTotal();
+		
+		servicioOrden.createPDF(ordenBuscada, listaRepuestos);
+
 		modelo.put("factura", ordenBuscada);
 		modelo.put("listaRepuestos", listaRepuestos);
+		
+
 		return new ModelAndView("facturaGenerada", modelo);
 	
 
@@ -97,11 +101,9 @@ public class ControladorFactura {
 		
 		modelo.put("preference", preference);
 
-		servicioOrden.createPDF(ordenBuscada, listaRepuestos);
-
-
 		if (preference == null)
 			return new ModelAndView("Error");
+		ordenBuscada.getReserva().setEstado(EstadoReserva.PAGADA);
 		return new ModelAndView("facturaGenerada2", modelo);
 
 	}
@@ -111,11 +113,7 @@ public class ControladorFactura {
 	public ResponseEntity<byte[]> imprimirFactura(@RequestParam Long reservaId) {
 
 		byte[] contents = null;
-		try {
-			contents = Files.readAllBytes(Paths.get("/temp/factura-" + reservaId +".pdf"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		contents = servicioOrden.obtenerFactura(reservaId);
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.parseMediaType("application/pdf"));
 	    String filename = "factura-" + reservaId +".pdf";
