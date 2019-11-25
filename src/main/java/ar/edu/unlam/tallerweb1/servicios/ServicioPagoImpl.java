@@ -1,13 +1,11 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import org.springframework.stereotype.Service;
 
 import com.mercadopago.MercadoPago;
 import com.mercadopago.exceptions.MPException;
@@ -24,12 +22,11 @@ import ar.edu.unlam.tallerweb1.modelo.taller.Taller;
 
 @Service("ServicioPago")
 public class ServicioPagoImpl implements ServicioPago {
-	@Autowired
-	private Preference preference;
+	
 	private static String token="TEST-2418432562629612-110104-478e9fdf0282b2e53f214c425d215a4b-485180789";
 	
 	public Preference realizarPago(Cliente cliente, Taller taller, Double total) {
-		//Preference preference = new Preference();
+		Preference preference = new Preference();
 		try {
 			MercadoPago.SDK.setAccessToken(token);
 
@@ -61,7 +58,6 @@ public class ServicioPagoImpl implements ServicioPago {
 			
 		}
 		catch (MPException e) {
-			// TODO Auto-generated catch block
 			return null;
 		}
 		
