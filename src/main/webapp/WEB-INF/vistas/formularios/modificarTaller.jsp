@@ -120,7 +120,7 @@
 				<div class="col-sm-10">
 					<form:select path="especialidad" class="form-control mb-4">
 						<form:option value="NONE" label="---Seleccionar Especialidad---" />
-						<form:options items="${especialidades}" />
+						<form:options items="${especialidades}" itemLabel="name"/>
 					</form:select>
 				</div>
 			</div>
@@ -131,7 +131,7 @@
 						placeholder="Valor De La Mano de Obra" />
 				</div>
 			</div>
-			<form:button class="btn btn-info my-4 btn-block" type="Submit">Registrese</form:button>
+			<form:button class="btn btn-info my-4 btn-block" type="Submit">Guardar</form:button>
 
 
 		</form:form>

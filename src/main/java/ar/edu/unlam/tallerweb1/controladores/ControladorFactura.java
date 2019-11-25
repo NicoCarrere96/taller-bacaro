@@ -1,8 +1,5 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -77,9 +74,9 @@ public class ControladorFactura {
 	
 	@RequestMapping(path = "/generadaFactura", method = RequestMethod.GET)
 	@Transactional
-	public ModelAndView verFactura(@RequestParam Long ordenId) {
+	public ModelAndView verFactura(@RequestParam Long reservaId) {
 		ModelMap modelo = new ModelMap();
-		Orden ordenBuscada = servicioOrden.consultarOrdenPorId(ordenId);
+		Orden ordenBuscada = servicioOrden.consultarOrdenPorReserva(servicioReserva.buscarReservaPorId(reservaId));
 		List<OrdenRepuesto> listaRepuestos = servicioRepuesto.consultarRepuestosPorOrden(ordenBuscada);
 
 		Taller taller = ordenBuscada.getReserva().getTaller();
@@ -110,13 +107,13 @@ public class ControladorFactura {
 	
 	@RequestMapping(path = "/getPdf", method = RequestMethod.GET)
 	@Transactional
-	public ResponseEntity<byte[]> imprimirFactura(@RequestParam Long reservaId) {
+	public ResponseEntity<byte[]> imprimirFactura(@RequestParam Long ordenId) {
 
 		byte[] contents = null;
-		contents = servicioOrden.obtenerFactura(reservaId);
+		contents = servicioOrden.obtenerFactura(ordenId);
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.parseMediaType("application/pdf"));
-	    String filename = "factura-" + reservaId +".pdf";
+	    String filename = "factura-" + ordenId +".pdf";
 	    headers.setContentDispositionFormData(filename, filename);
 	    headers.setCacheControl("must-revalidate, post-check=0, pre-check=0");
 	    ResponseEntity<byte[]> response = new ResponseEntity<byte[]>(contents, headers, HttpStatus.OK);

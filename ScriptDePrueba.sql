@@ -45,7 +45,7 @@ INSERT INTO `taller-bacaro`.`repuesto` (`id`, `nombre`, `precio`, `stock`, `tall
 INSERT INTO `taller-bacaro`.`ordenrepuesto` (`id`, `cantidad`, `orden_id`, `repuesto_id`) VALUES ('1', '2', '1', '1');
 
 
-INSERT INTO turno (id, descripcion)
+INSERT INTO `taller-bacaro`.`turno` (id, descripcion)
 VALUES 	(1	,'09:00 - 11:00'),
 		(2	,'11:00 - 13:00'),
 		(3	,'13:00 - 15:00'),

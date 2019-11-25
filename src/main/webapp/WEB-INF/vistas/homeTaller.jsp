@@ -46,7 +46,7 @@
 	<br><br>
 	<span class="w3-white" style="text-shadow:1px 1px 0 #444">Pagina Web: </span>${ taller.paginaWeb }
 	<br><br>
-	<span class="w3-white" style="text-shadow:1px 1px 0 #444">Especialidad: </span>${ taller.especialidad }
+	<span class="w3-white" style="text-shadow:1px 1px 0 #444">Especialidad: </span>${ taller.especialidad.name }
 	<br><br>	
 	
 	<a href="modificarTaller" class="btn btn-success" style="width:20%">Modificar Datos</a>

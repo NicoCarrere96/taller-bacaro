@@ -46,7 +46,7 @@
 			<td class="row">${ reserva.fecha }</td>
 			<td class="row">${ reserva.taller.nombreDelTaller }</td>
 			<td class="row">${ reserva.cliente.nombre } ${ reserva.cliente.apellido }</td>
-			<td class="row">${ reserva.estado }</td>
+			<td class="row">${ reserva.estado.name }</td>
 			<td class="row">
 				<c:if test="${ reserva.estado eq 'PRESUPUESTADA' }">
 					<a href="<c:url value="/orden/ordenPresupuestada?idReserva=${ reserva.id }" />">
@@ -56,7 +56,7 @@
 					</a>
 				</c:if>
 				<c:if test="${ reserva.estado eq 'FACTURADA' }">
-					<a href="<c:url value="/factura/generadaFactura?ordenId=${ reserva.id }" />">
+					<a href="<c:url value="/factura/generadaFactura?reservaId=${ reserva.id }" />">
 						<button type="button" class="btn btn-info">
 							Ver Factura
 						</button>

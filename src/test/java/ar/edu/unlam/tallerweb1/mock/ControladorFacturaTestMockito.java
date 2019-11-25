@@ -24,7 +24,7 @@ import ar.edu.unlam.tallerweb1.servicios.ServicioOrden;
 import ar.edu.unlam.tallerweb1.servicios.ServicioRepuesto;
 import ar.edu.unlam.tallerweb1.servicios.ServicioReserva;
 
-public class ControladorFacturaTestMockito extends SpringTest {
+public class ControladorFacturaTestMockito {
 
 	private ControladorFactura controladorFactura = new ControladorFactura();
 	

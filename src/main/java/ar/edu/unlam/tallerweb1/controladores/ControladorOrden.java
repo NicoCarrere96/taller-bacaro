@@ -106,7 +106,7 @@ public class ControladorOrden {
 
 	@RequestMapping(path = "/ordenPresupuestada", method = RequestMethod.GET)
 	@Transactional
-	public ModelAndView verPresupuesto(HttpServletRequest request, @RequestParam("idReserva") Long idReserva) {
+	public ModelAndView verPresupuesto(HttpServletRequest request, @RequestParam Long idReserva) {
 		ModelMap modelo = new ModelMap();
 		Reserva reserva = servicioReserva.buscarReservaPorId(idReserva);
 		Orden orden = servicioOrden.consultarOrdenPorReserva(reserva);
@@ -185,6 +185,18 @@ public class ControladorOrden {
 		} else {
 			return new ModelAndView("redirect:/login");
 		}
+	}
+
+	public void setServicioReserva(ServicioReserva servicioReserva) {
+		this.servicioReserva = servicioReserva;		
+	}
+
+	public void setServicioOrden(ServicioOrden servicioOrden) {
+		this.servicioOrden = servicioOrden;
+	}
+
+	public void setServicioRespuesto(ServicioRepuesto servicioRepuesto) {
+		this.servicioRepuesto = servicioRepuesto;
 	}
 	
 	
