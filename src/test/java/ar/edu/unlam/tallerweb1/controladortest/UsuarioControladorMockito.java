@@ -45,6 +45,7 @@ public class UsuarioControladorMockito extends SpringTest{
 
 	@InjectMocks
 	private ControladorLogin controladorLogin;
+	
 	private Usuario usuario1 , usuario2;
 	private List<Usuario> listaDeUsuarios;
 	private Session sesion;
@@ -150,7 +151,7 @@ public class UsuarioControladorMockito extends SpringTest{
 		usuario1.setPassword(null);
 
 		if(this.usuario1.getPassword() == null) {
-			throw new Exception("Por favor escriba una contraseña");
+			throw new Exception("Por favor escriba una contraseï¿½a");
 		} else {
 			this.usuario1.getPassword();
 		}

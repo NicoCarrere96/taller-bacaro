@@ -26,5 +26,7 @@ public interface ServicioOrden {
 	void modificarOrden(Orden orden);
 
 	Document createPDF(Orden orden, List<OrdenRepuesto> ordRepList);
-
+	
+	byte[] obtenerFactura(Long idReserva);
+ 
 }

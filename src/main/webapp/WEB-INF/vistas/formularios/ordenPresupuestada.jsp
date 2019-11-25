@@ -53,9 +53,9 @@
 				</div> 
 	<span class="w3-white" style="text-shadow:1px 1px 0 #444">Total Presupuestado: $ </span>${ orden.total }
 	<br><br>
-	<a href="<c:url value="contestarPresupuesto?aprobado=true&id=${ reserva.id }" />" class="btn btn-success" style="width:20%">Aprobar</a>
+	<a href="<c:url value="contestarPresupuesto?aprobado=true&id=${ orden.id }" />" class="btn btn-success" style="width:20%">Aprobar</a>
 	
-	<a href="<c:url value="contestarPresupuesto?aprobado=false&id=${ reserva.id }" />" class="btn btn-success" style="width:20%">Rechazar</a>
+	<a href="<c:url value="contestarPresupuesto?aprobado=false&id=${ orden.id }" />" class="btn btn-success" style="width:20%">Rechazar</a>
 	</div>
 			</div> 
 		

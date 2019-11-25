@@ -156,5 +156,8 @@ public class ControladorTaller {
 			return new ModelAndView("redirect:/login");
 		}
 	}
+	public void setServicioTaller(ServicioTaller servicio) {
+		this.servicioTaller = servicio;		
+	}
 	
 }

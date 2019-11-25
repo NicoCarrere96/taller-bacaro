@@ -34,8 +34,6 @@ public class ReservaTest extends SpringTest{
 	    cl.setMail("euse@gmail.com");
 	    session().save(cl);
 	    
-	    String dia = "2019-10-19";
-	    
 	    Reserva res = new Reserva();
 	    res.setTaller(tall);
 	    res.setCliente(cl);

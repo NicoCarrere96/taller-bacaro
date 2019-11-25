@@ -54,4 +54,7 @@ public class ControladorCliente {
 		
 		return new ModelAndView("redirect:/reserva/cliente?dni="+ cliente.getDni());
 	}
+	public void setServicioCliente(ServicioCliente servicio) {
+		this.servicioCliente = servicio;		
+	}
 }
