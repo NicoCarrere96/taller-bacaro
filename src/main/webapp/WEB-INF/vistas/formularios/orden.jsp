@@ -17,7 +17,7 @@
 		style="background-color: #0d80b3; color: white">
 		<h1>BuscoTaller.com</h1>
 		<p>La manera mas facil y comoda de conseguir taller</p>
-		<span class="nav navbar-nav navbar-right"> <a
+		<span class="nav navbar-nav"> <a
 			href="${pageContext.request.contextPath}/cerrar-sesion"><span
 				class="glyphicon glyphicon-log-in" style="color: white"></span>
 				Logout</a>
@@ -137,7 +137,7 @@
 	<br>
 	<br>
 	<a href="<c:url value="/reserva/lista"/>"
-		class="btn btn-lg btn-block btn-info" role="button"><span
+		class="btn btn-lg btn-info" role="button"><span
 		class="glyphicon glyphicon-hand-left"></span></a>
 
 	<!-- Placed at the end of the document so the pages load faster -->
