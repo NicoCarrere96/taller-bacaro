@@ -1,6 +1,10 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -24,6 +28,7 @@ import ar.edu.unlam.tallerweb1.modelo.cliente.Cliente;
 import ar.edu.unlam.tallerweb1.modelo.cliente.Reserva;
 import ar.edu.unlam.tallerweb1.modelo.taller.OrdenRepuesto;
 import ar.edu.unlam.tallerweb1.modelo.taller.Taller;
+import ar.edu.unlam.tallerweb1.servicios.ServicioEnvioMail;
 import ar.edu.unlam.tallerweb1.servicios.ServicioOrden;
 import ar.edu.unlam.tallerweb1.servicios.ServicioPago;
 import ar.edu.unlam.tallerweb1.servicios.ServicioRepuesto;
@@ -37,12 +42,16 @@ public class ControladorFactura {
 	@Inject
 	private ServicioOrden servicioOrden;
 	@Inject
+	private ServicioOrden servicioCliente;
+	@Inject
 	private ServicioRepuesto servicioRepuesto;
 	@Inject
 	private ServicioReserva servicioReserva;
 	@Inject
 	private ServicioPago servicioPago;
-	
+	@Inject
+	private ServicioEnvioMail servicioEnvioMail;
+
 	@RequestMapping(path = "/generarFactura", method = RequestMethod.GET)
 	@Transactional
 	public ModelAndView crearFactura(@RequestParam Long ordenId) {
@@ -52,26 +61,25 @@ public class ControladorFactura {
 		Taller taller = ordenBuscada.getReserva().getTaller();
 		Cliente cliente = ordenBuscada.getReserva().getCliente();
 		ordenBuscada.setTotal(taller.getManoDeObra() * ordenBuscada.getHorasDeTrabajo());
-		
-		for(OrdenRepuesto repuesto : listaRepuestos){
-			ordenBuscada.setTotal(ordenBuscada.getTotal() + (repuesto.getCantidad() * repuesto.getRepuesto().getPrecio()));
+
+		for (OrdenRepuesto repuesto : listaRepuestos) {
+			ordenBuscada
+					.setTotal(ordenBuscada.getTotal() + (repuesto.getCantidad() * repuesto.getRepuesto().getPrecio()));
 		}
 		ordenBuscada.getReserva().setEstado(EstadoReserva.FACTURADA);
-		
+
 		servicioReserva.guardarReserva(ordenBuscada.getReserva());
 		servicioOrden.guardarOrden(ordenBuscada);
-		
+		servicioEnvioMail.enviarMail(ordenBuscada.getReserva(), cliente, taller, ordenBuscada);
 		servicioOrden.createPDF(ordenBuscada, listaRepuestos);
 
 		modelo.put("factura", ordenBuscada);
 		modelo.put("listaRepuestos", listaRepuestos);
-		
 
 		return new ModelAndView("facturaGenerada", modelo);
-	
 
-}
-	
+	}
+
 	@RequestMapping(path = "/generadaFactura", method = RequestMethod.GET)
 	@Transactional
 	public ModelAndView verFactura(@RequestParam Long reservaId) {
@@ -82,9 +90,10 @@ public class ControladorFactura {
 		Taller taller = ordenBuscada.getReserva().getTaller();
 		Cliente cliente = ordenBuscada.getReserva().getCliente();
 		ordenBuscada.setTotal(taller.getManoDeObra() * ordenBuscada.getHorasDeTrabajo());
-		
-		for(OrdenRepuesto repuesto : listaRepuestos){
-			ordenBuscada.setTotal(ordenBuscada.getTotal() + (repuesto.getCantidad() * repuesto.getRepuesto().getPrecio()));
+
+		for (OrdenRepuesto repuesto : listaRepuestos) {
+			ordenBuscada
+					.setTotal(ordenBuscada.getTotal() + (repuesto.getCantidad() * repuesto.getRepuesto().getPrecio()));
 		}
 		ordenBuscada.getReserva().setEstado(EstadoReserva.FACTURADA);
 
@@ -94,8 +103,8 @@ public class ControladorFactura {
 		Double orden = ordenBuscada.getTotal();
 		modelo.put("factura", ordenBuscada);
 		modelo.put("listaRepuestos", listaRepuestos);
-		Preference preference = servicioPago.realizarPago(cliente,taller, orden);
-		
+		Preference preference = servicioPago.realizarPago(cliente, taller, orden);
+
 		modelo.put("preference", preference);
 
 		if (preference == null)
@@ -104,7 +113,7 @@ public class ControladorFactura {
 		return new ModelAndView("facturaGenerada2", modelo);
 
 	}
-	
+
 	@RequestMapping(path = "/getPdf", method = RequestMethod.GET)
 	@Transactional
 	public ResponseEntity<byte[]> imprimirFactura(@RequestParam Long ordenId) {
@@ -113,12 +122,12 @@ public class ControladorFactura {
 		contents = servicioOrden.obtenerFactura(ordenId);
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.parseMediaType("application/pdf"));
-	    String filename = "factura-" + ordenId +".pdf";
-	    headers.setContentDispositionFormData(filename, filename);
-	    headers.setCacheControl("must-revalidate, post-check=0, pre-check=0");
-	    ResponseEntity<byte[]> response = new ResponseEntity<byte[]>(contents, headers, HttpStatus.OK);
+		String filename = "factura-" + ordenId + ".pdf";
+		headers.setContentDispositionFormData(filename, filename);
+		headers.setCacheControl("must-revalidate, post-check=0, pre-check=0");
+		ResponseEntity<byte[]> response = new ResponseEntity<byte[]>(contents, headers, HttpStatus.OK);
 
-	    return response;
+		return response;
 
 	}
 
@@ -132,7 +141,7 @@ public class ControladorFactura {
 		List<OrdenRepuesto> listaRepuestos = servicioRepuesto.consultarRepuestosPorOrden(ordenBuscada);
 
 		Boolean cliente = request.getSession().getAttribute("taller") != null ? false : true;
-		
+
 		modelo.put("factura", ordenBuscada);
 		modelo.put("listaRepuestos", listaRepuestos);
 		modelo.put("cliente", cliente);
@@ -152,7 +161,30 @@ public class ControladorFactura {
 	public void setServicioReserva(ServicioReserva servicioReserva) {
 		this.servicioReserva = servicioReserva;
 	}
-	
-	
-}
 
+	@RequestMapping(path = "/datosFacturacion", method = RequestMethod.GET)
+	@Transactional
+	public ModelAndView traerDatosFacturacion(HttpServletRequest request) {
+
+		ModelMap modelo = new ModelMap();
+		Taller taller = (Taller) request.getSession().getAttribute("taller");
+		List<Reserva> reservas = servicioReserva.consultarReservasPorTaller(taller);
+		List<Orden> ordenes = new ArrayList<Orden>();
+		
+		for (Reserva reserva : reservas) {
+			Orden orden = servicioOrden.consultarOrdenPorReserva(reserva);
+			
+			if (orden != null && orden.getTotal() != null) {
+				ordenes.add(orden);				
+			}
+		}
+		
+		modelo.put("reserva", reservas);
+		modelo.put("ordenes", ordenes);
+		modelo.put("taller", taller);
+
+		return new ModelAndView("listados/datosFacturacion", modelo);
+
+	}
+
+}
