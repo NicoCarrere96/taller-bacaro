@@ -18,9 +18,11 @@ public class Reserva {
 	private Taller taller;
 	@ManyToOne
 	private Cliente cliente;
-	private String fecha;
 	private String problema;
 	private EstadoReserva estado;
+	
+	@ManyToOne
+	private Turno turno;
 	
 	public Taller getTaller() {
 		return taller;
@@ -52,11 +54,11 @@ public class Reserva {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getFecha() {
-		return fecha;
+	public Turno getTurno() {
+		return turno;
 	}
-	public void setFecha(String fecha) {
-		this.fecha = fecha;
+	public void setTurno(Turno turno) {
+		this.turno = turno;
 	}
 
 	

@@ -43,7 +43,7 @@
 		<c:forEach items="${reservas}" var="reserva">
 		  <tr>
 		    <td class="row">${ reserva.id }</td>
-			<td class="row">${ reserva.fecha }</td>
+			<td class="row">${ reserva.turno.fecha }</td>
 			<td class="row">${ reserva.taller.nombreDelTaller }</td>
 			<td class="row">${ reserva.cliente.nombre } ${ reserva.cliente.apellido }</td>
 			<td class="row">${ reserva.estado.name }</td>

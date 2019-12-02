@@ -12,6 +12,7 @@ import ar.edu.unlam.tallerweb1.dao.OrdenDao;
 import ar.edu.unlam.tallerweb1.modelo.Orden;
 import ar.edu.unlam.tallerweb1.modelo.cliente.Cliente;
 import ar.edu.unlam.tallerweb1.modelo.cliente.Reserva;
+import ar.edu.unlam.tallerweb1.modelo.cliente.Turno;
 import ar.edu.unlam.tallerweb1.modelo.taller.Taller;
 
 public class OrdenTest extends SpringTest{
@@ -36,12 +37,17 @@ public class OrdenTest extends SpringTest{
 	    cl.setMail("euse@gmail.com");
 	    session().save(cl);
 	    
-	    String dia = "2019-20-01";
+	    
+	    Turno turno = new Turno();
+	    turno.setFecha("22/10/2020");
+	    turno.setHorario("08:00 - 12:00");
+	    turno.setCantidad(4);
+	    session().save(turno);
 	    
 	    Reserva res = new Reserva();
 	    res.setTaller(tall);
 	    res.setCliente(cl);
-	    res.setFecha("20190909");
+	    res.setTurno(turno);
 	    session().save(res);
 	    
 	    Orden ot = new Orden();
