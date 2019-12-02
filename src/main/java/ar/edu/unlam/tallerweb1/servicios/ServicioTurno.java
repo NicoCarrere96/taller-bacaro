@@ -8,7 +8,7 @@ import ar.edu.unlam.tallerweb1.modelo.cliente.Turno;
 
 public interface ServicioTurno {
 	
+	Turno consultarTurnoPorId(Long id);
 	List<Turno> ListarTurnosPosibles();
-	
-
+	List<Turno> consultarTurno();
 }

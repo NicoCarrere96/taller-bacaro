@@ -24,9 +24,19 @@ public class ServicioTurnoImpl implements ServicioTurno{
     
  
 
-	@Override
+    @Override
 	public List<Turno> ListarTurnosPosibles(){
 		return turnoDao.ListarTurnosPosiblesDao();
+	}
+    
+	@Override
+	public Turno consultarTurnoPorId(Long id){
+		return turnoDao.consultarTurnoPorId(id);
+	}
+	
+	@Override
+	public List<Turno> consultarTurno(){
+		return turnoDao.consultarTurnoDao();
 	}
 
 }

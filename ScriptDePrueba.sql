@@ -30,8 +30,14 @@ VALUES ('2', 'El Calden', '0', '485.0', 'Carlos', 'Gomeria Cacho', '1821',  '448
 INSERT INTO `taller-bacaro`.`taller` (`id`, `calle`, `especialidad`, `manoDeObra`, `nombreDelDuenio`, `nombreDelTaller`, `numero`, `telefono`, `localidad_id`, `usuario_id`) 
 VALUES ('3', 'Justo Daract', '0', '685.0', 'Gerardo', 'Gomeria G', '1500',  '44871199', '2', '4');
 
-INSERT INTO `taller-bacaro`.`reserva` (`id`, `estado`, `fecha`, `problema`, `cliente_dni`, `taller_id`) VALUES ('1', '0', '20190917', 'algo esta roto', '11222333', '1');
-INSERT INTO `taller-bacaro`.`reserva` (`id`, `estado`, `fecha`, `problema`, `cliente_dni`, `taller_id`) VALUES ('2', '2', '20190917', 'algo esta roto', '22333444', '1');
+INSERT INTO `taller-bacaro`.`turno` (id, horario, descripcion)
+VALUES 	(1	,1,'09:00 - 11:00'),
+		(2	,2,'11:00 - 13:00'),
+		(3	,3,'13:00 - 15:00'),
+        (4	,4,'15:00 - 17:00'),
+		(5	,5,'17:00 - 18:00');
+INSERT INTO `taller-bacaro`.`reserva` (`id`, `estado`, `fecha`, `problema`, `cliente_dni`, `taller_id`, `reserva_turno`) VALUES ('1', '0', '20190917', 'algo esta roto', '11222333', '1',1);
+INSERT INTO `taller-bacaro`.`reserva` (`id`, `estado`, `fecha`, `problema`, `cliente_dni`, `taller_id`, `reserva_turno`) VALUES ('2', '2', '20190917', 'algo esta roto', '22333444', '1',1);
 INSERT INTO `taller-bacaro`.`orden` (`id`, `horasDeTrabajo`, `reserva_id`) VALUES ('1', '4', '2');
 
 INSERT INTO `taller-bacaro`.`repuesto` (`id`, `nombre`, `precio`, `stock`, `taller_id` ) VALUES ('1', 'Neumatico', '1500', '150', 1);
@@ -44,10 +50,3 @@ INSERT INTO `taller-bacaro`.`repuesto` (`id`, `nombre`, `precio`, `stock`, `tall
 
 INSERT INTO `taller-bacaro`.`ordenrepuesto` (`id`, `cantidad`, `orden_id`, `repuesto_id`) VALUES ('1', '2', '1', '1');
 
-
-INSERT INTO `taller-bacaro`.`turno` (id, descripcion)
-VALUES 	(1	,'09:00 - 11:00'),
-		(2	,'11:00 - 13:00'),
-		(3	,'13:00 - 15:00'),
-        (4	,'15:00 - 17:00'),
-		(5	,'17:00 - 18:00');

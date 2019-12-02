@@ -15,7 +15,7 @@ public class Turno {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;	
-
+	private int horario;
 	private String descripcion;
 
 	
@@ -30,6 +30,16 @@ public class Turno {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+    
+
+	public int getHorario() {
+		return horario;
+	}
+
+
+	public void setHorario(int horario) {
+		this.horario = horario;
 	}
 
 

@@ -16,5 +16,7 @@ public interface ServicioReserva {
 	Reserva buscarReservaPorId(Long id);
 
 	void guardarReserva(Reserva reserva);
+	List<Reserva> consultarTurno(Long turnoId);
+	Boolean buscarFechasDisponibles();
 
 }

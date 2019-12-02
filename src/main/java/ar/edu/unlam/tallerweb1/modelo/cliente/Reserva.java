@@ -1,9 +1,12 @@
 package ar.edu.unlam.tallerweb1.modelo.cliente;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import ar.edu.unlam.tallerweb1.modelo.taller.Taller;
@@ -21,6 +24,11 @@ public class Reserva {
 	private String fecha;
 	private String problema;
 	private EstadoReserva estado;
+	
+	@ManyToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+	@JoinColumn(name = "reserva_turno", nullable = false)
+    private Turno turno;
+	
 	
 	public Taller getTaller() {
 		return taller;
@@ -58,6 +66,11 @@ public class Reserva {
 	public void setFecha(String fecha) {
 		this.fecha = fecha;
 	}
-
-	
+	public Turno getTurno() {
+		return turno;
+	}
+	public void setTurno(Turno turno) {
+		this.turno = turno;
+	}
+		
 }

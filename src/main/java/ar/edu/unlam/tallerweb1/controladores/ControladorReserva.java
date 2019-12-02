@@ -78,7 +78,7 @@ public class ControladorReserva {
 		reserva.setCliente(servicioCliente.consultarClientePorDni(dniCliente));
 		reserva.setTaller(servicioTaller.buscarTallerPorId(tallerId));
 		reserva.setEstado(EstadoReserva.PENDIENTE);
-		List<Turno> horarios= servicioTurno.ListarTurnosPosibles();
+		List <Turno> horarios = servicioTurno.ListarTurnosPosibles();
 		
 		modelo.addAttribute("reserva", reserva);
 		modelo.put("horarios", horarios);
@@ -90,10 +90,22 @@ public class ControladorReserva {
 	@Transactional
 	public ModelAndView guardarReserva(@ModelAttribute Reserva reserva) {
 		
-		servicioReserva.guardarReserva(reserva);
+		System.out.print("ver la fecha"+reserva.getFecha()+reserva.getTurno().getHorario());
+		ModelMap model= new ModelMap();
+		if(servicioReserva.buscarFechasDisponibles()) {
+
+			servicioReserva.guardarReserva(reserva);
+
+			return new ModelAndView("redirect:cliente?dni=" + reserva.getCliente().getDni());	
+			
 		
-		
-		return new ModelAndView("redirect:cliente?dni=" + reserva.getCliente().getDni());
+	}
+		else
+
+			model.put("mensajeError", "Para acceder debe eligir otra fecha");
+		return new ModelAndView("aviso", model);
+			
+			
 	}
 
 }

@@ -59,14 +59,16 @@
 <label for="sel1">Seleccione Horarios:</label>
 							<div class="form-group">
 							
-							<select	 id="horarios" name="horarios" class="form-control">
-								<option value="0">Seleccione Horario</option>
+							
+							<form:select	 id="id" name="id" path="id" class="form-control" required="required">
+								<option Value="">Seleccione Horario</option>
 								<c:forEach items="${horarios}" var="ho">
-									<option value="${ho.id}">${ho.descripcion} </option>
+									<option value="${ho.id}">${ho.descripcion}  ${ho.horario}</option>
 								
 								</c:forEach>
 								
-							</select>
+							</form:select>
+						 	
 						 	
 						</div>
 					
@@ -79,7 +81,9 @@
 		    <form:hidden path="taller.id" />
 		    <form:hidden path="cliente.dni"/>
 		    <form:hidden path="estado" />
+		    <form:hidden path="turno.id" />
 		        
+		        	   
 		</form:form>
 	</div>
 			 
