@@ -32,36 +32,59 @@
 		</div>
 	
 	</nav>
-	<br>
-	<div class="container">
-		<c:url value="/orden/agregarRepuesto" var="action"/>
-		<form:form action="${ action }" method="POST" modelAttribute="ordenRep">        
-		                                                                    
-		    
-		    <form:hidden path="orden.id"/>   
-		    <form:hidden path="orden.reserva.id"/>     
-  		    <div class="form-group">
-		        <label for="repuesto" class="control-label">Repuesto:</label>
-   		    	<form:select path="repuesto.id" items="${ repuestos }" itemLabel="nombre" itemValue="id"></form:select>
-   		    </div>                   
-		    
-  		    <div class="form-group">
-		        <label for="cantidad" class="control-label">Cantidad:</label>
-				<form:input path="cantidad" name="cantidad" class="form-control" type="number" required="required"/>
-		    </div>                   
-		    
-		    <div class="form-group"> <!-- Submit Button -->
-		        <button type="submit" class="btn btn-primary">Agregar Repuesto</button>
-		    </div> 
-		</form:form>
+	
+	<div class="container" style="margin-top: 20px !important">
+		<div class="col-md-12">
+						<h1>Facturacion Por Cliente</h1>
+				
+	
+<div style="float:left; width:70%;">
+ <table class="table">
+		  <thead class="thead-light">
+		    <tr>
+		      <th scope="col">Fecha</th>
+		      <th scope="col">Cliente</th>
+		      <th scope="col">Problema</th>
+		    </tr>
+		    </thead>
+		<tbody>
+<c:forEach items="${reserva}" var="reserva">
+
+		  <tr>
+		    <td class="row">${ reserva.fecha }</td>
+			<td class="row">${ reserva.cliente.nombre } ${ reserva.cliente.apellido }</td>
+		    <td class="row">${ reserva.problema }</td>
+		</tr>
+</c:forEach>
+		</tbody>
+		</table>
+</div>
+<div style="float:left;">								
+		<table class="table">
+		<thead class="thead-light">
+		    <tr>
+		      <th scope="col">Total</th>
+		    </tr>
+		  </thead>
+		<tbody>
+<c:forEach items="${orden}" var="orden">
+		 
+		<tr>
+				   <td class="row">$ ${ orden.total }</td>
+
+</tr>
+
+</c:forEach>			 
+</tbody>			
+
+
+				  
+		</tbody>
+	</table>
+	</div>
+	</div>
+
 	</div>
 	
-		
-		<!-- Placed at the end of the document so the pages load faster -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" ></script>
-		<script>
-			window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')
-		</script>
-		<script src="<c:url value="/js/bootstrap.min.js" />" type="text/javascript"></script>
 	</body>
 </html>

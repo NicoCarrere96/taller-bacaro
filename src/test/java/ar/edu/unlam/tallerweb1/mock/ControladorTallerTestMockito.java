@@ -1,31 +1,24 @@
 package ar.edu.unlam.tallerweb1.mock;
-import org.junit.Test;
-import org.springframework.web.servlet.ModelAndView;
 
-import ar.edu.unlam.tallerweb1.controladores.ControladorCliente;
-import ar.edu.unlam.tallerweb1.controladores.ControladorTaller;
-import ar.edu.unlam.tallerweb1.modelo.cliente.Cliente;
-import ar.edu.unlam.tallerweb1.modelo.taller.Taller;
-import ar.edu.unlam.tallerweb1.servicios.ServicioCliente;
-import ar.edu.unlam.tallerweb1.servicios.ServicioTaller;
-import ar.edu.unlam.tallerweb1.utils.Especialidad;
-import static org.mockito.Mockito.*;
-import static org.assertj.core.api.Assertions.*;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-import ar.edu.unlam.tallerweb1.SpringTest;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
+import org.junit.Test;
+import org.springframework.web.servlet.ModelAndView;
 
-public class TallerMock{
+import ar.edu.unlam.tallerweb1.controladores.ControladorTaller;
+import ar.edu.unlam.tallerweb1.modelo.taller.Taller;
+import ar.edu.unlam.tallerweb1.servicios.ServicioTaller;
+import ar.edu.unlam.tallerweb1.utils.Especialidad;
 
+public class ControladorTallerTestMockito {
+	
 	private ControladorTaller controladorTaller = new ControladorTaller();
 	private ServicioTaller servicioTaller = mock(ServicioTaller.class);
-	private ControladorCliente controladorCliente = new ControladorCliente();
-	private ServicioCliente servicioCliente = mock(ServicioCliente.class);
 	
 	@Test
 	public void comprobarQueExisteUnTaller() {
@@ -51,25 +44,6 @@ public class TallerMock{
 	}
 	
 	@Test
-	public void buscarClientePorDni() {
-		HttpServletRequest request = mock(HttpServletRequest.class);
-		HttpSession session = mock(HttpSession.class);
-		Cliente cliente = mock(Cliente.class);
-		
-		controladorCliente.setServicioCliente(servicioCliente);
-		
-		when(request.getSession()).thenReturn(session);
-		when(cliente.getDni()).thenReturn((long) 11222333);
-		
-		ModelAndView mav = controladorCliente.buscaCliente(cliente);
-				
-		assertThat(mav.getModel()).isNotEmpty();
-		assertThat(mav.getViewName()).isEqualTo("formularios/cliente");
-
-	}
-	
-	
-	@Test
 	public void darDeAltaUnTaller() {
 		HttpServletRequest request = mock(HttpServletRequest.class);
 		HttpSession session = mock(HttpSession.class);
@@ -87,6 +61,5 @@ public class TallerMock{
 				
 		assertThat(mav.getModel()).isNotEmpty();
 	}
-	
-	
+
 }

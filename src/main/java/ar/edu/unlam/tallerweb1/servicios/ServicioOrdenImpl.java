@@ -8,12 +8,9 @@ import java.nio.file.Paths;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.servlet.ServletOutputStream;
-
 import org.springframework.stereotype.Service;
 
 import com.itextpdf.text.BaseColor;
-import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
@@ -49,6 +46,8 @@ public class ServicioOrdenImpl implements ServicioOrden {
 	public Orden consultarOrdenPorId(Long id) {
 		return ordenDao.consultarOrdenPorId(id);
 	}
+	
+	
 
 	@Override
 	public Orden consultarOrdenPorReserva(Reserva reserva) {

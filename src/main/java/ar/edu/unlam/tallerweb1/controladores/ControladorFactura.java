@@ -1,6 +1,10 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -24,6 +28,7 @@ import ar.edu.unlam.tallerweb1.modelo.cliente.Cliente;
 import ar.edu.unlam.tallerweb1.modelo.cliente.Reserva;
 import ar.edu.unlam.tallerweb1.modelo.taller.OrdenRepuesto;
 import ar.edu.unlam.tallerweb1.modelo.taller.Taller;
+import ar.edu.unlam.tallerweb1.servicios.ServicioEnvioMail;
 import ar.edu.unlam.tallerweb1.servicios.ServicioOrden;
 import ar.edu.unlam.tallerweb1.servicios.ServicioPago;
 import ar.edu.unlam.tallerweb1.servicios.ServicioRepuesto;
@@ -37,11 +42,15 @@ public class ControladorFactura {
 	@Inject
 	private ServicioOrden servicioOrden;
 	@Inject
+	private ServicioOrden servicioCliente;
+	@Inject
 	private ServicioRepuesto servicioRepuesto;
 	@Inject
 	private ServicioReserva servicioReserva;
 	@Inject
 	private ServicioPago servicioPago;
+	@Inject
+	private ServicioEnvioMail servicioEnvioMail;
 	
 	@RequestMapping(path = "/generarFactura", method = RequestMethod.GET)
 	@Transactional
@@ -60,7 +69,7 @@ public class ControladorFactura {
 		
 		servicioReserva.guardarReserva(ordenBuscada.getReserva());
 		servicioOrden.guardarOrden(ordenBuscada);
-		
+		servicioEnvioMail.enviarMail(ordenBuscada.getReserva(),cliente,taller, ordenBuscada);
 		servicioOrden.createPDF(ordenBuscada, listaRepuestos);
 
 		modelo.put("factura", ordenBuscada);
@@ -153,6 +162,23 @@ public class ControladorFactura {
 		this.servicioReserva = servicioReserva;
 	}
 	
+	@RequestMapping(path = "/datosFacturacion", method = RequestMethod.GET)
+	@Transactional	
+	public ModelAndView traerDatosFacturacion(HttpServletRequest request) {
+		
+		ModelMap modelo = new ModelMap();
+		Taller taller = (Taller) request.getSession().getAttribute("taller");
+		List <Reserva> reservas = servicioReserva.consultarReservasPorTaller(taller);
+		List <Orden> orden = new ArrayList<Orden>();
+		for(Reserva reserva : reservas) {
+		orden.add(servicioOrden.consultarOrdenPorReserva(reserva));}
+		modelo.put("reserva",reservas);
+		modelo.put("orden", orden);
+		modelo.put("taller", taller);
+		
+		return new ModelAndView("listados/datosFacturacion", modelo);
+		
+	}
 	
 }
 
