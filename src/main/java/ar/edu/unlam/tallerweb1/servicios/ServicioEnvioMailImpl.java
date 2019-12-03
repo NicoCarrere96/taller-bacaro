@@ -472,7 +472,7 @@ public class ServicioEnvioMailImpl implements ServicioEnvioMail{
  			"  <![endif]-->\r\n" + 
  			"  </head>\r\n" + 
  			"  <body>\r\n" + 
- 			"    <span class=\"preheader\">TP UNLAM-Taller Web-</span>\r\n" + 
+ 			"    <span class=\"preheader\">BuscoTaller.com-</span>\r\n" + 
  			"    <table class=\"email-wrapper\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" role=\"presentation\">\r\n" + 
  			"      <tr>\r\n" + 
  			"        <td align=\"center\">\r\n" + 
@@ -508,7 +508,7 @@ public class ServicioEnvioMailImpl implements ServicioEnvioMail{
  			"                              <table width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\" role=\"presentation\">\r\n" + 
  			"                                <tr>\r\n" + 
  			"                                  <td align=\"center\">\r\n" + 
- 			"                                    <a href=\"http://localhost:8080/taller-bacaro/factura/getPdf?ordenId="+orden.getId()+"\" class=\\\"f-fallback button button--green\\\" target=\\\"_blank\\\">Descargar Factura como PDF</a>\r\n" + 
+ 			"                                    <a href=\"http://localhost:8080/taller-bacaro/factura/getPdf?ordenId="+orden.getReserva().getId()+"\" class=\\\"f-fallback button button--green\\\" target=\\\"_blank\\\">Descargar Factura como PDF</a>\r\n" + 
  			"                                  </td>\r\n" + 
  			"                                </tr>\r\n" + 
  			"                              </table>\r\n" + 

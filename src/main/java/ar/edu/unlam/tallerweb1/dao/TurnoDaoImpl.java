@@ -18,6 +18,7 @@ public class TurnoDaoImpl implements TurnoDao {
 	@Inject 
 	private SessionFactory sessionFactory;
 		
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Turno> listarTurnosPosiblesDao(){
 		

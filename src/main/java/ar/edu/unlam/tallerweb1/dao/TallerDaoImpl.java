@@ -40,6 +40,7 @@ public class TallerDaoImpl implements TallerDao {
 
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Taller> filtrarTalleres(Localidad localidad, Especialidad especialidad) {
 		Criteria resultado = sessionFactory.getCurrentSession().createCriteria(Taller.class);

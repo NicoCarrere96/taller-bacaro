@@ -1,11 +1,7 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
-
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
@@ -42,8 +38,6 @@ public class ControladorFactura {
 	@Inject
 	private ServicioOrden servicioOrden;
 	@Inject
-	private ServicioOrden servicioCliente;
-	@Inject
 	private ServicioRepuesto servicioRepuesto;
 	@Inject
 	private ServicioReserva servicioReserva;
@@ -65,6 +59,7 @@ public class ControladorFactura {
 		for (OrdenRepuesto repuesto : listaRepuestos) {
 			ordenBuscada
 					.setTotal(ordenBuscada.getTotal() + (repuesto.getCantidad() * repuesto.getRepuesto().getPrecio()));
+		repuesto.getRepuesto().setStock(repuesto.getRepuesto().getStock() - repuesto.getCantidad());
 		}
 		ordenBuscada.getReserva().setEstado(EstadoReserva.FACTURADA);
 
