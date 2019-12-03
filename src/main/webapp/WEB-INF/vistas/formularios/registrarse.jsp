@@ -60,7 +60,7 @@
 			<form:input type="text" path="paginaWeb" class="form-control" placeholder="Pagina Web"/>
 			<form:select path="especialidad" class="form-control mb-4">
 				 <form:option value="NONE" label="---Seleccionar Especialidad---"/>
-								 <form:options items="${especialidades}" />
+								 <form:options items="${especialidades}" itemLabel="name"/>
 								</form:select>
 			<form:input type="text" path="manoDeObra" class="form-control" placeholder="Valor De La Mano de Obra"/>
 			<form:button class="btn btn-info my-4 btn-block" type="Submit">Registrese</form:button>

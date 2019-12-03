@@ -10,7 +10,6 @@ public interface OrdenDao {
 	List<Orden> consultarOrdenes();
 	Orden consultarOrdenPorId(Long id);
 	Orden consultarOrdenPorReserva(Reserva reserva);
-	Integer calcularTotal(Orden orden);
 	
 	
 	

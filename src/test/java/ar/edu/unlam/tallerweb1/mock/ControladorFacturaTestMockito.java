@@ -5,16 +5,12 @@ import static org.mockito.Mockito.*;
 
 import java.util.Iterator;
 import java.util.List;
-import java.util.function.Consumer;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.hibernate.Session;
 import org.junit.Test;
 import org.springframework.web.servlet.ModelAndView;
 
-import ar.edu.unlam.tallerweb1.SpringTest;
 import ar.edu.unlam.tallerweb1.controladores.ControladorFactura;
 import ar.edu.unlam.tallerweb1.modelo.Orden;
 import ar.edu.unlam.tallerweb1.modelo.cliente.Reserva;
@@ -24,7 +20,7 @@ import ar.edu.unlam.tallerweb1.servicios.ServicioOrden;
 import ar.edu.unlam.tallerweb1.servicios.ServicioRepuesto;
 import ar.edu.unlam.tallerweb1.servicios.ServicioReserva;
 
-public class ControladorFacturaTestMockito extends SpringTest {
+public class ControladorFacturaTestMockito {
 
 	private ControladorFactura controladorFactura = new ControladorFactura();
 	
@@ -33,6 +29,7 @@ public class ControladorFacturaTestMockito extends SpringTest {
 	private ServicioReserva servicioReserva = mock(ServicioReserva.class);
 	
 	
+	@SuppressWarnings("unchecked")
 	@Test
 	public void buscarOrdenYGenerarFactura() {
 
@@ -61,6 +58,7 @@ public class ControladorFacturaTestMockito extends SpringTest {
 		assertThat(mav.getModelMap().get("listaRepuestos")).isEqualTo(listaRepuestos);
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Test
 	public void buscarFacturaPorReservaYMostrarVista() {
 
