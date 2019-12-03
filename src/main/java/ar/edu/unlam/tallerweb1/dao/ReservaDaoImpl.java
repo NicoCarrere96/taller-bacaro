@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import ar.edu.unlam.tallerweb1.modelo.cliente.Cliente;
 import ar.edu.unlam.tallerweb1.modelo.cliente.Reserva;
+import ar.edu.unlam.tallerweb1.modelo.taller.Repuesto;
 import ar.edu.unlam.tallerweb1.modelo.taller.Taller;
 
 @Repository("reservaDao")
@@ -55,5 +56,11 @@ public class ReservaDaoImpl implements ReservaDao {
 				.add(Restrictions.eq("taller", taller))
 				.list();
 	}
+	@Override
+	public void eliminarReserva(Reserva reserva) {
+		final Session session = sessionFactory.getCurrentSession();
+		session.delete(reserva);
+	}
+	
 
 }

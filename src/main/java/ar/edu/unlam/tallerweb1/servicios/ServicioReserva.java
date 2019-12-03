@@ -16,6 +16,6 @@ public interface ServicioReserva {
 	Reserva buscarReservaPorId(Long id);
 
 	void guardarReserva(Reserva reserva);
-
+	 void eliminarReserva(Reserva reserva);
 
 }

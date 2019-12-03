@@ -14,4 +14,5 @@ public interface ReservaDao {
 	Reserva buscarReservaPorId(Long id);
 
 	void guardarReserva(Reserva reserva);
+	void eliminarReserva(Reserva reserva);
 }

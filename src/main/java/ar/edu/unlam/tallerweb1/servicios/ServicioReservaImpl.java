@@ -41,6 +41,9 @@ public class ServicioReservaImpl implements ServicioReserva {
 	public List<Reserva> consultarReservasPorTaller(Taller taller) {
 		return reservaDao.consultarReservasPorTaller(taller);
 	}
-
+	@Override
+	public void eliminarReserva(Reserva reserva) {
+		 reservaDao.eliminarReserva(reserva);
+	}
 }
 

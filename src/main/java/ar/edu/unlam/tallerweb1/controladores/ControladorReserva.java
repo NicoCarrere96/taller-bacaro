@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import ar.edu.unlam.tallerweb1.modelo.cliente.Cliente;
 import ar.edu.unlam.tallerweb1.modelo.cliente.Reserva;
 import ar.edu.unlam.tallerweb1.modelo.cliente.Turno;
+import ar.edu.unlam.tallerweb1.modelo.taller.Repuesto;
 import ar.edu.unlam.tallerweb1.modelo.taller.Taller;
 import ar.edu.unlam.tallerweb1.servicios.ServicioCliente;
 import ar.edu.unlam.tallerweb1.servicios.ServicioReserva;
@@ -95,6 +97,20 @@ public class ControladorReserva {
 		servicioTurno.restarCantidad(reserva.getTurno().getId());
 		
 		return new ModelAndView("redirect:cliente?dni=" + reserva.getCliente().getDni());
+	}
+	
+
+
+	@RequestMapping("/eliminarReserva")
+	@Transactional
+	public ModelAndView eliminarReserva(@RequestParam("idReserva") Long idReserva) {
+
+		
+			Reserva reserva = servicioReserva.buscarReservaPorId(idReserva);
+			
+			servicioReserva.eliminarReserva(reserva);
+			return new ModelAndView("redirect:cliente?dni=" + reserva.getCliente().getDni());
+		
 	}
 
 }
