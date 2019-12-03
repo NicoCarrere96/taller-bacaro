@@ -77,7 +77,7 @@
 	</table>
 	</div>
 	
-	<a href="<c:url value="/cliente?dni=${ dniCliente }"/>" class="btn btn-lg btn-block btn-info" role="button" ><span class="glyphicon glyphicon-hand-left"></span></a>	 
+	<a href="<c:url value="/cliente?dni=${ dniCliente }"/>" class="btn btn-lg btn-info" role="button" ><span class="glyphicon glyphicon-hand-left"></span></a>	 
 	
 	
 			<!-- Placed at the end of the document so the pages load faster -->

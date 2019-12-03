@@ -81,7 +81,7 @@
 			</c:otherwise>
 		</c:choose>
 		
-		<a href="<c:url value="/"/>" class="btn btn-lg btn-block btn-info" role="button" ><span class="glyphicon glyphicon-hand-left"></span></a>	 
+		<a href="<c:url value="/"/>" class="btn btn-lg btn-info" role="button" ><span class="glyphicon glyphicon-hand-left"></span></a>	 
 		    
 	</div>
 		

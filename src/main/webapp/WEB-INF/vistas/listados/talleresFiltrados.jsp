@@ -63,7 +63,7 @@
 	</div>
 	<br>
 	<br>
-	<a href="<c:url value="/taller/filtro?dniCliente=${ dniCliente }"/>" class="btn btn-lg btn-block btn-info" role="button" ><span class="glyphicon glyphicon-hand-left"></span></a>	 
+	<a href="<c:url value="/taller/filtro?dniCliente=${ dniCliente }"/>" class="btn btn-lg btn-info" role="button" ><span class="glyphicon glyphicon-hand-left"></span></a>	 
 	
 	
 	
