@@ -35,7 +35,6 @@ public class ControladorOrdenTestMockito {
 		
 		Long idReserva = 1L;
 		
-		Orden orden = mock(Orden.class);
 		Reserva reserva = mock(Reserva.class);
 		Taller taller = mock(Taller.class);
 		HttpServletRequest request = mock(HttpServletRequest.class);
@@ -71,6 +70,7 @@ public class ControladorOrdenTestMockito {
 		assertThat(mav.getViewName()).isEqualTo("redirect:/login");
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Test
 	public void verOrdenPresupuestada() {
 		
