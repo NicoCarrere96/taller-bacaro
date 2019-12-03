@@ -23,12 +23,47 @@ INSERT INTO `taller-bacaro`.`usuario` (`id`, `email`, `password`, `rol`) VALUES 
 INSERT INTO `taller-bacaro`.`usuario` (`id`, `email`, `password`, `rol`) VALUES ('2', 'admin@racingteam.com', '1111', 'admin');
 INSERT INTO `taller-bacaro`.`usuario` (`id`, `email`, `password`, `rol`) VALUES ('3', 'cacho@gomeriacacho.com', '1111', 'taller');
 INSERT INTO `taller-bacaro`.`usuario` (`id`, `email`, `password`, `rol`) VALUES ('4', 'gg@gomeriag.com', '1111', 'taller');
+
 INSERT INTO `taller-bacaro`.`taller` (`id`, `calle`, `especialidad`, `manoDeObra`, `nombreDelDuenio`, `nombreDelTaller`, `numero`, `telefono`, `localidad_id`, `usuario_id`) 
 VALUES ('1', 'Tte.Gral.Juan Domingo Peron', '0', '500.0', 'Roberto', 'Tito', '2190',  '46203852', '2', '1');
 INSERT INTO `taller-bacaro`.`taller` (`id`, `calle`, `especialidad`, `manoDeObra`, `nombreDelDuenio`, `nombreDelTaller`, `numero`, `telefono`, `localidad_id`, `usuario_id`) 
 VALUES ('2', 'El Calden', '0', '485.0', 'Carlos', 'Gomeria Cacho', '1821',  '44871188', '2', '3');
 INSERT INTO `taller-bacaro`.`taller` (`id`, `calle`, `especialidad`, `manoDeObra`, `nombreDelDuenio`, `nombreDelTaller`, `numero`, `telefono`, `localidad_id`, `usuario_id`) 
 VALUES ('3', 'Justo Daract', '0', '685.0', 'Gerardo', 'Gomeria G', '1500',  '44871199', '2', '4');
+INSERT INTO `taller-bacaro`.`taller` (`id`, `calle`, `especialidad`, `manoDeObra`, `nombreDelDuenio`, `nombreDelTaller`, `numero`, `telefono`, `localidad_id`, `usuario_id`) 
+VALUES ('4', 'migueletes', '1', '582.0', 'Armando', 'Taller-Armando', '1998',  '44875366', '2', '1');
+INSERT INTO `taller-bacaro`.`taller` (`id`, `calle`, `especialidad`, `manoDeObra`, `nombreDelDuenio`, `nombreDelTaller`, `numero`, `telefono`, `localidad_id`, `usuario_id`) 
+VALUES ('5', 'el blanquillo', '2', '582.0', 'Juan', 'lubri-movil', '2210',  '44873366', '2', '1');
+INSERT INTO `taller-bacaro`.`taller` (`id`, `calle`, `especialidad`, `manoDeObra`, `nombreDelDuenio`, `nombreDelTaller`, `numero`, `telefono`, `localidad_id`, `usuario_id`) 
+VALUES ('6', 'av. esteban crovara', '3', '582.0', 'mariano', 'Ms', '5447',  '44870215', '2', '1');
+INSERT INTO `taller-bacaro`.`taller` (`id`, `calle`, `especialidad`, `manoDeObra`, `nombreDelDuenio`, `nombreDelTaller`, `numero`, `telefono`, `localidad_id`, `usuario_id`) 
+VALUES ('7', 'cno. de cintura', '4', '582.0', 'Arnaldo', 'Jb', '7781',  '44875577', '2', '1');
+INSERT INTO `taller-bacaro`.`taller` (`id`, `calle`, `especialidad`, `manoDeObra`, `nombreDelDuenio`, `nombreDelTaller`, `numero`, `telefono`, `localidad_id`, `usuario_id`) 
+VALUES ('8', 'av. italia', '5', '582.0', 'Pedro', 'cisa', '1200',  '44878967', '2', '1');
+INSERT INTO `taller-bacaro`.`taller` (`id`, `calle`, `especialidad`, `manoDeObra`, `nombreDelDuenio`, `nombreDelTaller`, `numero`, `telefono`, `localidad_id`, `usuario_id`) 
+VALUES ('9', 'cno. de cintura', '6', '582.0', 'José', 'Pepe', '4300',  '44873152', '2', '1');
+
+
+INSERT INTO `taller-bacaro`.`taller` (`id`, `calle`, `especialidad`, `manoDeObra`, `nombreDelDuenio`, `nombreDelTaller`, `numero`, `telefono`, `localidad_id`, `usuario_id`) 
+VALUES ('10', 'Av. Rivadavia', '0', '582.0', 'Guido', 'Lopez', '17332',  '44891148', '1', '1');
+INSERT INTO `taller-bacaro`.`taller` (`id`, `calle`, `especialidad`, `manoDeObra`, `nombreDelDuenio`, `nombreDelTaller`, `numero`, `telefono`, `localidad_id`, `usuario_id`) 
+VALUES ('11', 'Tucuman', '1', '582.0', 'Luis', 'Los santiagueños', '951',  '46294690', '1', '1');
+INSERT INTO `taller-bacaro`.`taller` (`id`, `calle`, `especialidad`, `manoDeObra`, `nombreDelDuenio`, `nombreDelTaller`, `numero`, `telefono`, `localidad_id`, `usuario_id`) 
+VALUES ('12', 'Carlos Pellegrini', '2', '582.0', 'Juan', 'El fortin', '534',  '46297680', '1', '1');
+INSERT INTO `taller-bacaro`.`taller` (`id`, `calle`, `especialidad`, `manoDeObra`, `nombreDelDuenio`, `nombreDelTaller`, `numero`, `telefono`, `localidad_id`, `usuario_id`) 
+VALUES ('13', 'Dr. Rodolfo Monte', '3', '582.0', 'mariano', 'Mr', '381',  '', '1', '1');
+INSERT INTO `taller-bacaro`.`taller` (`id`, `calle`, `especialidad`, `manoDeObra`, `nombreDelDuenio`, `nombreDelTaller`, `numero`, `telefono`, `localidad_id`, `usuario_id`) 
+VALUES ('14', 'Av. Eva Peron', '4', '582.0', 'Carlos', 'Edg', '1388',  '46962939', '1', '1');
+INSERT INTO `taller-bacaro`.`taller` (`id`, `calle`, `especialidad`, `manoDeObra`, `nombreDelDuenio`, `nombreDelTaller`, `numero`, `telefono`, `localidad_id`, `usuario_id`) 
+VALUES ('15', 'Gral. Juan Jose Valle', '5', '582.0', 'Walter', 'GPS-Taller', '233',  '46277839', '1', '1');
+INSERT INTO `taller-bacaro`.`taller` (`id`, `calle`, `especialidad`, `manoDeObra`, `nombreDelDuenio`, `nombreDelTaller`, `numero`, `telefono`, `localidad_id`, `usuario_id`) 
+VALUES ('16', 'Av. Hipolito Yrigoyen', '6', '582.0', 'Damian', 'El colorado', '268',  '22003046', '1', '1');
+
+INSERT INTO `taller-bacaro`.`taller` (`id`, `calle`, `especialidad`, `manoDeObra`, `nombreDelDuenio`, `nombreDelTaller`, `numero`, `telefono`, `localidad_id`, `usuario_id`) 
+VALUES ('17', 'Sarmiento', '1', '582.0', 'Raul', 'Customcast', '2134',  '46290549', '3', '1');
+INSERT INTO `taller-bacaro`.`taller` (`id`, `calle`, `especialidad`, `manoDeObra`, `nombreDelDuenio`, `nombreDelTaller`, `numero`, `telefono`, `localidad_id`, `usuario_id`) 
+VALUES ('18', 'Av. Zeballos', '2', '582.0', 'Matias', 'La ruta', '2873',  '46241106', '3', '1');
+
 
 INSERT INTO `taller-bacaro`.`reserva` (`id`, `estado`, `fecha`, `problema`, `cliente_dni`, `taller_id`) VALUES ('1', '0', '20190917', 'algo esta roto', '11222333', '1');
 INSERT INTO `taller-bacaro`.`reserva` (`id`, `estado`, `fecha`, `problema`, `cliente_dni`, `taller_id`) VALUES ('2', '2', '20190917', 'algo esta roto', '22333444', '1');

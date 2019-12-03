@@ -68,7 +68,6 @@ public class ControladorFactura {
 		modelo.put("listaRepuestos", listaRepuestos);
 		return new ModelAndView("facturaGenerada", modelo);
 	
-
 }
 	
 	@RequestMapping(path = "/generadaFactura", method = RequestMethod.GET)
@@ -157,7 +156,6 @@ public class ControladorFactura {
 	public void setServicioReserva(ServicioReserva servicioReserva) {
 		this.servicioReserva = servicioReserva;
 	}
-	
 	
 }
 
