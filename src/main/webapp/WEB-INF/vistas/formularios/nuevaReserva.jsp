@@ -69,7 +69,7 @@
 
 		</form:form>
 	</div>
-
+<a href="<c:url value="/taller/filtro?dniCliente=${ dniCliente }"/>" class="btn btn-lg  btn-info" role="button" ><span class="glyphicon glyphicon-hand-left"></span></a>	 
 
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

@@ -16,7 +16,7 @@
   				<h1>BuscoTaller.com</h1>
   				<p>La manera mas facil y comoda de conseguir taller</p> 
 
-  				 <span class="nav navbar-nav navbar-right">
+  				 <span class="nav navbar-nav">
 					<a href="${pageContext.request.contextPath}/cerrar-sesion"><span class="glyphicon glyphicon-log-in"
 							style="color: white"></span> Logout</a>
 				 </span>
@@ -53,6 +53,6 @@
 	<a href="modificarTaller" class="btn btn-success" style="width:20%">Modificar Datos</a>
 	</div>
 	<br><br>
-	<a href="<c:url value="/login"/>" class="btn btn-lg btn-block btn-info" role="button" ><span class="glyphicon glyphicon-hand-left"></span></a>	 
+	<a href="<c:url value="/login"/>" class="btn btn-lg  btn-info" role="button" ><span class="glyphicon glyphicon-hand-left"></span></a>	 
 	</body>
 </html>

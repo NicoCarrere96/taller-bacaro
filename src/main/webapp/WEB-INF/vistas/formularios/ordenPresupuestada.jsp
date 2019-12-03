@@ -15,6 +15,10 @@
 		 <div class="jumbotron text-center" style="background-color:#0d80b3; color:white">
   				<h1>BuscoTaller.com</h1>
   				<p>La manera mas facil y comoda de conseguir taller</p> 
+  				 <span class="nav navbar-nav">
+					<a href="${pageContext.request.contextPath}/cerrar-sesion"><span class="glyphicon glyphicon-log-in"
+							style="color: white"></span> Logout</a>
+				 </span>
 				</div>
 
 	<br>
