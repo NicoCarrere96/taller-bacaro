@@ -5,6 +5,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+import ar.edu.unlam.tallerweb1.modelo.taller.Taller;
 
 
 
@@ -18,6 +21,9 @@ public class Turno {
 	private String fecha;
 	private String horario;
 	private Integer cantidad;
+	
+	@ManyToOne
+	private Taller taller;
 	
 	public Long getId() {
 		return id;
@@ -43,7 +49,11 @@ public class Turno {
 	public void setCantidad(Integer cantidad) {
 		this.cantidad = cantidad;
 	}
-
-
+	public Taller getTaller() {
+		return taller;
+	}
+	public void setTaller(Taller taller) {
+		this.taller = taller;
+	}
 
 }

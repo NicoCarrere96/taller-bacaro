@@ -24,11 +24,11 @@
 	<nav>
 	
 		<div class="w3-bar w3-dark-grey">
-				<a href="<c:url value="/reserva/lista"/>" class="w3-bar-item w3-button w3-mobile" style="width:20%">Consultar Reservas</a>
+								<a href="<c:url value="/reserva/lista"/>" class="w3-bar-item w3-button w3-mobile" style="width:20%">Consultar Reservas</a>
   				<a href="<c:url value="/stockRepuestos/abmRepuestos" />" class="w3-bar-item w3-button w3-mobile" style="width:20%">Listado de Repuestos</a>
   				<a href="<c:url value="/factura/datosFacturacion" />" class="w3-bar-item w3-button w3-mobile" style="width:20%">Datos Facturacion</a>
   				<a href="<c:url value="/taller/homeTaller" />" class="w3-bar-item w3-button w3-mobile" style="width:20%">Datos Taller</a>
-  				<a href="<c:url value="/turno/abmTurnos" />" class="w3-bar-item w3-button w3-mobile" style="width:20%">Listado Turnos</a>
+  				<a href="<c:url value="/turno/abmTurno" />" class="w3-bar-item w3-button w3-mobile" style="width:20%">Listado Turnos</a>
 	  			
 		</div>
 	
@@ -39,37 +39,37 @@
 			<div class="col-md-12">
 				<div class="row">
 					<div class="col-md-12">
-						<h1>Lista de Repuestos</h1>
+						<h1>Lista de Turnos</h1>
 						<a class="btn btn-default btn-circle"
-							href="<c:url value="agregarRepuesto" />"><span
-							class="glyphicon glyphicon"></span> Agregar Repuesto</a>
+							href="<c:url value="agregarTurno" />"><span
+							class="glyphicon glyphicon"></span> Agregar Turno</a>
 						<br>
 
 						<table class="table table-striped custab">
 							<thead>
 								<tr>
 									<th scope="col">Id</th>
-									<th scope="col">Nombre</th>
-									<th scope="col">Precio</th>
-									<th scope="col">Stock</th>
+									<th scope="col">Fecha</th>
+									<th scope="col">Horario</th>
+									<th scope="col">Cantidad</th>
 									<th scope="col">Editar</th>
 									<th scope="col">Eliminar</th>
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach var="r" items="${repuesto}">
+								<c:forEach var="t" items="${turno}">
 									<tr>
-										<td><c:out value="${r.id}" /></td>
-										<td><c:out value="${r.nombre}" /></td>
-										<td><c:out value="${r.precio}" /></td>
-										<td><c:out value="${r.stock}" /></td>
+										<td><c:out value="${t.id}" /></td>
+										<td><c:out value="${t.fecha}" /></td>
+										<td><c:out value="${t.horario}" /></td>
+										<td><c:out value="${t.cantidad}" /></td>
 										<td><c:out value="" /><a
 											class="btn btn-default btn-circle"
-											href="<c:url value="modificarRepuesto?idRepuesto=${r.getId()}" />"><span
+											href="<c:url value="modificarTurno?idTurno=${t.getId()}" />"><span
 												class="glyphicon glyphicon-pencil"></span></a></td>
 										<td><c:out value="" /> <a
 											class="btn btn-default btn-circle"
-											href="<c:url value="eliminarRepuesto?idRepuesto=${r.getId()}" />"><span
+											href="<c:url value="eliminarTurno?idTurno=${t.getId()}" />"><span
 												class="glyphicon glyphicon-trash"></span> </a></td>
 									</tr>
 								</c:forEach>

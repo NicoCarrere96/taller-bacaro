@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ar.edu.unlam.tallerweb1.dao.TurnoDao;
 
 import ar.edu.unlam.tallerweb1.modelo.cliente.Turno;
+import ar.edu.unlam.tallerweb1.modelo.taller.Taller;
 
 @Service("servicioTurno")
 @Transactional
@@ -40,6 +41,23 @@ public class ServicioTurnoImpl implements ServicioTurno {
 	@Override
 	public Turno consultarTurnoPorId(Long id) {
 		return turnoDao.consultarTurnoPorId(id);
+	}
+	
+	@Override
+	public List<Turno> consultarTurnosPorTaller(Taller taller) {
+		return turnoDao.consultarTurnoPorTaller(taller);
+	}
+	
+	
+	@Override
+	public void actualizarTurno(Turno turno) {
+		turnoDao.actualizarTurno(turno);
+	}
+	
+
+	@Override
+	public void eliminarTurno(Turno turno) {
+		turnoDao.eliminarTurno(turno);
 	}
 
 }

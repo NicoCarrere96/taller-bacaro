@@ -47,12 +47,12 @@ VALUES ('8', 'Nazar', '5', '800', 'salvador', 'Suspenciones Salvita', '450', '44
 INSERT INTO `taller-bacaro`.`taller` (`id`, `calle`, `especialidad`, `manoDeObra`, `nombreDelDuenio`, `nombreDelTaller`, `numero`, `telefono`, `localidad_id`, `usuario_id`) 
 VALUES ('9', 'Tarradellas', '6', '800', 'Francesco', 'Escapate', '116', '44333333', '1', '9');  
 
-INSERT INTO turno (`id`, `fecha`, `horario`, `cantidad`)
-VALUES 	(1	,'24/02/2020', '08:00 - 14:00', 3),
-		(2	,'25/02/2020', '08:00 - 14:00', 2),
-		(3	,'26/02/2020', '08:00 - 14:00', 2),
-        (4	,'27/02/2020', '08:00 - 14:00', 1),
-		(5	,'28/02/2020', '08:00 - 14:00', 1);
+INSERT INTO turno (`id`, `fecha`, `horario`, `cantidad`, `taller_id` )
+VALUES 	(1	,'24/02/2020', '08:00 - 14:00', 3, 1),
+		(2	,'25/02/2020', '08:00 - 14:00', 2, 1),
+		(3	,'26/02/2020', '08:00 - 14:00', 2, 1),
+        (4	,'27/02/2020', '08:00 - 14:00', 1, 1),
+		(5	,'28/02/2020', '08:00 - 14:00', 1, 1);
 
 INSERT INTO `taller-bacaro`.`reserva` (`id`, `estado`, `turno_id`, `problema`, `cliente_dni`, `taller_id`) VALUES ('1', '0', '4', 'algo esta roto', '11222333', '1');
 INSERT INTO `taller-bacaro`.`reserva` (`id`, `estado`, `turno_id`, `problema`, `cliente_dni`, `taller_id`) VALUES ('2', '2', '4', 'algo esta roto', '22333444', '1');

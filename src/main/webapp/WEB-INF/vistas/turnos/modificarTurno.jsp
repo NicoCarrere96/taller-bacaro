@@ -24,7 +24,7 @@
 	<nav>
 	
 		<div class="w3-bar w3-dark-grey">
-				<a href="<c:url value="/reserva/lista"/>" class="w3-bar-item w3-button w3-mobile" style="width:20%">Consultar Reservas</a>
+								<a href="<c:url value="/reserva/lista"/>" class="w3-bar-item w3-button w3-mobile" style="width:20%">Consultar Reservas</a>
   				<a href="<c:url value="/stockRepuestos/abmRepuestos" />" class="w3-bar-item w3-button w3-mobile" style="width:20%">Listado de Repuestos</a>
   				<a href="<c:url value="/factura/datosFacturacion" />" class="w3-bar-item w3-button w3-mobile" style="width:20%">Datos Facturacion</a>
   				<a href="<c:url value="/taller/homeTaller" />" class="w3-bar-item w3-button w3-mobile" style="width:20%">Datos Taller</a>
@@ -33,27 +33,42 @@
 		</div>
 	
 	</nav>
-	
-	<div class="" style="margin:20px;">
-	<h1>Bienvenido Sr. ${ taller.nombreDelDuenio }</h1> 
-	<br>
-	
-	<span class="w3-white" style="text-shadow:1px 1px 0 #444">Nombre Del Taller: </span>${ taller.nombreDelTaller }
-	<br><br>
-	<span class="w3-white" style="text-shadow:1px 1px 0 #444">Direccion: </span>${ taller.calle } <span>  </span>${ taller.numero } <span> - </span>${ taller.localidad.nombre }<span> , </span>${ taller.localidad.provincia.nombre }
-	<br><br>
-	<span class="w3-white" style="text-shadow:1px 1px 0 #444">Email: </span>${ taller.usuario.email }
-	<br><br>
-	<span class="w3-white" style="text-shadow:1px 1px 0 #444">Telefono:  </span>${taller.telefono }
-	<br><br>
-	<span class="w3-white" style="text-shadow:1px 1px 0 #444">Pagina Web: </span>${ taller.paginaWeb }
-	<br><br>
-	<span class="w3-white" style="text-shadow:1px 1px 0 #444">Especialidad: </span>${ taller.especialidad.name }
-	<br><br>	
-	
-	<a href="modificarTaller" class="btn btn-success" style="width:20%">Modificar Datos</a>
-	</div>
-	<br><br>
-	<a href="<c:url value="/login"/>" class="btn btn-lg  btn-info" role="button" ><span class="glyphicon glyphicon-hand-left"></span></a>	 
-	</body>
-</html>
+		<br>
+	<div class="container">
+	<h1>Modificar Turno</h1>
+	<form:form action="actualizarTurno" modelAttribute="turno"
+		method="POST">
+		<div class="form-row">
+			<div class="form-group col-md-12">
+
+
+				<form:hidden path="id"/>
+				<form:hidden path="taller.id"/>
+					<div class="form-group col-md-12">
+					<label for="fecha">Fecha</label>
+					<form:input type="text" required="required" class="form-control"
+						id="fecha" path="fecha" placeholder="Fecha" />
+				</div>
+				
+				<div class="form-group col-md-12">
+					<label for="horario">Horario</label>
+					<form:input type="text" required="required" class="form-control"
+						id="horario" path="horario" placeholder="Horario" />
+				</div>
+
+				<div class="form-group col-md-12">
+					<label for="cantidad">Cantidad</label>
+					<form:input type="number" required="required" class="form-control"
+						id="cantidad" path="cantidad" placeholder="Cantidad" />
+				</div>			
+								
+				</div>
+
+				<input type="submit" class="btn btn-lg btn-block btn-info" style= "color:white"
+					value="Modificar Turno">
+			</div>
+	</form:form>
+</div>
+<a href="<c:url value="/turno/abmTurnos"/>" class="btn btn-lg btn-info" role="button" ><span class="glyphicon glyphicon-hand-left"></span></a>	
+
+</body > </html> 
