@@ -2,21 +2,25 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
-	<head>
-	<!-- Bootstrap core CSS -->
-	    <link href="<c:url value="/css/bootstrap.min.css" />" rel="stylesheet" >
-	<!-- w3 CSS -->    
-	     <link href="<c:url value="/css/w3.css" />" rel="stylesheet" >
-	    <!-- Bootstrap theme -->
-	    <link href="<c:url value="/css/bootstrap-theme.min.css" />" rel="stylesheet">
-	</head>
-	
-	<body >
-		 <div class="jumbotron text-center" style="background-color:#0d80b3; color:white">
-  				<h1>BuscoTaller.com</h1>
-  				<p>La manera mas facil y comoda de conseguir taller</p> 
+<head>
+<!-- Bootstrap core CSS -->
+<link href="<c:url value="/css/bootstrap.min.css" />" rel="stylesheet">
+<!-- Bootstrap theme -->
+<link href="<c:url value="/css/bootstrap-theme.min.css" />"
+	rel="stylesheet">
+<link href="<c:url value="/css/w3.css" />" rel="stylesheet">
 
-  				 <span class="nav navbar-nav navbar-right">
+
+
+
+<title>Registro</title>
+</head>
+<body>
+	<div class="jumbotron text-center"
+		style="background-color: #0d80b3; color: white">
+		<h1>BuscoTaller.com</h1>
+		<p>La manera mas facil y comoda de conseguir taller</p>
+		<span class="nav navbar-nav">
 					<a href="${pageContext.request.contextPath}/cerrar-sesion"><span class="glyphicon glyphicon-log-in"
 							style="color: white"></span> Logout</a>
 				 </span>
@@ -128,9 +132,9 @@
 
 
 		</form:form>
-
+<a href="<c:url value="/taller/homeTaller"/>" class="btn btn-lg  btn-info" role="button" ><span class="glyphicon glyphicon-hand-left"></span></a>	 
 	</div>
-
+    <a href="<c:url value="/taller/homeTaller"/>" class="btn btn-lg btn-info" role="button" ><span class="glyphicon glyphicon-hand-left"></span></a>	
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

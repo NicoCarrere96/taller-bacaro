@@ -18,9 +18,10 @@ public class ServicioTurnoImpl implements ServicioTurno {
 	@Inject
 	private TurnoDao turnoDao;
 
+
 	@Override
 	public List<Turno> listarTurnosPosibles() {
-		return turnoDao.listarTurnosPosiblesDao();
+		return turnoDao.listarTurnosPosibles();
 	}
 
 	@Override
@@ -36,10 +37,15 @@ public class ServicioTurnoImpl implements ServicioTurno {
 	public void guardarTurno(Turno turno) {
 		turnoDao.guardarTurno(turno);
 	}
-
+    
 	@Override
-	public Turno consultarTurnoPorId(Long id) {
+	public Turno consultarTurnoPorId(Long id){
 		return turnoDao.consultarTurnoPorId(id);
+	}
+	
+	@Override
+	public List<Turno> consultarTurno(){
+		return turnoDao.consultarTurno();
 	}
 
 }

@@ -16,7 +16,16 @@
   				<h1>BuscoTaller.com</h1>
   				<p>La manera mas facil y comoda de conseguir taller</p> 
 
-  				 <span class="nav navbar-nav navbar-right">
+<<<<<<< HEAD
+  				 <span class="nav navbar-nav">
+=======
+<body>
+	<div class="jumbotron text-center"
+		style="background-color: #0d80b3; color: white">
+		<h1>BuscoTaller.com</h1>
+		<p>La manera mas facil y comoda de conseguir taller</p>
+		<span class="nav navbar-nav">
+>>>>>>> turnos
 					<a href="${pageContext.request.contextPath}/cerrar-sesion"><span class="glyphicon glyphicon-log-in"
 							style="color: white"></span> Logout</a>
 				 </span>
@@ -82,6 +91,6 @@
 		</div>
 	</div>
 	<br><br>
-	<a href="<c:url value="/taller/homeTaller"/>" class="btn btn-lg btn-block btn-info" role="button" ><span class="glyphicon glyphicon-hand-left"></span></a>	 
+	<a href="<c:url value="/taller/homeTaller"/>" class="btn btn-lg btn-info" role="button" ><span class="glyphicon glyphicon-hand-left"></span></a>	 
 </body>
 </html>

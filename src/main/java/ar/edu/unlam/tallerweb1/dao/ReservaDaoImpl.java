@@ -37,7 +37,7 @@ public class ReservaDaoImpl implements ReservaDao {
 	@Override
 	public void guardarReserva(Reserva reserva) {
 		Session session = sessionFactory.getCurrentSession();
-		session.saveOrUpdate(reserva);
+		session.save(reserva);
 	}
 
 	@Override
@@ -55,5 +55,24 @@ public class ReservaDaoImpl implements ReservaDao {
 				.add(Restrictions.eq("taller", taller))
 				.list();
 	}
+	
+	@Override
+	public List<Reserva> buscarFechasOcupadas(String fecha) {
+		Session session = sessionFactory.getCurrentSession();
+		return (List<Reserva>) session.createCriteria(Reserva.class)
+				.add(Restrictions.like("fecha", fecha))
+				.list();
+	}
+	
+	@Override
+	public List<Reserva> consultarTurnoDao(Long turnoId){
+		final Session session = sessionFactory.getCurrentSession();
+		List <Reserva> listasreservas = session.createCriteria(Reserva.class)
+				.createAlias("turno", "tur")
+				.add(Restrictions.eq("tur.id", turnoId))
+				.list();
+		return listasreservas;
+	}
+	
 
 }

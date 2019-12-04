@@ -8,15 +8,16 @@
 	<!-- w3 CSS -->    
 	     <link href="<c:url value="/css/w3.css" />" rel="stylesheet" >
 	    <!-- Bootstrap theme -->
-	    <link href="<c:url value="/css/bootstrap-theme.min.css" />" rel="stylesheet">
-	</head>
-	
-	<body >
-		 <div class="jumbotron text-center" style="background-color:#0d80b3; color:white">
-  				<h1>BuscoTaller.com</h1>
-  				<p>La manera mas facil y comoda de conseguir taller</p> 
-
-  				 <span class="nav navbar-nav navbar-right">
+<link href="<c:url value="/css/bootstrap-theme.min.css" />"
+	rel="stylesheet">
+<title>Reserva de turno</title>
+</head>
+<body>
+	<div class="jumbotron text-center"
+		style="background-color: #0d80b3; color: white">
+		<h1>BuscoTaller.com</h1>
+		<p>La manera mas facil y comoda de conseguir taller</p>
+		 <span class="nav navbar-nav">
 					<a href="${pageContext.request.contextPath}/cerrar-sesion"><span class="glyphicon glyphicon-log-in"
 							style="color: white"></span> Logout</a>
 				 </span>
@@ -94,7 +95,7 @@
 			</tbody>
 		</table>
 		<br><br>
-	<a href="<c:url value="/taller/homeTaller"/>" class="btn btn-lg btn-block btn-info" role="button" ><span class="glyphicon glyphicon-hand-left"></span></a>	 
+	<a href="<c:url value="/taller/homeTaller"/>" class="btn btn-lg btn-info" role="button" ><span class="glyphicon glyphicon-hand-left"></span></a>	 
 	</div>
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script

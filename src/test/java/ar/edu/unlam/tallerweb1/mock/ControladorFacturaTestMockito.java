@@ -13,9 +13,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.controladores.ControladorFactura;
 import ar.edu.unlam.tallerweb1.modelo.Orden;
+import ar.edu.unlam.tallerweb1.modelo.cliente.Cliente;
 import ar.edu.unlam.tallerweb1.modelo.cliente.Reserva;
 import ar.edu.unlam.tallerweb1.modelo.taller.OrdenRepuesto;
 import ar.edu.unlam.tallerweb1.modelo.taller.Taller;
+import ar.edu.unlam.tallerweb1.servicios.ServicioEnvioMail;
 import ar.edu.unlam.tallerweb1.servicios.ServicioOrden;
 import ar.edu.unlam.tallerweb1.servicios.ServicioRepuesto;
 import ar.edu.unlam.tallerweb1.servicios.ServicioReserva;
@@ -27,6 +29,7 @@ public class ControladorFacturaTestMockito {
 	private ServicioOrden servicioOrden = mock(ServicioOrden.class);
 	private ServicioRepuesto servicioRepuesto = mock(ServicioRepuesto.class);
 	private ServicioReserva servicioReserva = mock(ServicioReserva.class);
+	private ServicioEnvioMail servicioEnvioMail = mock(ServicioEnvioMail.class);
 	
 	
 	@SuppressWarnings("unchecked")
@@ -38,14 +41,17 @@ public class ControladorFacturaTestMockito {
 		Orden orden = mock(Orden.class);
 		Reserva reserva = mock(Reserva.class);
 		Taller taller = mock(Taller.class);
+		Cliente cliente = mock(Cliente.class);
 		List<OrdenRepuesto> listaRepuestos = mock(List.class);
 		Iterator<OrdenRepuesto> iterator = mock(Iterator.class);
 		controladorFactura.setServicioOrden(servicioOrden);
 		controladorFactura.setServicioRepuesto(servicioRepuesto);
 		controladorFactura.setServicioReserva(servicioReserva);
+		controladorFactura.setServicioEnvioMail(servicioEnvioMail);
 		
 		when(servicioOrden.consultarOrdenPorId(ordenId)).thenReturn(orden);
 		when(servicioRepuesto.consultarRepuestosPorOrden(orden)).thenReturn(listaRepuestos);
+		doNothing().when(servicioEnvioMail).enviarMail(reserva, cliente, taller, orden);
 		when(orden.getReserva()).thenReturn(reserva);
 		when(reserva.getTaller()).thenReturn(taller);		
 		when(listaRepuestos.iterator()).thenReturn(iterator);
