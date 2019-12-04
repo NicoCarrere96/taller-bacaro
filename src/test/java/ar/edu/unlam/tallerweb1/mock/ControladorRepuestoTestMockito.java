@@ -54,7 +54,8 @@ public class ControladorRepuestoTestMockito extends SpringTest{
 	private Repuesto repuesto1 , repuesto2;
 	private List<Repuesto> listaDeRepuestos;
 	private Session sesion;
-
+	
+	@Mock
 	private ServicioRepuesto servicioRepuesto;
 
 	@Before

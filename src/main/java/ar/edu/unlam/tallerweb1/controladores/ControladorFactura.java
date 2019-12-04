@@ -156,6 +156,10 @@ public class ControladorFactura {
 	public void setServicioReserva(ServicioReserva servicioReserva) {
 		this.servicioReserva = servicioReserva;
 	}
+	
+	public void setServicioEnvioMail(ServicioEnvioMail servicioEnvioMail) {
+		this.servicioEnvioMail = servicioEnvioMail;		
+	}
 
 	@RequestMapping(path = "/datosFacturacion", method = RequestMethod.GET)
 	@Transactional

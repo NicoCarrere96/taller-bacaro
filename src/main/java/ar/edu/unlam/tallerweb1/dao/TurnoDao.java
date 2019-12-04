@@ -10,6 +10,8 @@ public interface TurnoDao {
 
 	Turno consultarTurnoPorId(Long id);
 
-	List<Turno> listarTurnosPosiblesDao();
+	List<Turno> listarTurnosPosibles();
 
+	List<Turno> consultarFechaHora(int horario);
+	List<Turno> consultarTurno();
 }

@@ -13,14 +13,14 @@ import org.springframework.stereotype.Repository;
 import ar.edu.unlam.tallerweb1.modelo.cliente.Turno;
 
 @Repository("turnoDao")
+@SuppressWarnings("unchecked")
 public class TurnoDaoImpl implements TurnoDao {
 
 	@Inject 
 	private SessionFactory sessionFactory;
-		
-	@SuppressWarnings("unchecked")
+
 	@Override
-	public List<Turno> listarTurnosPosiblesDao(){
+	public List<Turno> listarTurnosPosibles(){
 		
 			final Session session = sessionFactory.getCurrentSession();
 			return session.createCriteria(Turno.class)
@@ -42,6 +42,20 @@ public class TurnoDaoImpl implements TurnoDao {
 				.add(Restrictions.eq("id", id))
 				.uniqueResult();
 	} 
-		
 
+	@Override
+	public List<Turno> consultarFechaHora(int horario){
+		final Session session = sessionFactory.getCurrentSession();
+		return (List<Turno>) session.createCriteria(Turno.class)
+				.add(Restrictions.between("horario", 1,5))
+				.list();
+	}	
+
+	@Override
+	public List<Turno> consultarTurno(){
+		final Session session = sessionFactory.getCurrentSession();
+		return session.createCriteria(Turno.class)
+				.add(Restrictions.isNotNull("id"))
+				.list();
+	}
 }

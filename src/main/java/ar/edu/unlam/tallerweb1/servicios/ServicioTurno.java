@@ -8,10 +8,12 @@ public interface ServicioTurno {
 
 	List<Turno> listarTurnosPosibles();
 
-	Turno consultarTurnoPorId(Long id);
-
 	void restarCantidad(Long id);
 
 	void guardarTurno(Turno turno);
+
+	Turno consultarTurnoPorId(Long id);
+
+	List<Turno> consultarTurno();
 
 }

@@ -18,7 +18,6 @@ public class Turno {
 	private String fecha;
 	private String horario;
 	private Integer cantidad;
-	
 	public Long getId() {
 		return id;
 	}
@@ -44,6 +43,5 @@ public class Turno {
 		this.cantidad = cantidad;
 	}
 
-
-
+	
 }

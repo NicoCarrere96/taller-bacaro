@@ -53,6 +53,7 @@
 	<a href="modificarTaller" class="btn btn-success" style="width:20%">Modificar Datos</a>
 	</div>
 	<br><br>
-	<a href="<c:url value="/login"/>" class="btn btn-lg  btn-info" role="button" ><span class="glyphicon glyphicon-hand-left"></span></a>	 
+	<a href="<c:url value="/login"/>" class="btn btn-lg btn-info" role="button" ><span class="glyphicon glyphicon-hand-left"></span></a>	 
+
 	</body>
 </html>
