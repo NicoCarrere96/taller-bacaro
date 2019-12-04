@@ -3,6 +3,7 @@ package ar.edu.unlam.tallerweb1.servicios;
 import java.util.List;
 
 import ar.edu.unlam.tallerweb1.modelo.cliente.Turno;
+import ar.edu.unlam.tallerweb1.modelo.taller.Taller;
 
 public interface ServicioTurno {
 
@@ -12,8 +13,12 @@ public interface ServicioTurno {
 
 	void guardarTurno(Turno turno);
 
-	Turno consultarTurnoPorId(Long id);
+	List<Turno> consultarTurnosPorTaller(Taller taller);
 
-	List<Turno> consultarTurno();
+	void actualizarTurno(Turno turno);
+
+	void eliminarTurno(Turno turno);
+
+	Turno consultarTurnoPorId(Long idTurno);
 
 }

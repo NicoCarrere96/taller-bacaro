@@ -14,6 +14,6 @@ public interface ReservaDao {
 	Reserva buscarReservaPorId(Long id);
 
 	void guardarReserva(Reserva reserva);
-	List<Reserva> buscarFechasOcupadas(String fecha);
-	List<Reserva> consultarTurnoDao(Long turnoId);
+
+	void eliminarReserva(Reserva reserva);
 }

@@ -93,4 +93,18 @@ public class ControladorReserva {
 
 		return new ModelAndView("redirect:cliente?dni=" + reserva.getCliente().getDni());
 	}
+
+
+	@RequestMapping("/eliminarReserva")
+	@Transactional
+	public ModelAndView eliminarReserva(@RequestParam("idReserva") Long idReserva) {
+
+		
+			Reserva reserva = servicioReserva.buscarReservaPorId(idReserva);
+			
+			servicioReserva.eliminarReserva(reserva);
+			return new ModelAndView("redirect:cliente?dni=" + reserva.getCliente().getDni());
+		
+	}
+
 }

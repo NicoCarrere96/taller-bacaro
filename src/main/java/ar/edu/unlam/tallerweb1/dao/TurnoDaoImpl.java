@@ -11,6 +11,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import ar.edu.unlam.tallerweb1.modelo.cliente.Turno;
+import ar.edu.unlam.tallerweb1.modelo.taller.Taller;
 
 @Repository("turnoDao")
 @SuppressWarnings("unchecked")
@@ -43,19 +44,30 @@ public class TurnoDaoImpl implements TurnoDao {
 				.uniqueResult();
 	} 
 
-	@Override
-	public List<Turno> consultarFechaHora(int horario){
-		final Session session = sessionFactory.getCurrentSession();
+	public List<Turno> consultarTurnoPorTaller(Taller taller) {
+		Session session = sessionFactory.getCurrentSession();
 		return (List<Turno>) session.createCriteria(Turno.class)
-				.add(Restrictions.between("horario", 1,5))
-				.list();
-	}	
-
-	@Override
-	public List<Turno> consultarTurno(){
-		final Session session = sessionFactory.getCurrentSession();
-		return session.createCriteria(Turno.class)
-				.add(Restrictions.isNotNull("id"))
+				.add(Restrictions.eq("taller", taller))
 				.list();
 	}
+	
+	@Override
+	public void save(Turno turno) {
+		final Session session = sessionFactory.getCurrentSession();
+		session.save(turno);
+	}
+	
+	@Override
+	public void actualizarTurno(Turno turno) {
+		final Session session = sessionFactory.getCurrentSession();
+		session.update(turno);
+	}
+	
+	
+	@Override
+	public void eliminarTurno(Turno turno) {
+		final Session session = sessionFactory.getCurrentSession();
+		session.delete(turno);
+	}
+
 }
