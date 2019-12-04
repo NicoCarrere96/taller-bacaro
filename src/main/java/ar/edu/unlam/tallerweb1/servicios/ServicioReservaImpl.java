@@ -45,12 +45,10 @@ public class ServicioReservaImpl implements ServicioReserva {
 	public List<Reserva> consultarReservasPorTaller(Taller taller) {
 		return reservaDao.consultarReservasPorTaller(taller);
 	}
-	
-
 
 	@Override
-	public  List<Reserva> consultarTurno(Long turnoId) {
-		return reservaDao.consultarTurnoDao(turnoId);
+	public void eliminarReserva(Reserva reserva) {
+		 reservaDao.eliminarReserva(reserva);
 	}
 
 }

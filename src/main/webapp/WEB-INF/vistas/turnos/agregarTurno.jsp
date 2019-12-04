@@ -16,28 +16,15 @@
   				<h1>BuscoTaller.com</h1>
   				<p>La manera mas facil y comoda de conseguir taller</p> 
 
-<<<<<<< HEAD
   				 <span class="nav navbar-nav">
 					<a href="${pageContext.request.contextPath}/cerrar-sesion"><span class="glyphicon glyphicon-log-in"
 							style="color: white"></span> Logout</a>
 				 </span>
 				</div>
-=======
-<body>
-	<div class="jumbotron text-center"
-		style="background-color: #0d80b3; color: white">
-		<h1>BuscoTaller.com</h1>
-		<p>La manera mas facil y comoda de conseguir taller</p>
-		<span class="nav navbar-nav">
-					<a href="${pageContext.request.contextPath}/cerrar-sesion"><span class="glyphicon glyphicon-log-in"
-							style="color: white"></span> Logout</a>
-				 </span> 
-	</div>
->>>>>>> turnos
 	<nav>
 	
 		<div class="w3-bar w3-dark-grey">
-				<a href="<c:url value="/reserva/lista"/>" class="w3-bar-item w3-button w3-mobile" style="width:20%">Consultar Reservas</a>
+								<a href="<c:url value="/reserva/lista"/>" class="w3-bar-item w3-button w3-mobile" style="width:20%">Consultar Reservas</a>
   				<a href="<c:url value="/stockRepuestos/abmRepuestos" />" class="w3-bar-item w3-button w3-mobile" style="width:20%">Listado de Repuestos</a>
   				<a href="<c:url value="/factura/datosFacturacion" />" class="w3-bar-item w3-button w3-mobile" style="width:20%">Datos Facturacion</a>
   				<a href="<c:url value="/taller/homeTaller" />" class="w3-bar-item w3-button w3-mobile" style="width:20%">Datos Taller</a>
@@ -48,37 +35,36 @@
 	</nav>
 	<br>
 	<div class="container">
-		<h1>Agregar Repuesto</h1>
-		<form:form action="guardarRepuesto" modelAttribute="repuesto"
+		<h1>AgregarTurno</h1>
+		<form:form action="guardarTurno" modelAttribute="turno"
 			method="POST">
 			<div class="form-row">
 				<div class="form-group col-md-12">
 					<div class="form-group col-md-12">
-						<label for="nombre">Nombre</label>
+						<label for="fecha">Fecha</label>
 						<form:input type="text" required="required" class="form-control"
-							id="nombre" path="nombre" placeholder="Nombre" />
+							id="fecha" path="fecha" placeholder="Fecha" />
 					</div>
 
 					<div class="form-group col-md-12">
-						<label for="precio">Precio</label>
-						<form:input type="number" required="required" class="form-control"
-							id="precio" path="precio" placeholder="Precio" />
+						<label for="horario">Horario</label>
+						<form:input type="text" required="required" class="form-control"
+							id="horario" path="horario" placeholder="Horario" />
 					</div>
 
 					<div class="form-group col-md-12">
-						<label for="stock">Stock</label>
+						<label for="cantidad">Cantidad</label>
 						<form:input type="number" required="required" class="form-control"
-							id="stock" path="stock" placeholder="Stock" />
+							id="cantidad" path="cantidad" placeholder="Cantidad" />
 					</div>
 
 				</div>
 
 				<input type="submit" class="btn btn-lg btn-block btn-info"
-					style="color: white" value="Guardar Repuesto">
+					style="color: white" value="Guardar Turno">
 			</div>
-<a href="<c:url value="/stockRepuestos/abmRepuestos"/>" class="btn btn-lg btn-info" role="button" ><span class="glyphicon glyphicon-hand-left"></span></a>	 
+<a href="<c:url value="/turno/abmTurnos"/>" class="btn btn-lg btn-info" role="button" ><span class="glyphicon glyphicon-hand-left"></span></a>	 
 		</form:form>
 	</div>
-	<a href="<c:url value="abmRepuestos"/>" class="btn btn-lg btn-info" role="button" ><span class="glyphicon glyphicon-hand-left"></span></a>
 </body>
 </html>

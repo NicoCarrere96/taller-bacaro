@@ -17,6 +17,7 @@ public interface ServicioReserva {
 
 	void guardarReserva(Reserva reserva);
 
-	List<Reserva> consultarTurno(Long turnoId);
+	void eliminarReserva(Reserva reserva);
+
 
 }

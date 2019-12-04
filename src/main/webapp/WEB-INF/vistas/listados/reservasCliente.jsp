@@ -37,6 +37,7 @@
 		      <th scope="col">Cliente</th>
 		      <th scope="col">Estado</th>
 		      <th scope="col"></th>
+		      <th scope="col">Eliminar</th>
 		    </tr>
 		  </thead>
 		<tbody>
@@ -70,6 +71,10 @@
 					</a>
 				</c:if>
 			</td>
+			<td><c:out value="" /> <a
+											class="btn btn-default btn-circle"
+											href="<c:url value="eliminarReserva?idReserva=${reserva.getId()}" />"><span
+												class="glyphicon glyphicon-trash"></span> </a></td>
 		  </tr>
 		
 		</c:forEach>
@@ -77,7 +82,7 @@
 	</table>
 	</div>
 	
-	<a href="<c:url value="/cliente?dni=${ dniCliente }"/>" class="btn btn-lg btn-info" role="button" ><span class="glyphicon glyphicon-hand-left"></span></a>	 
+	<a href="<c:url value="/cliente"/>" class="btn btn-lg btn-info" role="button" ><span class="glyphicon glyphicon-hand-left"></span></a>	 
 	
 	
 			<!-- Placed at the end of the document so the pages load faster -->

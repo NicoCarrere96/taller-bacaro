@@ -58,8 +58,6 @@ INSERT INTO `taller-bacaro`.`taller` (`id`, `calle`, `especialidad`, `manoDeObra
 VALUES ('8', 'av. italia', '5', '582.0', 'Pedro', 'cisa', '1200',  '44878967', '2', '8');
 INSERT INTO `taller-bacaro`.`taller` (`id`, `calle`, `especialidad`, `manoDeObra`, `nombreDelDuenio`, `nombreDelTaller`, `numero`, `telefono`, `localidad_id`, `usuario_id`) 
 VALUES ('9', 'cno. de cintura', '6', '582.0', 'José', 'Pepe', '4300',  '44873152', '2', '9');
-
-
 INSERT INTO `taller-bacaro`.`taller` (`id`, `calle`, `especialidad`, `manoDeObra`, `nombreDelDuenio`, `nombreDelTaller`, `numero`, `telefono`, `localidad_id`, `usuario_id`) 
 VALUES ('10', 'Av. Rivadavia', '0', '582.0', 'Guido', 'Lopez', '17332',  '44891148', '1', '10');
 INSERT INTO `taller-bacaro`.`taller` (`id`, `calle`, `especialidad`, `manoDeObra`, `nombreDelDuenio`, `nombreDelTaller`, `numero`, `telefono`, `localidad_id`, `usuario_id`) 
@@ -74,19 +72,18 @@ INSERT INTO `taller-bacaro`.`taller` (`id`, `calle`, `especialidad`, `manoDeObra
 VALUES ('15', 'Gral. Juan Jose Valle', '5', '582.0', 'Walter', 'GPS-Taller', '233',  '46277839', '1', '15');
 INSERT INTO `taller-bacaro`.`taller` (`id`, `calle`, `especialidad`, `manoDeObra`, `nombreDelDuenio`, `nombreDelTaller`, `numero`, `telefono`, `localidad_id`, `usuario_id`) 
 VALUES ('16', 'Av. Hipolito Yrigoyen', '6', '582.0', 'Damian', 'El colorado', '268',  '22003046', '1', '16');
-
 INSERT INTO `taller-bacaro`.`taller` (`id`, `calle`, `especialidad`, `manoDeObra`, `nombreDelDuenio`, `nombreDelTaller`, `numero`, `telefono`, `localidad_id`, `usuario_id`) 
 VALUES ('17', 'Sarmiento', '1', '582.0', 'Raul', 'Customcast', '2134',  '46290549', '3', '17');
 INSERT INTO `taller-bacaro`.`taller` (`id`, `calle`, `especialidad`, `manoDeObra`, `nombreDelDuenio`, `nombreDelTaller`, `numero`, `telefono`, `localidad_id`, `usuario_id`) 
 VALUES ('18', 'Av. Zeballos', '2', '582.0', 'Matias', 'La ruta', '2873',  '46241106', '3', '18');
 
 
-INSERT INTO `taller-bacaro`.`turno` (`id`, `fecha`, `horario`, `cantidad`)
-VALUES 	(1	,'24/02/2020', '08:00 - 14:00', 3),
-		(2	,'25/02/2020', '08:00 - 14:00', 2),
-		(3	,'26/02/2020', '08:00 - 14:00', 2),
-        (4	,'27/02/2020', '08:00 - 14:00', 1),
-		(5	,'28/02/2020', '08:00 - 14:00', 1);
+INSERT INTO turno (`id`, `fecha`, `horario`, `cantidad`, `taller_id` )
+VALUES 	(1	,'24/02/2020', '08:00 - 14:00', 3, 1),
+		(2	,'25/02/2020', '08:00 - 14:00', 2, 1),
+		(3	,'26/02/2020', '08:00 - 14:00', 2, 1),
+        (4	,'27/02/2020', '08:00 - 14:00', 1, 1),
+		(5	,'28/02/2020', '08:00 - 14:00', 1, 1);
 
 
 INSERT INTO `taller-bacaro`.`reserva` (`id`, `estado`, `turno_id`, `problema`, `cliente_dni`, `taller_id`) VALUES ('1', '0', '4', 'algo esta roto', '11222333', '1');
@@ -102,3 +99,4 @@ INSERT INTO `taller-bacaro`.`repuesto` (`id`, `nombre`, `precio`, `stock`, `tall
 INSERT INTO `taller-bacaro`.`repuesto` (`id`, `nombre`, `precio`, `stock`, `taller_id` )  VALUES ('7', 'Pastilla', '120', '0', 1);
 
 INSERT INTO `taller-bacaro`.`ordenrepuesto` (`id`, `cantidad`, `orden_id`, `repuesto_id`) VALUES ('1', '2', '1', '1');
+
