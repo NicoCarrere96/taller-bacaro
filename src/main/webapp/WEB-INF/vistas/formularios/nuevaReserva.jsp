@@ -40,7 +40,6 @@
 			<div class="form-group">
 				<label for="problema" class="control-label">Telefono:</label>
 				<p>${ reserva.taller.telefono }</p>
-<<<<<<< HEAD
 			</div>
 
 			<div class="form-group">
