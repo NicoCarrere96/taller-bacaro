@@ -30,10 +30,11 @@ public class ControladorTurno {
 		if (taller != null) {
 			model.put("turno", servicioTurno.consultarTurnosPorTaller(taller));
 			return new ModelAndView("turnos/abmTurnos", model);
-		} else {
-			return new ModelAndView("redirect:/taller/homeTaller");
+		} 
+			else {
+				model.put("avisoError", "Acceso denegado");
+				return new ModelAndView("/aviso", model);}
 		}
-	}
 
 	@RequestMapping("/agregarTurno")
 	public ModelAndView agregarTurno(HttpServletRequest request) {
@@ -45,13 +46,14 @@ public class ControladorTurno {
 			model.put("turno", turno);
 			return new ModelAndView("turnos/agregarTurno", model);
 		} else {
-			return new ModelAndView("redirect:/taller/homeTaller");
-		}
+			model.put("avisoError", "Acceso denegado");
+			return new ModelAndView("/aviso", model);}
 	}
 
 	@RequestMapping(path = "/guardarTurno", method = RequestMethod.POST)
 	public ModelAndView guardarTurno(@ModelAttribute("Turno") Turno turno, HttpServletRequest request) {
 		Taller taller = (Taller) request.getSession().getAttribute("taller");
+		ModelMap model= new ModelMap();
 		if (taller != null) {
 
 			turno.setTaller(taller);
@@ -59,21 +61,22 @@ public class ControladorTurno {
 
 			return new ModelAndView("redirect: abmTurnos");
 		} else {
-			return new ModelAndView("redirect:/taller/homeTaller");
-		}
+			model.put("avisoError", "Acceso denegado");
+			return new ModelAndView("/aviso", model);}
 	}
 
 	@RequestMapping(path = "/actualizarTurno", method = RequestMethod.POST)
 	public ModelAndView actualizarTurno(@ModelAttribute("turno") Turno turno, HttpServletRequest request) {
 		Taller taller = (Taller) request.getSession().getAttribute("taller");
+		ModelMap model= new ModelMap();
 		if (taller != null) {
 			turno.setTaller(taller);
 			servicioTurno.actualizarTurno(turno);
 
 			return new ModelAndView("redirect: abmTurnos");
 		} else {
-			return new ModelAndView("redirect:/taller/homeTaller");
-		}
+			model.put("avisoError", "Acceso denegado");
+			return new ModelAndView("/aviso", model);}
 	}
 
 	@RequestMapping("/modificarTurno")
@@ -87,21 +90,22 @@ public class ControladorTurno {
 			model.put("turno", turno);
 			return new ModelAndView("turnos/modificarTurno", model);
 		} else {
-			return new ModelAndView("redirect:/taller/homeTaller");
-		}
+			model.put("avisoError", "Acceso denegado");
+			return new ModelAndView("/aviso", model);}
 	}
 
 	@RequestMapping("/eliminarTurno")
 	public ModelAndView eliminarTurno(@RequestParam("idTurno") Long idTurno, HttpServletRequest request) {
 
 		Taller taller = (Taller) request.getSession().getAttribute("taller");
+		ModelMap model = new ModelMap();
 		if (taller != null) {
 			Turno turno = servicioTurno.consultarTurnoPorId(idTurno);
 			
 			servicioTurno.eliminarTurno(turno);
 			return new ModelAndView("redirect: abmTurnos");
 		} else {
-			return new ModelAndView("redirect:/taller/homeTaller");
-		}
+			model.put("avisoError", "Acceso denegado");
+			return new ModelAndView("/aviso", model);}
 	}
 }
