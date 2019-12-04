@@ -58,7 +58,7 @@
 			</div>
 			<div class="w3-center">
 		<a
-			href="<c:url value="/factura/getPdf?reservaId=${ factura.reserva.id }"/>"
+			href="<c:url value="/factura/getPdf?ordenId=${ factura.id }"/>"
 			class="btn btn-danger" role="button">Imprimir factura</a>
 			</div>
 			<div class=w3-center>

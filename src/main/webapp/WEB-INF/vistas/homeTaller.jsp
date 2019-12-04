@@ -16,7 +16,7 @@
   				<h1>BuscoTaller.com</h1>
   				<p>La manera mas facil y comoda de conseguir taller</p> 
 
-  				 <span class="nav navbar-nav navbar-right">
+  				 <span class="nav navbar-nav">
 					<a href="${pageContext.request.contextPath}/cerrar-sesion"><span class="glyphicon glyphicon-log-in"
 							style="color: white"></span> Logout</a>
 				 </span>
@@ -24,9 +24,10 @@
 	<nav>
 	
 		<div class="w3-bar w3-dark-grey">
-				<a href="<c:url value="/reserva/lista"/>" class="w3-bar-item w3-button w3-mobile" style="width:33%">Consultar Reservas</a>
-  				<a href="<c:url value="/stockRepuestos/abmRepuestos" />" class="w3-bar-item w3-button w3-mobile" style="width:33%">Listado de Repuestos</a>
-  				<a href="<c:url value="/taller/homeTaller" />" class="w3-bar-item w3-button w3-mobile" style="width:33%">Datos Taller</a>
+				<a href="<c:url value="/reserva/lista"/>" class="w3-bar-item w3-button w3-mobile" style="width:25%">Consultar Reservas</a>
+  				<a href="<c:url value="/stockRepuestos/abmRepuestos" />" class="w3-bar-item w3-button w3-mobile" style="width:25%">Listado de Repuestos</a>
+  				<a href="<c:url value="/factura/datosFacturacion" />" class="w3-bar-item w3-button w3-mobile" style="width:25%">Datos Facturacion</a>
+  				<a href="<c:url value="/taller/homeTaller" />" class="w3-bar-item w3-button w3-mobile" style="width:25%">Datos Taller</a>
 	  			
 		</div>
 	
@@ -46,12 +47,12 @@
 	<br><br>
 	<span class="w3-white" style="text-shadow:1px 1px 0 #444">Pagina Web: </span>${ taller.paginaWeb }
 	<br><br>
-	<span class="w3-white" style="text-shadow:1px 1px 0 #444">Especialidad: </span>${ taller.especialidad }
+	<span class="w3-white" style="text-shadow:1px 1px 0 #444">Especialidad: </span>${ taller.especialidad.name }
 	<br><br>	
 	
 	<a href="modificarTaller" class="btn btn-success" style="width:20%">Modificar Datos</a>
 	</div>
 	<br><br>
-	<a href="<c:url value="/login"/>" class="btn btn-lg btn-block btn-info" role="button" ><span class="glyphicon glyphicon-hand-left"></span></a>	 
+	<a href="<c:url value="/login"/>" class="btn btn-lg  btn-info" role="button" ><span class="glyphicon glyphicon-hand-left"></span></a>	 
 	</body>
 </html>

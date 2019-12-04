@@ -78,10 +78,10 @@ public class ControladorReserva {
 		reserva.setCliente(servicioCliente.consultarClientePorDni(dniCliente));
 		reserva.setTaller(servicioTaller.buscarTallerPorId(tallerId));
 		reserva.setEstado(EstadoReserva.PENDIENTE);
-		List<Turno> horarios= servicioTurno.ListarTurnosPosibles();
+		List<Turno> turnos= servicioTurno.listarTurnosPosibles();
 		
 		modelo.addAttribute("reserva", reserva);
-		modelo.put("horarios", horarios);
+		modelo.put("turnos", turnos);
 		
 		return new ModelAndView("formularios/nuevaReserva", modelo);
 	}
@@ -92,6 +92,7 @@ public class ControladorReserva {
 		
 		servicioReserva.guardarReserva(reserva);
 		
+		servicioTurno.restarCantidad(reserva.getTurno().getId());
 		
 		return new ModelAndView("redirect:cliente?dni=" + reserva.getCliente().getDni());
 	}

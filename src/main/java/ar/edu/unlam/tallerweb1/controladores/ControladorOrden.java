@@ -15,13 +15,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.mercadopago.resources.Preference;
-
 import ar.edu.unlam.tallerweb1.modelo.Orden;
-import ar.edu.unlam.tallerweb1.modelo.cliente.Cliente;
 import ar.edu.unlam.tallerweb1.modelo.cliente.Reserva;
 import ar.edu.unlam.tallerweb1.modelo.taller.OrdenRepuesto;
-import ar.edu.unlam.tallerweb1.modelo.taller.Repuesto;
 import ar.edu.unlam.tallerweb1.modelo.taller.Taller;
 import ar.edu.unlam.tallerweb1.servicios.ServicioOrden;
 import ar.edu.unlam.tallerweb1.servicios.ServicioRepuesto;
@@ -106,7 +102,7 @@ public class ControladorOrden {
 
 	@RequestMapping(path = "/ordenPresupuestada", method = RequestMethod.GET)
 	@Transactional
-	public ModelAndView verPresupuesto(HttpServletRequest request, @RequestParam("idReserva") Long idReserva) {
+	public ModelAndView verPresupuesto(HttpServletRequest request, @RequestParam Long idReserva) {
 		ModelMap modelo = new ModelMap();
 		Reserva reserva = servicioReserva.buscarReservaPorId(idReserva);
 		Orden orden = servicioOrden.consultarOrdenPorReserva(reserva);
@@ -185,6 +181,18 @@ public class ControladorOrden {
 		} else {
 			return new ModelAndView("redirect:/login");
 		}
+	}
+
+	public void setServicioReserva(ServicioReserva servicioReserva) {
+		this.servicioReserva = servicioReserva;		
+	}
+
+	public void setServicioOrden(ServicioOrden servicioOrden) {
+		this.servicioOrden = servicioOrden;
+	}
+
+	public void setServicioRespuesto(ServicioRepuesto servicioRepuesto) {
+		this.servicioRepuesto = servicioRepuesto;
 	}
 	
 	

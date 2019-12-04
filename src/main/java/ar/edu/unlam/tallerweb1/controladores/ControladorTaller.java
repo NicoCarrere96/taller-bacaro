@@ -125,7 +125,7 @@ public class ControladorTaller {
 		if (taller != null) {
 			ModelMap modelo = new ModelMap();
 
-			modelo.put("taller", taller);
+			modelo.put("taller", servicioTaller.buscarTallerPorId(taller.getId()));
 			modelo.put("provincias", servicioLocalidad.consultarProvincias());
 			modelo.put("localidades",
 					servicioLocalidad.buscarLocalidadesPorProvincia(taller.getLocalidad().getProvincia()));
@@ -155,6 +155,9 @@ public class ControladorTaller {
 
 			return new ModelAndView("redirect:/login");
 		}
+	}
+	public void setServicioTaller(ServicioTaller servicio) {
+		this.servicioTaller = servicio;		
 	}
 	
 }
