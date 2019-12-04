@@ -35,6 +35,7 @@ import static org.mockito.Mockito.when;
 import ar.edu.unlam.tallerweb1.SpringTest;
 import ar.edu.unlam.tallerweb1.controladores.ControladorStockRepuestos;
 import ar.edu.unlam.tallerweb1.modelo.taller.Repuesto;
+import ar.edu.unlam.tallerweb1.modelo.taller.Taller;
 import ar.edu.unlam.tallerweb1.servicios.ServicioRepuesto;
 
 public class ControladorRepuestoTestMockito extends SpringTest{
@@ -48,12 +49,13 @@ public class ControladorRepuestoTestMockito extends SpringTest{
 	@Mock
 	private HttpSession session;
 
-
 	@InjectMocks
 	private ControladorStockRepuestos controladorStockRepuesto;
 	private Repuesto repuesto1 , repuesto2;
 	private List<Repuesto> listaDeRepuestos;
 	private Session sesion;
+
+	private ServicioRepuesto servicioRepuesto;
 
 	@Before
 	public void inyeccionDeMocksInicializada() {
@@ -121,12 +123,12 @@ public class ControladorRepuestoTestMockito extends SpringTest{
 		HttpSession session = mock(HttpSession.class);
 		Taller taller = mock(Taller.class);
 		
-		controladorStockRepuestos.setServicioRespuesto(servicioRepuesto);
+		controladorStockRepuesto.setServicioRespuesto(servicioRepuesto);
 		
 		when(request.getSession()).thenReturn(session);
 		when(session.getAttribute("taller")).thenReturn(taller);
 		
-		ModelAndView rep = controladorStockRepuestos.agregarRepuesto(request);
+		ModelAndView rep = controladorStockRepuesto.agregarRepuesto(request);
 		
 		assertThat(rep.getViewName()).isEqualTo("repuestos/agregarRepuesto");
 		
@@ -140,12 +142,12 @@ public class ControladorRepuestoTestMockito extends SpringTest{
 		HttpSession session = mock(HttpSession.class);
 		Taller taller = mock(Taller.class);
 		
-		controladorStockRepuestos.setServicioRespuesto(servicioRepuesto);
+		controladorStockRepuesto.setServicioRespuesto(servicioRepuesto);
 		
 		when(request.getSession()).thenReturn(session);
 		when(session.getAttribute("taller")).thenReturn(taller);
 		
-		ModelAndView rep = controladorStockRepuestos.eliminarRepuesto(idRepuesto, request);
+		ModelAndView rep = controladorStockRepuesto.eliminarRepuesto(idRepuesto, request);
 		
 		assertThat(rep.getViewName()).isEqualTo("redirect: abmRepuestos");
 		
