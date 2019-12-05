@@ -46,7 +46,6 @@ public class ControladorTaller {
 		modelo.addAttribute("taller", taller);
 		modelo.addAttribute("especialidades", Especialidad.values());
 		modelo.addAttribute("provincias", servicioLocalidad.consultarProvincias());
-//		modelo.addAttribute("localidades", servicioLocalidad.consultarLocalidades());
 
 		return new ModelAndView("formularios/registrarse", modelo);
 	}
@@ -89,11 +88,13 @@ public class ControladorTaller {
 
 	@RequestMapping(path = "/filtrado", method = RequestMethod.GET)
 	@Transactional
-	public ModelAndView listarTalleresFiltrados(@RequestParam Long provincia, @RequestParam Long localidad,
+	public ModelAndView listarTalleresFiltrados(@RequestParam(required = false) Long provincia, @RequestParam(required = false) Long localidad,
 			@RequestParam String especialidad, @RequestParam Long dniCliente) {
 		ModelMap modelo = new ModelMap();
 
-		Localidad localidadrtdo = servicioLocalidad.buscarLocalidadPorId(localidad);
+			
+		Localidad localidadrtdo = localidad != null ? servicioLocalidad.buscarLocalidadPorId(localidad) : null;
+
 
 		modelo.addAttribute("talleres",
 				servicioTaller.filtrarTalleres(localidadrtdo, Especialidad.valueOf(especialidad)));
@@ -145,9 +146,9 @@ public class ControladorTaller {
 		if (usuarioLogueado != null) {
 			ModelMap modelo = new ModelMap();
 			taller.setLocalidad(servicioLocalidad.buscarLocalidadPorId(taller.getLocalidad().getId()));
-			
+
 			servicioTaller.update(taller);
-			
+
 			modelo.put("taller", taller);
 
 			return new ModelAndView("homeTaller", modelo);
@@ -156,8 +157,9 @@ public class ControladorTaller {
 			return new ModelAndView("redirect:/login");
 		}
 	}
+
 	public void setServicioTaller(ServicioTaller servicio) {
-		this.servicioTaller = servicio;		
+		this.servicioTaller = servicio;
 	}
-	
+
 }

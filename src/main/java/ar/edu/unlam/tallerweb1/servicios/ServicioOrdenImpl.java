@@ -81,7 +81,7 @@ public class ServicioOrdenImpl implements ServicioOrden {
 	public Document createPDF(Orden orden, List<OrdenRepuesto> ordRepList) {
 		Document document = new Document();
 		try {
-			PdfWriter.getInstance(document, new FileOutputStream("/tmp/factura-" + orden.getReserva().getId()+".pdf"));
+			PdfWriter.getInstance(document, new FileOutputStream("/tmp/factura-" + orden.getId()+".pdf"));
 			document.open();
 			Font font = FontFactory.getFont(FontFactory.TIMES_ROMAN, 16, BaseColor.BLACK);
 			Paragraph factura = new Paragraph("Factura Nro: " + orden.getId(), font);
@@ -128,11 +128,9 @@ public class ServicioOrdenImpl implements ServicioOrden {
 
 	@Override
 	public byte[] obtenerFactura(Long idReserva) {
-		// TODO Auto-generated method stub
 		try {
 			return Files.readAllBytes(Paths.get("/tmp/factura-" + idReserva +".pdf"));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			throw new RuntimeException(e);
 		}
 	}
