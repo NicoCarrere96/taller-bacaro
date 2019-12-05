@@ -105,6 +105,7 @@ public class ControladorFactura {
 		if (preference == null)
 			return new ModelAndView("Error");
 		ordenBuscada.getReserva().setEstado(EstadoReserva.PAGADA);
+		
 		return new ModelAndView("facturaGenerada2", modelo);
 
 	}

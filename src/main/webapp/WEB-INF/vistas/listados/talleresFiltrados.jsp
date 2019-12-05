@@ -60,11 +60,12 @@
 		</c:forEach>
 		</tbody>
 	</table>
-	</div>
+		<br>
 	<br>
-	<br>
-	<a href="<c:url value="/taller/filtro?dniCliente=${ dniCliente }"/>" class="btn btn-lg btn-info" role="button" ><span class="glyphicon glyphicon-hand-left"></span></a>	 
+	<a href="<c:url value="/taller/filtro?dniCliente=${ dniCliente }"/>" class="w3-button w3-round-xxlarge w3-blue" role="button"><span
+		class="glyphicon glyphicon-hand-left w3-center"></span>  Volver</a>
 	
+	</div>
 	
 	
 			<!-- Placed at the end of the document so the pages load faster -->

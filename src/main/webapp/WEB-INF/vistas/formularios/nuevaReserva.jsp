@@ -14,6 +14,9 @@
 	rel="stylesheet">
 <link href="<c:url value="/css/bootstrap-datetimepicker.min.css" />"
 	rel="stylesheet">
+<!-- w3 CSS -->
+<link href="<c:url value="/css/w3.css" />" rel="stylesheet">
+
 <title>Reserva de Turnos</title>
 </head>
 
@@ -69,8 +72,9 @@
 			<form:hidden path="estado" />
 
 		</form:form>
+	<a href="<c:url value="/taller/filtro?dniCliente=${ dniCliente }"/>" class="w3-button w3-round-xxlarge w3-blue" role="button"><span
+		class="glyphicon glyphicon-hand-left w3-center"></span>  Volver</a>
 	</div>
-<a href="<c:url value="/taller/filtro?dniCliente=${ dniCliente }"/>" class="btn btn-lg  btn-info" role="button" ><span class="glyphicon glyphicon-hand-left"></span></a>	 
 
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

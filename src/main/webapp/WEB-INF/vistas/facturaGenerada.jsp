@@ -16,7 +16,7 @@
   				<h1>BuscoTaller.com</h1>
   				<p>La manera mas facil y comoda de conseguir taller</p> 
 
-  				 <span class="nav navbar-nav ">
+  				<span class="nav navbar-nav navbar-right" style="margin-right:15px;">
 					<a href="${pageContext.request.contextPath}/cerrar-sesion"><span class="glyphicon glyphicon-log-in"
 							style="color: white"></span> Logout</a>
 				 </span>
@@ -68,12 +68,16 @@
 			<li class="list-group-item"><strong>Total:</strong><br> $
 				${ factura.total }</li>
 		</ul>
-
-		<a
-			href="<c:url value="/factura/getPdf?ordenId=${ factura.id }"/>"
-			class="btn btn-danger" role="button">Imprimir factura</a>
+		<div class="container">
+			<div style="float:left">
+			<a href="<c:url value="/taller/homeTaller"/>" class="w3-button w3-round-xxlarge w3-blue" role="button"><span class="glyphicon glyphicon-hand-left">  Volver</span></a>
 	</div>
-
+			<div style="float:right">
+		<a href="<c:url value="/factura/getPdf?ordenId=${ factura.id }"/>"
+			class="btn btn-danger" role="button">Imprimir factura</a>
+			</div>
+	
+</div>
 
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script

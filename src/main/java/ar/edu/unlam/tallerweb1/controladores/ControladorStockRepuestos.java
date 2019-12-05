@@ -14,7 +14,6 @@ import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unlam.tallerweb1.modelo.taller.Repuesto;
 import ar.edu.unlam.tallerweb1.modelo.taller.Taller;
 import ar.edu.unlam.tallerweb1.servicios.ServicioRepuesto;
-import ar.edu.unlam.tallerweb1.servicios.ServicioTaller;
 
 @Controller
 @RequestMapping(path = "/stockRepuestos", method = RequestMethod.GET)
@@ -22,9 +21,7 @@ public class ControladorStockRepuestos {
 
 	@Inject
 	private ServicioRepuesto servicioRepuesto;
-	@Inject
-	private ServicioTaller servicioTaller;
-
+	
 	@RequestMapping("abmRepuestos")
 	public ModelAndView abmRepuestos(HttpServletRequest request) {
 		Taller taller = (Taller) request.getSession().getAttribute("taller");

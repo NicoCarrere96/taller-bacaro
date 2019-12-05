@@ -9,6 +9,9 @@
 	    <link href="<c:url value="/css/bootstrap.min.css" />" rel="stylesheet" >
 	    <!-- Bootstrap theme -->
 	    <link href="<c:url value="/css/bootstrap-theme.min.css" />" rel="stylesheet">
+	    <!-- w3 CSS -->
+		<link href="<c:url value="/css/w3.css" />" rel="stylesheet">
+	    
 		<title>Reserva de turno
 		</title>
 	</head>
@@ -28,7 +31,7 @@
 	</div>
 
 	<div class="container">
-	 	 <table class="table">
+	 	 <table class="w3-table w3-striped">
 		  <thead class="thead-light">
 		    <tr>
 		      <th scope="col">Nº</th>
@@ -37,7 +40,6 @@
 		      <th scope="col">Cliente</th>
 		      <th scope="col">Estado</th>
 		      <th scope="col"></th>
-		      <th scope="col">Eliminar</th>
 		    </tr>
 		  </thead>
 		<tbody>
@@ -71,18 +73,26 @@
 					</a>
 				</c:if>
 			</td>
-			<td><c:out value="" /> <a
+				
+			
+			<td><c:if test="${ reserva.estado eq 'PENDIENTE' }"><c:out value="" /> <a
 											class="btn btn-default btn-circle"
 											href="<c:url value="eliminarReserva?idReserva=${reserva.getId()}" />"><span
-												class="glyphicon glyphicon-trash"></span> </a></td>
+												class="glyphicon glyphicon-trash"></span> </a></c:if></td>
+		  
+		  
 		  </tr>
 		
 		</c:forEach>
 		</tbody>
+	
 	</table>
+	<br>
+	<a href="<c:url value="/cliente"/>" class="w3-button w3-round-xxlarge w3-blue" role="button"><span
+		class="glyphicon glyphicon-hand-left w3-center"></span>  Volver</a>	 
+	
 	</div>
 	
-	<a href="<c:url value="/cliente"/>" class="btn btn-lg btn-info" role="button" ><span class="glyphicon glyphicon-hand-left"></span></a>	 
 	
 	
 			<!-- Placed at the end of the document so the pages load faster -->

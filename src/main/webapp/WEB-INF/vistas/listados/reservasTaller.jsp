@@ -17,7 +17,7 @@
 		style="background-color: #0d80b3; color: white">
 		<h1>BuscoTaller.com</h1>
 		<p>La manera mas facil y comoda de conseguir taller</p>
-		 <span class="nav navbar-nav">
+				<span class="nav navbar-nav navbar-right" style="margin-right:15px;">
 					<a href="${pageContext.request.contextPath}/cerrar-sesion"><span class="glyphicon glyphicon-log-in"
 							style="color: white"></span> Logout</a>
 				 </span>
@@ -83,11 +83,8 @@
 									</a>
 								</c:when>
 								
+								
 								<c:otherwise>
-								<!--	<a href="<c:url value="/factura/verFactura?reservaId=${ reserva.id }" />">
-										<button type="button" class="btn btn-info">Ver
-											Factura</button>
-									</a>-->
 								</c:otherwise>
 							</c:choose></td>
 					</tr>
@@ -96,7 +93,7 @@
 			</tbody>
 		</table>
 		<br><br>
-	<a href="<c:url value="/taller/homeTaller"/>" class="btn btn-lg btn-info" role="button" ><span class="glyphicon glyphicon-hand-left"></span></a>	 
+	<a href="<c:url value="/taller/homeTaller"/>" class="w3-button w3-round-xxlarge w3-blue" role="button"><span class="glyphicon glyphicon-hand-left">  Volver</span></a>	 
 	</div>
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script
