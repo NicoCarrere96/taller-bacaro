@@ -56,19 +56,23 @@
 				${ factura.total }</li>
 		</ul>
 			</div>
-			<div class="w3-center">
-		<a
-			href="<c:url value="/factura/getPdf?ordenId=${ factura.id }"/>"
+			<div class="container">
+			<div style="float:left">
+<a href="<c:url value="/reserva/cliente?dni=${ factura.reserva.cliente.dni }"/>" class="w3-button w3-round-xxlarge w3-blue" role="button"><span
+		class="glyphicon glyphicon-hand-left w3-center"></span>  Volver</a>	 
+				</div>
+			<div style="float:right">
+		<a href="<c:url value="/factura/getPdf?ordenId=${ factura.id }"/>"
 			class="btn btn-danger" role="button">Imprimir factura</a>
 			</div>
-			<div class=w3-center>
-									<form action="http://localhost:8080/taller-bacaro/" method="GET">
-  <script
-   src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js"
-   data-preference-id="${preference.id }">
+			<div style="float:right; padding-right:10px;">
+			<form action="http://localhost:8080/taller-bacaro/" method="GET">
+  <script src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js"
+   data-preference-id="${preference.id }" data-button-label="Pagar Factura">
   </script>
 </form>
-			</div>
+		</div>
+		</div>
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

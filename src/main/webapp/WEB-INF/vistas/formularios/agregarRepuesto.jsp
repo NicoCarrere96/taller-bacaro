@@ -16,7 +16,7 @@
   				<h1>BuscoTaller.com</h1>
   				<p>La manera mas facil y comoda de conseguir taller</p> 
 
-  				 <span class="nav navbar-nav ">
+  				<span class="nav navbar-nav navbar-right" style="margin-right:15px;">
 					<a href="${pageContext.request.contextPath}/cerrar-sesion"><span class="glyphicon glyphicon-log-in"
 							style="color: white"></span> Logout</a>
 				 </span>
@@ -55,7 +55,9 @@
 		        <button type="submit" class="btn btn-primary">Agregar Repuesto</button>
 		    </div> 
 		</form:form>
+		<a href="<c:url value="/taller/homeTaller"/>" class="w3-button w3-round-xxlarge w3-blue" role="button"><span class="glyphicon glyphicon-hand-left">  Volver</span></a>
 	</div>
+	
 	
 		
 		<!-- Placed at the end of the document so the pages load faster -->

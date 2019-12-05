@@ -9,6 +9,9 @@
 	    <link href="<c:url value="/css/bootstrap.min.css" />" rel="stylesheet" >
 	    <!-- Bootstrap theme -->
 	    <link href="<c:url value="/css/bootstrap-theme.min.css" />" rel="stylesheet">
+	    <!-- w3 CSS -->
+		<link href="<c:url value="/css/w3.css" />" rel="stylesheet">
+	    
 	</head>
 	<body>
 	<div class="jumbotron text-center" style="background-color:#0d80b3; color:white">
@@ -81,8 +84,8 @@
 			</c:otherwise>
 		</c:choose>
 		
-		<a href="<c:url value="/"/>" class="btn btn-lg btn-info" role="button" ><span class="glyphicon glyphicon-hand-left"></span></a>	 
-		    
+		<a href="<c:url value="/"/>" class="w3-button w3-round-xxlarge w3-blue" role="button"><span
+		class="glyphicon glyphicon-hand-left w3-center"></span>  Volver</a>
 	</div>
 		
 		<!-- Placed at the end of the document so the pages load faster -->
