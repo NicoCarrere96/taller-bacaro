@@ -20,7 +20,6 @@
 		style="background-color: #0d80b3; color: white">
 		<h1>BuscoTaller.com</h1>
 		<p>La manera mas facil y comoda de conseguir taller</p>
-<<<<<<< HEAD
 	</div>
 
 	<br>
@@ -35,12 +34,10 @@
 	
 <a href="<c:url value="/cliente?dni=${ dniCliente }"/>" class="btn btn-lg btn-info" role="button" ><span class="glyphicon glyphicon-hand-left"></span></a>	 
 </body>
-=======
 		 <span class="nav navbar-nav">
 					<a href="${pageContext.request.contextPath}/cerrar-sesion"><span class="glyphicon glyphicon-log-in"
 							style="color: white"></span> Logout</a>
 				 </span>
-	</div>
 	<nav>
 
 		<div class="w3-bar w3-dark-grey">
@@ -65,5 +62,4 @@
 	<br>
 	<a href="<c:url value="/turno/abmTurnos"/>" class="btn btn-lg btn-info" role="button" ><span class="glyphicon glyphicon-hand-left"></span></a>	 
 	</body>
->>>>>>> e77d83b7720095f0b81774f27495f264be8a426c
 </html>

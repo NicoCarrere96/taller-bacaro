@@ -13,8 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 import org.junit.Before;
@@ -25,13 +23,9 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
-import org.springframework.validation.BindingResult;
 import org.springframework.web.servlet.ModelAndView;
-import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-
 import ar.edu.unlam.tallerweb1.SpringTest;
 import ar.edu.unlam.tallerweb1.controladores.ControladorStockRepuestos;
 import ar.edu.unlam.tallerweb1.modelo.taller.Repuesto;

@@ -20,7 +20,7 @@
 		<div class = "container">
 		<div class="form-group row">
             <label class="col-sm-2 col-form-label">Provincia</label>
-            <select type="text" id="provinciaSelect" class="form-control mb-4" >
+            <select id="provinciaSelect" class="form-control mb-4" >
 			 	<option label="---Seleccionar Provincia---"/>
 			 	<c:forEach items="${provincias}" var="provincia">
 					 <option value="${provincia.id}" label="${ provincia.nombre }"/>

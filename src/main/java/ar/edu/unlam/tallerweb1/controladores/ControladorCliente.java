@@ -14,7 +14,6 @@ import ar.edu.unlam.tallerweb1.modelo.cliente.Cliente;
 import ar.edu.unlam.tallerweb1.servicios.ServicioCliente;
 
 @Controller
-@RequestMapping(path = "/cliente")
 public class ControladorCliente {
 	
 	@Inject

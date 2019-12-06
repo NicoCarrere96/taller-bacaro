@@ -76,7 +76,7 @@
 		<a href="<c:url value="/factura/getPdf?ordenId=${ factura.id }"/>"
 			class="btn btn-danger" role="button">Imprimir factura</a>
 			</div>
-	
+	</div>
 </div>
 
 	<!-- Placed at the end of the document so the pages load faster -->
